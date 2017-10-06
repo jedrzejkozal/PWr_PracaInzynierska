@@ -2,12 +2,12 @@
 
 \usepackage{polski}
 \usepackage[utf8]{inputenc}
+\usepackage{amsmath}	
+\usepackage{graphicx}
 
 \title{Praca inżynierska}
 \date{2017-10-01}
 \author{Jędrzej Kozal}
-
-\usepackage{graphicx}
 
 \begin{document}
 
@@ -73,11 +73,17 @@ Wykorzystane bazy zdjęć
 \subsection{PCA}
 \subsubsection{Wstęp matematyczny}
 
+Zdefinujmy macierz kowariancji:
+\begin{equation}
+	S = \frac{1}{N} \sum_{n=1}^{N} (x_n - \overline{x})(x_n - \overline{x})^T
+\end{equation}
+
+
 \subsubsection{Realizacja algorytmu oraz sztuczka związana z mnożeniem macierzy} 
 
 
 \subsubsection{Interpretacja}
-
+PCA jest algorytmem redukcji wymiarowości danych. Mając określony zbiór danych, będący reprezentatywną reprezentacją analizowanej przestrzeni należy wyznaczyć nowy zbiór wektorów bazowych, tak aby wariancja danych z zbioru względem nowo wyznaczownych wektorów była jak najwyższa.
 
 \subsubsection{PCA jako samodzielny system rozpoznawania twarzy}
  
@@ -95,5 +101,22 @@ Badanie wpływu okularów?
 
 \subsection{Automatyzacja badań}
 
+
+\subsection{Zakończenie}
+
+\newpage
+\begin{thebibliography}{9}
+
+\bibitem{Pattern recognition}
+Christopher M. Bishop.
+\textit{Pattern recognition and machine learning}.
+Springer Science + Business Media, New York 2009
+
+\bibitem{Osowski}
+Stanisław Osowski.
+\textit{Sieci Neuronowe w ujęciu algorytmicznym}
+Wydawnictwo Naukowo-Techniczne, Warszawa 1996
+
+\end{thebibliography}
 
 \end{document}
