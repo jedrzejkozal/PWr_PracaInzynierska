@@ -4,12 +4,19 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}	
 \usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{tabstackengine}
+
+\newcommand{\bb}{\textbf}
 
 \title{Praca inżynierska}
 \date{2017-10-01}
 \author{Jędrzej Kozal}
 
 \begin{document}
+
+
 
 \begin{titlepage}
 	\centering
@@ -55,35 +62,214 @@ OpenCv stanowi poteżny zbiór narzędzi do analizy oraz przetwarzania obrazów.
 
 Wszystkie wymienione biblioteki są rozpowszechniane w ramach licencji new-BSD lub 3-clause BSD, co oznacza że wolno je wykorzystywać w celach akademickich lub komercyjnych. Zastosowanie bibliotek dostarczających zoptymalizowanych algorytmów znacznie ułatwiło i usystematyzowało pracę nad projektem.
 
-Na początku pracy nad projektem podjęto próbę implementacji własnej wersji algorytmu PCA, aby lepiej zrozumieć i dokładnie prześledzić jego działanie. Algorytm ten działał poprawnie, ale względu na dużą złożoność obliczeniową zdecydowano się na korzystanie z wersji udostępnionej w bibliotece scikit-learn. W trakcie późniejszych prac nad systemem znaleziono informację na temat tego co powodowało tak wysoką złożoność obliczeniową oraz sposób na jej uniknięcie. Zagadnienie to zostało opisane w rozdziale Realizacja algorytmu oraz sztuczka związana z mnożeniem macierzy.
+Na początku pracy nad projektem podjęto próbę implementacji własnej wersji algorytmu PCA, aby lepiej zrozumieć i dokładnie prześledzić jego działanie. Algorytm ten działał poprawnie, ale względu na dużą złożoność obliczeniową zdecydowano się na korzystanie z wersji udostępnionej w bibliotece scikit-learn. W trakcie późniejszych prac nad systemem znaleziono informację na temat tego co powodowało tak wysoką złożoność obliczeniową oraz sposób na jej uniknięcie. Zagadnienie to zostało opisane w rozdziale Realizacja algorytmu.
 
 Wykorzystane bazy zdjęć
-
-
 
 \section{Implementacja algorytmów – detekcja twarzy}
  
 \subsection{Przetwarzanie obrazu po akwizycji} 
  
  
- 
+ \newpage
  
 \section{Implementacja algorytmów – ekstrakcja cech}
+
+Pomiędzy tymi etapami obraz jest obcinany do rozmiaru 64 $\times$ 64, w celu zwiększenia szybkości przetwarzania.
  
-\subsection{PCA}
+\subsection{Principle Components Analysis}
+
+Principle Components Analysis (PCA) jest algorytmem redukcji wymiarowości danych. Mając określony zbiór obserwacji, będący reprezentatywną reprezentacją próbą analizowanej przestrzeni należy wyznaczyć zbiór wektorów bazowych, tak aby wariancja danych z zbioru obserwacji względem nowo wyznaczownych wektorów bazowych była jak najwyższa.
+
 \subsubsection{Wstęp matematyczny}
 
-Zdefinujmy macierz kowariancji:
+Przedstawione tutaj wyprowadzenie jest podawane za Pattern recognition and machine learning.
+
+Zakładamy że dany jest zbiór $D$-wymiarowych wektorów obserwacji: $\bb{x}_n , n \in 1,...,N $. Celem jest znalezienie nowej $M$-wymiarowej bazy ($M < D$), takiej że wariancja zbioru wektorów $\bb{x}_n$ po zrzutowaniu na nową bazę jest największa. W celu pokazania procesu i rozumowania przyjmijmy że szukamy jednego wektora $\bb{u}_1$. Wektor ten, ponieważ ma stanowić bazę musi być D-wymiarowy. Dodatkowo przyjmiejemy że wektor $\bb{u}_1$ jest jednostkowy, co zapiszemy w postaci warunku:
+\begin{equation} \label{eq:wektor_jednostkowy}
+	\bb{u}_1^{T}\bb{u}_1 = 1
+\end{equation}
+
+Rzut wektora \bb{x} na kierunek wyznaczany przez wektor \bb{u} jest dany przez: $u^{T}x$. Fakt ten ma proste uzasadnienie geometryczne:
+\begin{align*}	
+	\bb{u}^{T}x &= \bb{u} \circ \bb{x} \\
+		   & = ||\bb{u}|| ||\bb{x}|| cos \angle (\bb{u}, \bb{x}) \index{1} \\
+		   &= ||\bb{x}|| cos \angle (\bb{u}, \bb{x}) \index{1} && \text{(\ref{eq:wektor_jednostkowy})}
+\end{align*}
+
+Przyjmimy średnią jako estymator wartości oczekiwanej:
+\begin{equation}	\overline{\bb{x}} = \frac{1}{N} \sum_{n=1}^{N} \bb{x}_n \end{equation}
+
+Wariancja zmiennej losowej $X$ jest dana przez:
+\begin{align*}	\notag
+	var[X]  &= \mathbb{E}[(X - \mathbb{E}[X])^2] \\
+			&= \mathbb{E}[X^2] - \mathbb{E}[X]^2
+\end{align*}
+
+Wariancja jest miarą rozrzutu wartości zmiennej losowej. Im większe różnice między wartościami przyjmowanymi przez zmienną losową, tym większa jest wariancja.
+
+Estymator wariancji dla próby losowej $x_n$:
+\begin{equation}	\notag
+	s^2 = \frac{1}{N} \sum_{n=1}^{N}(x_n - \overline{x})
+\end{equation}
+
+Kowariancja między dwoma zmiennymi losowymi jest dana wzorem:
+\begin{align}	
+	cov[X,Y] &= \mathbb{E}[(X - \mathbb{E}[X])(Y - \mathbb{E}[Y])]  \label{eq:cov} \\ 
+			 &= \mathbb{E}[XY] - \mathbb{E}[X]\mathbb{E}[Y] \nonumber
+\end{align}
+
+Wzór ten można uogólnić dla wektorów losowych:
+\begin{align*}
+	cov[\textbf{X}, \bb{Y}] &= \mathbb{E}[(\bb{X} - \mathbb{E}[\bb{X}])(\bb{Y}^T - \mathbb{E}[\bb{Y}^T])] \\
+							&= \mathbb{E}[\bb{X}\bb{Y}^T] - \mathbb{E}[\bb{X}]\mathbb{E}[\bb{Y}^T]
+\end{align*}
+
+Definiujemy macierz kowariancji S dla zbioru obserwacji $\bb{x}_n$:
 \begin{equation}
-	S = \frac{1}{N} \sum_{n=1}^{N} (x_n - \overline{x})(x_n - \overline{x})^T
+	S = \frac{1}{N} \sum_{n=1}^{N} (\bb{x}_n - \overline{\bb{x}})(\bb{x}_n - \overline{\bb{x}})^T
+\end{equation}
+
+Jak łatwo zauważyć w powższym wzorze wartości oczekiwane zostały zastąpione średnimi, ponieważ nie dysponujemy rozkładami zmiennnych losowych, tylko zbiorem obserwacji.
+
+Definiujemy wariancję zbioru obserwacji względem wektora $u_1$:
+\begin{equation}
+	s^2 = \frac{1}{N} \sum_{n=1}^{N}(\bb{u}_1^T \bb{x}_n - \bb{u}_1^T\overline{\bb{x}})^2 = \bb{u}_1^T S \bb{u}_1
+\end{equation}
+
+Chcąc maksymalizować wariancję $s^2$ musimy pamiętać o warunku $\ref{eq:wektor_jednostkowy}$. Otrzymujemy więc probelm optymalizacji polegający na znalezieniu maksimum warunkowego funkcji $f(\bb{u}_1)$ z ograniczniem $g(\bb{u}_1)$:
+\begin{align*}
+	f(\bb{u}_1) &= \bb{u}_1^T S \bb{u}_1 \\
+	g(\bb{u}_1) &= 1 - \bb{u}_1^T \bb{u}_1 = 0
+\end{align*}
+
+Jest to problem, który można łatwo rozwiązać z wykorzystaniem mnożników Lagrange'a. W analizowanym przypadku Lagrangian przyjmuje postać:
+\begin{align*}
+	\mathcal{L}(\bb{u}_1, \lambda) &= f(\bb{u}_1) - \lambda g(\bb{u}_1) \\
+				&= \bb{u}_1^T S \bb{u}_1 - \lambda(1 - \bb{u}_1^T \bb{u}_1)
+\end{align*}
+
+Różniczkując względem $\bb{u}_1$ oraz $\lambda$ oraz przyrównując do zera uzyskujemy układ równań:
+\begin{align}
+\begin{cases}
+	\nabla_{\bb{u}_1} \mathcal{L} (\bb{u}_1, \lambda) &= \nabla_{\bb{u}_1} \bb{u}_1^T S \bb{u}_1 - \nabla_{\bb{u}_1} \lambda \bb{u}_1^T \bb{u}_1 = 0 \\
+	\frac{\partial}{\partial \lambda} \mathcal{L} (\bb{u}_1, \lambda) &= 1 - \bb{u}_1^T \bb{u}_1 = 0
+\end{cases}
+\end{align}
+
+Zajmijmy się pierwszym równaniem z $(6)$. Odjemnik można bardzo łatwo uprościć:
+\begin{equation}
+	\nabla_{\bb{u}_1} \lambda \bb{u}_1^T \bb{u}_1 = \lambda \nabla_{\bb{u}_1} 
+		(u_{1_1}^2 + u_{1_2}^2 + ... + u_{1_D}^2)
+	 	= 2 \lambda \bb{u}_1
+\end{equation}
+
+Odjemna wymaga wiecej przekształceń:
+\begin{align}
+	\nabla_{\bb{u}_1} \bb{u}_1^T S \bb{u}_1 
+	&= \nabla_{\bb{u}_1} 
+	\left( \begin{array}{llll} u_{1_1} & u_{1_2} & ... & u_{1_D} \end{array} \right)
+	\begin{pmatrix}
+         s_{1_1} u_{1_1} + s_{1_2} u_{1_2} + ... + s_{1_D} u_{1_D}  \\
+		 s_{2_1} u_{1_1} + s_{2_2} u_{1_2} + ... + s_{2_D} u_{1_D} && \\
+		 \vdots     \\
+		 s_{D_1} u_{1_1} + s_{D_2} u_{1_2} + ... + s_{D_D} u_{1_D} && \\
+    \end{pmatrix} \\
+    &= \nabla_{\bb{u}_1} [u_{1_1} (s_{1_1} u_{1_1} + s_{1_2} u_{1_2} + ... + s_{1_D} u_{1_D})  \\
+    				&+ u_{1_2} (s_{2_1} u_{1_1} + s_{2_2} u_{1_2} + ... + s_{2_D} u_{1_D}) \nonumber \\
+    				&+ ... + u_{1_D} (s_{D_1} u_{1_1} + s_{D_2} u_{1_2} + ... + s_{D_D} u_{1_D})] \nonumber \\
+    &= \begin{pmatrix}
+    	2 s_{1_1} u_{1_1} + 2 s_{1_2} u_{1_2} + ... + 2 s_{1_D} u_{1_D}  \\
+    	2 s_{2_1} u_{1_1} + 2 s_{2_2} u_{1_2} + ... + 2 s_{2_D} u_{1_D}  \\
+    	\vdots     \\
+	    2 s_{D_1} u_{1_1} + 2 s_{D_2} u_{1_2} + ... + 2 s_{D_D} u_{1_D}
+    \end{pmatrix} \\
+    &= 2 S \bb{u}_1
+\end{align}
+
+W przejściu między $(9)$ a $(10)$ korzystamy z faktu że macierz S (macierz kowariancji) jest symetryczna.
+
+Wracając do $(6)$:
+\begin{align}
+	2 S \bb{u}_1 &- 2 \lambda \bb{u}_1 = 0	\nonumber \\
+	S \bb{u}_1 &= \lambda \bb{u}_1 
+\end{align}
+
+Jest równanie na wartości własne macierzy S, więc $u_1$ musi być wektorem własnym macierzy S, $\lambda$ wartością własną macierzy S.
+
+Mnożąc $(11)$ lewostronnie przez $u_1^T$ otrzymujemy:
+\begin{equation}
+	\bb{u}_1^T S \bb{u}_1 = \lambda
+\end{equation}
+
+Lewa część $(13)$ to wariancja, która ma być maksymalizowana. Aby uzyskać jak największą wariancję zbioru obserwacji po zrzutowaniu na kierunek wyznaczany przez $\bb{u}_1$ należy wybrać największą wartość własną macierzy S. Odpowiadający jej wektor własny jest szukanym wektorem $\bb{u}_1$. Dla kolejnych wektorów $\bb{u}$ należy znaleźć kolejne największe wartości własne i wektory własne.
+
+\subsubsection{Realizacja algorytmu} 
+Korzystając z PCA można zniejszyć wymiarowość danych w taki sposób aby zachować najwięcej informacji. Działanie algorytmu można zasadniczo podzielić na dwa etapy. Pierwszy to uzyskanie bazy wektorów, która zostanie wykorzystana w drugim etapie do uzyksania nowej reprezentacji wektorów z oryginalnej przestrzeni.
+
+W pierwszym etapie należy obliczyć wartości własne macierzy kowariancji, jak to zostało pokazane w poprzednim dziale. Przyjmijmy że dysponujemy macierzą pomiarów:
+\begin{align}
+	X_{D \times N} = 
+	\left( \begin{array}{llll}
+		\bb{x}_1 & \bb{x}_2 & \ldots & \bb{x}_N
+	\end{array} \right)	
+	=
+	\left( \begin{array}{llll}
+		x_{1_1} & x_{1_2} & \ldots & x_{1_N} \\
+		x_{2_1} & x_{2_2} & \ldots & x_{2_N} \\
+		\vdots  & \vdots  & \ddots & \vdots  \\
+		x_{D_1} & x_{D_2} & \ldots & x_{D_N}
+	\end{array} \right)
+\end{align}
+
+Zdefinujmy macierz A, powstałą w wyniku odjęcia od każdego wiersza średniej:
+\begin{equation}
+	A_{D \times N} = 
+	\left( \begin{array}{llll}
+	\bb{x}_1 - \overline{\bb{x}} & \bb{x}_2 - \overline{\bb{x}} & \ldots & \bb{x}_N - \overline{\bb{x}}
+	\end{array} \right)
 \end{equation}
 
 
-\subsubsection{Realizacja algorytmu oraz sztuczka związana z mnożeniem macierzy} 
+Dysponując macierzą A, można zapisać S w postaci:
+\begin{equation}
+	S_{D \times D} = \frac{1}{N} A A^T
+\end{equation}
 
+Co jest całkowcie zgodnie z definicją \ref{eq:cov}. Kolejnym krokiem będzie wyznacznie wektorów i wartości własnych, posortowanie wektorów własnych według nierosnącej wartości własnych oraz wybranie M wektorów wałasnych. 
+
+Należy zwrócić uwagę na wymiar macierzy S. Przypomnijmy że D to wymiar wektora pomiarowego, co w przypadku zdjęć oznacza wartość każdego piksela przeniesiona kolejno do elementów wektora. W pracy tej zdjęcia przed podaniem na wejście algorytmu ekstrakcji cech były konwertowane do skali szarości i obcinane do rozmiaru 64 $\times$ 64 pikseli, co oznacza że wektor pomiarowy zawierał 4096 współrzędnych. Biorąc pod uwagę złożoność obliczeniową alogrytmów szukania wektorów własnych może to powodować problemy z wydajnością. Można temu zapobiec poprzez zamianę miejscami macierze $A$ i $A^T$ w iloczynie. Obliczając wartości własne macierzy $A^T A$ musimy wrócić do $D$-wymiarowości przestrzeni, co jest możliwe z wykorzystaniem następującej własności:
+\begin{equation}
+	u_i = A v_i
+\end{equation}
+
+Gdzie $v_i$ oznacza wartość własną macierzy $A^T A$. Poprzez zamianę miejscami macierzy $A$ i $A^T$ zyskujemy inny wymiar macierzy. Iloczyn ma teraz rozmiar NxN. Przypomnijmy że N to liczność zbioru obserwacji. Zazwyczaj N jest znacznie niższe od D, co może przyśpieszyć obliczenia. Korzystając z tego uproszczenia należy pamiętać że zostaje nałożone ogranicznie co wielkości M. Jako że zostają obliczone wektory własne macierzy o rozmiarze NxN, może ich być co najwyżej N. Oznacza że ilość wymiarów danych po redukcji nie może przekraczać ilość danych ze zbioru obserwacji ($M < N$). Ogranicznie to nie jest zbyt dotkliwe, gdy dysponujemy odpowiednio wielkim zbiorem testowym. W przypadku tej pracy dostępność danych stanowiących podstawę nie stanowiła problemu.
+
+Po konwersji do oryginalnej wymiarowści dysponujemy bazą $M$ wektorów $D$-wymiarowych. Zbiór $M$ wektorów jest nazywany wartościami własnymi i zostanie wykorzystany w drugim etapie. Dla uproszczenia wektory własne zostaną włączone do jednej macierzy:
+\begin{equation}
+	U = 
+	\left( \begin{array}{l}
+		\bb{u}_1 \\
+		\bb{u}_2 \\
+		\vdots	 \\
+		\bb{u}_M
+	\end{array} \right)
+\end{equation}
+W pewnym sensie wyznacza on reguły przy pomocy których konwertujemy wektory $D$-wymiarowe na $M$-wymiarowe.
+
+Drugim etapem działania algorytmu jest redukcja wymiarowości wektora $\bb{w}$ spoza zbioru obserwacji. Obrazowo można powiedzieć że na podstawie nowego zdjęcia, niewykorzystanego w poprzednim etapie chcemy uzyskać reprezentujący je wektor liczb, w przestrzeni o niższym wymiarze. Odbywa się to zasadniczo w dwóch bardzo prostych krokach: Pierwszym jest odjęcie od nowego wektora średniej. Drugim jest rzutowanie różnicy $\bb{w} - \overline{\bb{x}}$ na wcześniej uzyskane wartości własne. Uzyskanie współrzędnych w $M$-wymiarowej przestrzeni wektora $w$ można więc zapisać jako:
+\begin{equation}
+	U ( \bb{w} - \overline{\bb{x}} ) 
+\end{equation}
+
+Jak łatwo można zauważyć $\overline{\bb{x}}$ oraz $U$ zależą bezpośrednio od zbioru obserwacji jakim dysponujemy na początku. Dobranie zbioru reprezentatywnego dla danej przestrzeni jest kluczowe. Pierwszy etap działania algorytmu polegający na generacji wektorów własnych definiuje przekształcenie. Drugi etap działania pozwala na redukcję wymiarowości dowolnego $D$-wymiarowego wektora zgodnie z regułami ustalonymi w pierwszym kroku.
 
 \subsubsection{Interpretacja}
-PCA jest algorytmem redukcji wymiarowości danych. Mając określony zbiór danych, będący reprezentatywną reprezentacją analizowanej przestrzeni należy wyznaczyć nowy zbiór wektorów bazowych, tak aby wariancja danych z zbioru względem nowo wyznaczownych wektorów była jak najwyższa.
+Efektem jest nowa przestrzeń ze środkiem w średniej zbioru i osiami wskazującymi największą wariancję. Dzięku temu w trakcie operacji projekcji danych na przestrzeń o mniejszym wymiarze tracimy najmniej istotne dane. 
+
+Napisz coś o wektorach własnych
+
+W tym konkretnym zastosowaniu wartości własne są często nazywane eigenfaces (twarze własne). Wektory własne 
 
 \subsubsection{PCA jako samodzielny system rozpoznawania twarzy}
  
