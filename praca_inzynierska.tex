@@ -267,11 +267,38 @@ Drugim etapem działania algorytmu jest redukcja wymiarowości wektora $\bb{w}$ 
 Jak łatwo można zauważyć $\overline{\bb{x}}$ oraz $U$ zależą bezpośrednio od zbioru obserwacji jakim dysponujemy na początku. Dobranie zbioru reprezentatywnego dla danej przestrzeni jest kluczowe. Pierwszy etap działania algorytmu polegający na generacji wektorów własnych definiuje przekształcenie. Drugi etap działania pozwala na redukcję wymiarowości dowolnego $D$-wymiarowego wektora zgodnie z regułami ustalonymi w pierwszym kroku.
 
 \subsubsection{Interpretacja}
-Efektem jest nowa przestrzeń ze środkiem w średniej zbioru i osiami wskazującymi największą wariancję. Dzięku temu w trakcie operacji projekcji danych na przestrzeń o mniejszym wymiarze tracimy najmniej istotne dane. 
+Przyjrzyjmy się przez moment co tak na prawdę zyskujemy w wyniku działania algorytmu PCA. Przez odjęcie średniej przesuwamy środek nowopowstałego układu współrzędnych do punktu gdzie znajdowała się średnia zbioru obserwacji. Dodatkowo po odjęciu średniej wektor reprezentuje jedynie różnicę miedzy średnią (środkiem nowego układu współrzędnych), a punktem końcowym. Jest więc reprezentacją unikatowych cech w zbiorze obserwacji. Wybranie wektorów własnych, będących osiami - kierunkami z największą wariancją powoduje że odrzucając część bazy wektorów tracimy tak mało wektórów jak to jest tylko możliwe. W celach badawczych można wrócić do oryginalnej przestrzeni, aby porównać błąd przybliżenia oraz przeanalizować jak bardzo reprezentatyne są uzyskane wyniki. W przypadku zdjęć możliwa jest wręcz wizualne porównanie jak bardzo oryginalne zdjęcie i zdjęcie odtworzone po redukcji wymiarowości są podobne do siebie. Rekonstrukcja odbywam się w następujący sposób:
+\begin{equation}
+	v = \overline{x} + \sum_{n=1}^{M}u_n
+\end{equation}
 
-Napisz coś o wektorach własnych
+\begin{figure}
+\centering
+	\parbox{2cm}{
+		\includegraphics[width=2cm]{face_1.jpg}
+		}
+		\qquad
+		\begin{minipage}{2cm}
+			\includegraphics[width=2cm]{100.jpg}
+		\end{minipage}
+		\begin{minipage}{2cm}
+			\includegraphics[width=2cm]{200.jpg}
+		\end{minipage}
+		\begin{minipage}{2cm}
+			\includegraphics[width=2cm]{300.jpg}
+		\end{minipage}
+		\begin{minipage}{2cm}
+			\includegraphics[width=2cm]{400.jpg}
+		\end{minipage}
+	\caption{Porównanie rekonstrukcji twarzy na postawie różnej liczby wykorzystanych składowych.\\ Po lewej oryginalne zdjęcie, potem kolejno rekonstrukcja z wykorzystaniem 100, 200, 300 i 400 składowych.}
+	\label{fig:rekonstrukcja}
+\end{figure}
 
-W tym konkretnym zastosowaniu wartości własne są często nazywane eigenfaces (twarze własne). Wektory własne 
+Jak widać na rys. \ref{fig:rekonstrukcja} wraz ze zwiększeniem się ilości składowych jakość rekosntrukcji zdjęcia się polepsza. Użycie większej ilości składowych nie ma sensu, co można zaobserwować w wyglądzie rekonstrukcji z wykorzystanie 300 i 400 składowych. PCA jest bardzo lubianą metodą, ponieważ jest bardzo intuicyjna oraz pozwala na wizualne sprawdzenie własnych rezultatów.
+
+W omawianym zagadnieniu wektory własne zyskały specjalną nazwę eigenfaces (twarze własne). Można zobaczyć jak wyglądają aplikując technikę odtwarzania zdjęcia na podstawie współrzędnych z przestrni o zredukowanej wymiarowości. Efekty zostały zaprezentowane na rys. \ref{fig:eigenfaces}. 
+
+Jak można łatwo zaobserwować wektory 0-4 zawierają najbardziej istotne zmiany pomiędzy poszczególnymi obrazami ze zbioru obserwacji. Wektora 392-396 przypominają losowy szum i niosą informację o szczegółach twarzy. Można zauważyć że pominięcie składowych z niższą wartością własną powoduje mniejszą utratę informacji.
 
 
 \begin{figure}
@@ -308,7 +335,7 @@ W tym konkretnym zastosowaniu wartości własne są często nazywane eigenfaces 
 		\includegraphics[width=2cm]{396.jpg}
 	\end{minipage}
 	
-	\caption{Porównanie eigenfaces}
+	\caption{Porównanie eigenfaces. \\ Górny wiersz - wektory 0-4, dolny wiersz - wektory 392-396.}
 	\label{fig:eigenfaces}
 \end{figure}
 
@@ -336,7 +363,7 @@ Badanie wpływu okularów?
 \subsection{Automatyzacja badań}
 
 
-\subsection{Zakończenie}
+\section{Zakończenie}
 
 \newpage
 \begin{thebibliography}{9}
