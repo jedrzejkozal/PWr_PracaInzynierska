@@ -66,6 +66,8 @@ Wszystkie wymienione biblioteki są rozpowszechniane w ramach licencji new-BSD l
 
 Na początku pracy nad projektem podjęto próbę implementacji własnej wersji algorytmu PCA, aby lepiej zrozumieć i dokładnie prześledzić jego działanie. Algorytm ten działał poprawnie, ale względu na dużą złożoność obliczeniową zdecydowano się na korzystanie z wersji udostępnionej w bibliotece scikit-learn. W trakcie późniejszych prac nad systemem znaleziono informację na temat tego co powodowało tak wysoką złożoność obliczeniową oraz sposób na jej uniknięcie. Zagadnienie to zostało opisane w rozdziale Realizacja algorytmu.
 
+Diagramy i rysunki wykonano z wykorzystaniem strony draw.io. Do wszystkich zapożyczonych obrazów zostały podane źródła.
+
 Wykorzystane bazy zdjęć
 
 \section{Implementacja algorytmów – detekcja twarzy}
@@ -344,8 +346,6 @@ Jak można łatwo zaobserwować wektory 0-4 zawierają najbardziej istotne zmian
 
 
 
-
-
 \subsubsection{PCA jako samodzielny system rozpoznawania twarzy}
 Principle komponents analysis powoduje przeniesienie zdjęcia mającego wizualną reprezentację na abstrakcyjny wektor liczb. Umożliwia to skontruowanie klasyfikatora z wykorzystaniem algorytmów umożliwiających klasyfikację. Jest to zagadnienie dobrze znane w dziedzinie Pattern Recognition (rozpoznawania wzorców) i opracowano wiele rozwiązań tego problemu. Zastosowanie algorytmów typu k-NN (k Nearest Neighbour - k najbliższych sąsiadów) lub NM (Nearest Mean - najbliższy średnia) umożliwia zaklasyfikowanie danego algorytmu do jednej z grup. Jest to możliwie dzięki wykorzystaniu reprezentacji zdjęcia jako wektora liczb. Oba algorytmy dysponują zbiorem uczącym, który opisuje dane grupy do których może zostać klasyfikowany dany wzorzec. 
 W przypadku NM dla każdej z grup obliczana jest średnia wektorów, następnie obliczana jest odległość między wektorem podlegającym klasyfikacji, a średnimi zbiorów. Wektor zostaje zaklasyfikowany do zbioru, którego średnia jest w najmniejszej odległości od wektora. 
@@ -368,6 +368,232 @@ Badanie wpływu podania randomowego zdjęcia na system (np. zdjęcie mojego biur
 \subsection{Automatyzacja badań}
 
 
+
+\section{Bezpieczeństwo systemu}
+W trakcie realizacji projektu specjalnościowego podjęto próbę zadresowania kwesti oszukania całego systemu poprzez przedstawianie systemowi zdjęć ludzi, którym wcześniej przyznano prawo dostępu. Jest to realne zagrorzenie, z którym twórcy systemów biometrycznych muszą się mierzyć. Dobrym przykładem może być tutaj system FaceID w IphoneX firmy Apple. Twórcy systemu zapewniali że nie da go się oszukać poprzez wykonanie masek 3d imitujących twarz człowieka. 9 listopada 2017 roku ekseprci z firmy Bkav oświadczyli że udało im się złamać zabezpieczenia poprzez wykonanie specjalnej maski, wykorzystując drukarkę 3D, silikonowe elementy, wydruki 2D, oraz materiał imitujący skórę \cite{FaceID hacked}. Dodatkowo system FaceID okazał się nie być odporny na podobieństwo występujące między bliźniakami jednojajowymi. Bezpieczeństwo systemów biometrycznych jest więc bardzo ważną kwestią i podjęto próbę zbadania tych zagadnień.
+
+\subsection{Przyjęta metodyka}
+Zbadano możliwości jakie daje ekstrakcja głębi z wykorzystaniem dwóch kamer. W obecnym projekcie systemu zintegrowanie systemu ekstrakcji głębi byłoby trudne, ponieważ w projekcie wykorzystywana jest kamera Ruberby Pi, podłączona przez port CSI, a mikrokomputery Rasbry Pi posiadają tylko jeden port CSI. Do badań wykorzystano dwie kamerki internetowo Creative VF0770. Do ekstrakcji głębi wykorzystano funkcje biblioteki OpenCV. Celem było uzyskanie mapy punktów w 3D, które następnie miały być aproksymowane płaszczyzną. Następnie należało wyznaczyć błąd aproksymacji, oraz próg, od którego mapa punktów miała być uznawana za płaską.
+
+\subsection{Podstawy teoretyczne}
+
+\subsubsection{Model kamery}
+Przed przystąpieniem do ekstrakcji głębi należy ustalić model działania pojedyńczej kamery oraz zrozumieć jakie zakłócenia obrazu występują.
+
+\begin{figure}
+\centering
+	\includegraphics[width=0.90\textwidth]{pinhole_camera_model.png}\par\vspace{1cm}
+\caption{Scena przy przyjętym modelu kamery. Źródło: \\ https://docs.opencv.org/2.4/modules/calib3d/doc/camera\_calibration\_and\_3d\_reconstruction.html}
+	\label{fig:camera_model}
+\end{figure}
+
+Najczęściej rozpowszechnionym modelem jest tzw. pinhole camera model. W modelu tym kamera przekształca piksele z globalnego układu współrzędnych do układu współrzednych na płaszczyźnie, na którą są rzutowane punkty. Przekształcenie to można wyrazić wzorem:
+
+\begin{equation}
+	Z
+	\left( \begin{array}{l}
+		u \\
+		v 
+	\end{array} \right) 
+	= K (R \quad T) 
+	\left( \begin{array}{l}
+		X \\	Y \\	Z \\	1
+	\end{array} \right) 
+\end{equation}
+
+W powyższym równaniu $X, Y$ oraz $Z$ to współrzędne punktu w zewnętrznym układzie współrzędnych.
+$u$ i $v$ to współrzędne w układzie kamery.
+Macierz R i wektor T to macierz rotacji i wektor translacji opisujące orientację i położenie kamery względem zewnętrznego układu współrzędnych. Zaliczaję się one do parametrów zewnętrznych, ponieważ nie zależą od samej kamery, ale od jej położenia i oreintacji. Parametry te opisują transformację punktu z globalnego układu współrzędnych do układu współrzędnych kamery. 
+
+\begin{align*}
+	\left( \begin{array}{l} x \\ y \\ z \end{array} \right) =
+	(R \quad T)
+	\left( \begin{array}{l}
+		X \\	Y \\	Z \\	1
+	\end{array} \right) 
+\end{align*}
+
+Gdzie $x, y, z$ to współrzędne punktu P w układzie kamery.
+
+
+\begin{figure}
+\centering
+	\includegraphics[width=0.90\textwidth]{pinhole.jpg}\par\vspace{1cm}
+\caption{Ilustracja zależności między układami współrzędnymi a punktem.}
+	\label{fig:camera_coordinate_systems}
+\end{figure}
+
+Warto zwrócić uwagę że wektor $T$ zawiera położenie globalnego układu współrzędnych względem układu współrzędnych kamery, a nie odwrotnie. Fakt ten może wydawać nieco nieintuicyjny, ale można go łatwo zilustrować. Z \ref{fig:camera_coordinate_systems} wynika jednoznacznie że $P_k = T + P_g$. Oczywiście należy uwzględnić wzajmeną orientację układów, co zapewnia macierz R.
+
+Macierz K jest zawiera parametry wewnętrzne kamery i jest definiowana jako:
+\begin{equation}
+	K = \left( \begin{array}{lll}
+		f & 0 & c_x \\
+		0 & f & c_y \\
+		0 & 0 & 1
+	\end{array} \right)
+\end{equation}
+
+Gdzie $f$ to długość ogniskowej, $c_x, c_y$ jest punktem w którym oś optyczna przecina się płaszczyzną obrazu (ang. principal point), zwykle znajdujący się w środku obrazu.
+
+Kokrzystając z wcześniejszych równań można zapisać:
+
+\begin{align*}
+	u = f \frac{x}{z} + c_x \\
+	v = f \frac{y}{z} + c_y
+\end{align*}
+
+\begin{figure}
+\centering
+	\includegraphics[width=0.50\textwidth]{rzutowanie.jpg}\par\vspace{1cm}
+\caption{Rzut z góry na scenę.}
+	\label{fig:projection_up}
+\end{figure}
+
+Na rys \ref{fig:projection_up} można zauważyć że równania te mają proste uzasadnienie geometryczne. Z twierdzenia Talesa otrzymujemy: 
+$\frac{x_0}{f} = \frac{x}{z}$. Wartość $u$ możemy uzskać poprzez dodanie do $x_0$ z poprzedniego równania $c_x$. Dla y rozumowanie jest analogiczne.
+
+\subsubsection{Zakłócenia}
+
+\begin{figure}
+\centering
+		\begin{minipage}{3cm}
+			\includegraphics[width=3cm]{600px-Barrel_distortion.png}
+		\end{minipage}
+		\begin{minipage}{3cm}
+			\includegraphics[width=3cm]{600px-Pincushion_distortion.png}
+		\end{minipage}
+		\begin{minipage}{3cm}
+			\includegraphics[width=3cm]{600px-Mustache_distortion.png}
+		\end{minipage}
+	\caption{Różne rodzaje dystorcji (od lewej): beczkowa, poduszkowa oraz falista.
+		źródło: https://en.wikipedia.org/wiki/Distortion\_\%28optics\%29  }
+	\label{fig:distortion}
+\end{figure}
+
+Zaprezentowany wcześniej model zakłóca brak zakłóceń przy procesie przetwarzania obrazu. W kamerach występują różne rodzaje dystorsji. W dystorsji nie linie proste zostają zniekształcone. Wynika z fizycznej niedoskonałości układów optycznych. Im dalej od osi optycznej tym większe zniekształcenie.
+
+W bibliotece OpenCV przewiduje się współczynniki radialne $k_1, ..., k_6$ oraz styczne $p_1$ i $p_2$. Współczynniki te są wykorzystywane w poprzednim modelu w następujący sposób (podawane za dokumentacją OpenCV \cite{Dokumentacja OpenCV}):
+\begin{gather*}
+	x' = \frac{x}{z} \\
+	y' = \frac{y}{z} \\
+	x'' = x' \frac{1+k_1 r^2 + k_2 r^4 + k_3 r^6}{1+k_4 r^2+k_5 r^4+k_6 r^6} +
+	2 p_1 x' y' + p_2(r^2 + 2 x'^2)	\\
+	y'' = y' \frac{1+k_1 r^2 + k_2 r^4 + k_3 r^6}{1+k_4 r^2+k_5 r^4+k_6 r^6} +
+	p_1(r^2 + 2 y'^2) + 2 p_2 x' y'
+\end{gather*}
+
+
+\subsection{Kalibracja kamery}
+
+Kalibracja kamery odbywa się poprzez fotografowanie szachownicy pod różnymi kątami. Następnie zdjęcia są konwertowane do skali szarości i wykrywane są narożniki szachownicy. Pierwsze oszacowanie położenia narożników nie jest dokładne. Estymacja jest poprawiana z wykorzystaniem prostego faktu odnośnie gradientu:
+
+\begin{figure}
+\centering
+	\includegraphics[width=0.70\textwidth]{cornersubpix.png}\par\vspace{1cm}
+\caption{Gradient szachownicy. \\ źródło: https://docs.opencv.org/2.4/modules/imgproc/doc/feature\_detection.html}
+	\label{fig:gradient}
+\end{figure}
+
+Załóżmy że $\bb{q}$ jest narożnikiem szachownicy, a $\bb{p}_i$ jest punktem w bliskim sąsiedztwie. Przyjmijmy wartość błędu daną następującym równaniem:
+
+\begin{equation}
+	E_i = \nabla f_{\bb{p}_i}^T (\bb{q} - \bb{p}_i)
+\end{equation}
+
+Gdzie $\nabla f_{\bb{p}_i}$ jest gradientem, w punkcie $p_i$. Jest to równanie na iloczn skalarny i będzie ono równe zero, gdy $\bb{p}_i$ będzie prostopadłe do gradientu. Przyrównując powyższe równanie do zera, oraz mnożąc obie strony przez $\nabla f_{\bb{p}_i}$ otrzymujemy:
+
+\begin{align*}
+	\nabla f_{\bb{p}_i} \nabla f_{\bb{p}_i}^T \bb{q} - \nabla f_{\bb{p}_i} \nabla f_{\bb{p}_i}^T \bb{p}_i = 0
+\end{align*}
+
+W konsekwencji otrzymujemy:
+
+\begin{align}
+	\bb{q} = (\nabla f_{\bb{p}_i} \nabla f_{\bb{p}_i}^T)^{-1} \nabla f_{\bb{p}_i} \nabla f_{\bb{p}_i}^T \bb{p}_i
+\end{align}
+
+Operacja ta jest powtarzana, aż punkt $q$ uzyska stabilną wartość (jego współrzędne nie będą się zmieniać o większą wartość niż przyjęty próg).
+
+\begin{figure}
+\centering
+		\begin{minipage}{3.5cm}
+			\includegraphics[width=3.5cm]{left1.jpg}
+		\end{minipage}
+		\begin{minipage}{3.5cm}
+			\includegraphics[width=3.5cm]{left10.jpg}
+		\end{minipage}
+		\begin{minipage}{3.5cm}
+			\includegraphics[width=3.5cm]{left27.jpg}
+		\end{minipage}
+	\caption{Wykryte narożniki szachownicy. }
+	\label{fig:corners}
+\end{figure}
+
+\begin{figure}
+\centering
+		\begin{minipage}{3.5cm}
+			\includegraphics[width=3.5cm]{left8.jpg}
+		\end{minipage}
+		\begin{minipage}{3.5cm}
+			\includegraphics[width=3.5cm]{left17.jpg}
+		\end{minipage}
+		\begin{minipage}{3.5cm}
+			\includegraphics[width=3.5cm]{left24.jpg}
+		\end{minipage}
+	\caption{Estymacja orientacji szachownicy. }
+	\label{fig:pose}
+\end{figure}
+
+Dzięki wyznaczonym narożnikom można wyznaczyć wenętrzne i zewnętrzne kamery. Wartości te są następnie wykorzystane do estymacji pozycji \ref{fig:pose}, oraz do usunięcia zakłóceń z obrazu. 
+
+\subsection{Szacowanie głębokości}
+
+Kolejnym krokiem jest obliczenie mapy dysparycji oraz na jej podstawie wyznaczenie głębokości. 
+
+\begin{figure}
+	\centering
+	\includegraphics[width=9.5cm]{ekstrakcja.jpg}
+	\caption{Ekstrakcja głębi na podstawie dysparycji obrazów z dwóch kamer. }
+	\label{fig:extraction}
+\end{figure}
+
+Przy ekstrakcji głęgokości jest wykorzystywane podobieństwo trójkątów $P F_L F_R$ oraz $P C_L C_R$ z rys. \ref{fig:extraction}:
+
+\begin{equation}
+	\frac{b}{Z} = \frac{b-x_L+x_R}{Z-f}
+	\label{eq:disp}
+\end{equation}
+
+Po przekształceniach otrzymujemy:
+
+\begin{equation}
+	Z = \frac{bf}{x_L-x_R} = \frac{bf}{d}
+\end{equation}
+
+Gdzie $d$ jest dysparycją - różnicą wartości odpowiadających sobie pikseli na dwóch obrazach, szukanych wzdłuż epilinii.
+Znając ogniskową, odległość między kamerami, oraz obliczając różnicę między analogicznymi pikselami z dwóch obrazów możemy szacować głębię.
+
+Warto zwrócić uwagę że wzór \ref{eq:disp} nie traci na ogólności, gdy punkt $P$ znajdzie się pomiędzy osiami optycznymi kamer, ponieważ do odbliczenia podstawy trójkąta $P C_L C_R$ zostanie wykorzystana odległość między punktem w którym wiązka światła pada na prawą matrycą a osią optyczną prawej kamery. Odlgołość ta może zostać w takim wypadku wyrażona jako $\frac{1}{2}l-x_R$, gdzie $l$ to długość ekranu światłoczułego. Po podstawieniu podobniej wartości za odległość od osi optycznej lewej kamery do punktu przeciącia wiązki światła z lewą matrycą $\frac{1}{2}l$ się uprości i zostaniemy ze wzorem \ref{eq:disp}.
+
+\begin{figure}
+	\centering
+	\begin{minipage}{5.5cm}
+		\includegraphics[width=5.5cm]{falt_test_face1L.jpg}
+	\end{minipage}
+	\begin{minipage}{5.5cm}
+		\includegraphics[width=5.5cm]{result_fail.png}
+	\end{minipage}		
+	\caption{Obraz płaskiego zdjęcią sfotografowany lewą kamerą oraz wynik ekstrakcji głebokości. }
+	\label{fig:extraction_fail}
+\end{figure}
+
+
+\subsection{Wyniki}
+Dokonano kalibracji kamery, wyznaczno współczynniki wewnętrzne i zewnętrzne kamery. Jednkże nie udało się uzyskać zadowalających rezultatów. Po przedstawieniu systemowi zdjęcia osoby wyświetlonego na laptopie uzyskano mapę głębi przedstawioną na rys. \ref{fig:extraction_fail}. Jak można z łatwością zauważyć zauważyć na mapie głebości otrzymano punkty o różnej głębokości.
+
+Trudno jest określić jedną przyczynę niepowodzenia. Na pewno ważną rolę odgrywa kalibracja kamer. Wielokrotnie podejmowano próbę poprawiania uzyskiwanych wyników poprzez ponowną kalibrację, ale nie wpłynęło to w znaczący sposób na rezultaty. W związku z ograniczoną ilością czasu projekt nie mógł zostać ukończony, pomimo wielu godzin poświęconych na analizę problemu.
+
 \section{Zakończenie}
 
 \newpage
@@ -382,6 +608,18 @@ Springer Science + Business Media, New York 2009
 Stanisław Osowski.
 \textit{Sieci Neuronowe w ujęciu algorytmicznym}
 Wydawnictwo Naukowo-Techniczne, Warszawa 1996
+
+\bibitem{Dokumentacja OpenCV}
+Dokumentacja biblioteki OpenCv 
+\\\texttt{https://docs.opencv.org/2.4/index.html}
+
+\bibitem{Tutoriale OpenCV}
+Zbiór tutoriali z OpenCV
+\\\texttt{https://docs.opencv.org/3.0-beta/doc/py\_tutorials/py\_tutorials.html}
+
+\bibitem{FaceID hacked}
+News o pokonaniu zabezpieczeń systemu FaceID
+\\\texttt{http://www.bkav.com/d/top\-news/\-/view\_content/content/103968/face\-id\-beaten\-by\-mask\-not\-an\-effective\-security\-measure}
 
 \end{thebibliography}
 
