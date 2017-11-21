@@ -70,10 +70,36 @@ Diagramy i rysunki wykonano z wykorzystaniem strony draw.io. Do wszystkich zapo�
 
 Wykorzystane bazy zdjęć
 
+\newpage
+
 \section{Implementacja algorytmów – detekcja twarzy}
  
 \subsection{Przetwarzanie obrazu po akwizycji} 
  
+
+\subsection{Kaskady Haara}
+Alogrytm Kaskad Haara (lub detektor Viola-Jones) wykorzystuje serię cech do określenia czy na zdjęciu w określonym miejscu znajduje się szukany obiekt. Cecha jest tutaj rozumiana jako prostokąt podzielony na części. Pod każda z części dodawane są wartości pikseli, następnie wartości z obu obszarów są od siebie odejmowane. Tak uzyskana wartość musi przekroczyć odpowiedni próg, który decyduje o tym czy w danym miejscu rozpoznano twarz. Jak podano w \cite{Kaskada Haara}, aby móc szybciej obliczać wartości pikseli pod odpowiednim obszarem wykorzystuje się obraz kumulacyjny (ang. integral image). Jest on zdefiniowany jako:
+
+\begin{equation}
+	ii(x,y) = \sum_{x' \leq x, y' \leq y} i(x',y')
+\end{equation}
+
+Funkcja ta przypomina dyskretną dystrybuantę dwuwymiarowej zmiennej losowej. Jej zastosowanie pozwala na obliczenie sumy jasności pod dowolnie wielkim obszarem w stałym czasie.
+
+\begin{figure}
+\centering
+	\includegraphics[width=0.50\textwidth]{haar_features.jpg}\par\vspace{1cm}
+\caption{Różne rodzaje cech. \\ źródło: https://docs.opencv.org\/3.3.0\/d7\/d8b\/tutorial\_py\_face\_detection.html}
+	\label{fig:gradient}
+\end{figure}
+
+Nawet dla najmiejsznych obrazów można rozważać wiele cech. W celu ograniczenia ilości analizowanych cech wykorzystano alogrytm AdaBoost \cite{AdaBoost}. Alogrytm ten dysponując zbiorem uczącym oraz zbiorem słabych hipotez przydziela wagi hipotezom, oceniając ich skuteczność. Dodatkowo wagi otrzymują także przykłady ze zbioru uczącego. Każdorazowo kiedy dany przykład zostanie źle zaklasyfikowany, jego waga jest zwiększana. 
+
+Wykorzystanie AdaBoost pozwoliło na wybranie cech generujących najmniejszy błąd. Ilość użytych cech wpływa na jakość algorytmu, jednocześnie zwiększając czas potrzebny na obliczenia. Dysponując zbiorem chech można przystąpić do klasyfikacji obrazu. Odbywa się to kaskadowo. W pierwszym etapie wykorzystuje się klasyfikator złożony najczęściej z jednej lub dwóch cech. Klasyfikacja jest przperowadzana na całym obrazie, aby wykryć gdzie może znajdować się twarz. W kolejnych etapach ilość cech jest zwiększana (najczęściej wykładniczo). Jeśli w danym obszarze nie została wykrytwa twarz zostaje on pominięty w dalszych etapach. Pozwala to znacząco ograniczyć ilość wykonywanych operacji. Zaleca się aby w pierwszym etapie wykorzystawać cechę z wysokim współczynnikiem fałszywych negatywnych rezultatów (ang. false negative) - w tym przypadku obszarów zawierających twarz błędnie zaklasyfikowanych jako nie będących twarzą.
+
+Kaskady Haara są szybkie, przez co chętnie wykorzystuje się je w zastoswaniach wymagającego przetwarzania obrazów w czasie rzeczywistym.
+
+\subsection{Inne sposoby rozwiązanie problemu}
  
  \newpage
  
@@ -96,7 +122,7 @@ Zakładamy że dany jest zbiór $D$-wymiarowych wektorów obserwacji: $\bb{x}_n 
 
 Rzut wektora \bb{x} na kierunek wyznaczany przez wektor \bb{u} jest dany przez: $u^{T}x$. Fakt ten ma proste uzasadnienie geometryczne:
 \begin{align*}	
-	\bb{u}^{T}x &= \bb{u} \circ \bb{x} \\
+	\bb{u}^{T} \bb{x} &= \bb{u} \circ \bb{x} \\
 		   & = ||\bb{u}|| ||\bb{x}|| cos \angle (\bb{u}, \bb{x}) \index{1} \\
 		   &= ||\bb{x}|| cos \angle (\bb{u}, \bb{x}) \index{1} && \text{(\ref{eq:wektor_jednostkowy})}
 \end{align*}
@@ -342,32 +368,21 @@ Jak można łatwo zaobserwować wektory 0-4 zawierają najbardziej istotne zmian
 \end{figure}
 
 
-
-
-
-
 \subsubsection{PCA jako samodzielny system rozpoznawania twarzy}
 Principle komponents analysis powoduje przeniesienie zdjęcia mającego wizualną reprezentację na abstrakcyjny wektor liczb. Umożliwia to skontruowanie klasyfikatora z wykorzystaniem algorytmów umożliwiających klasyfikację. Jest to zagadnienie dobrze znane w dziedzinie Pattern Recognition (rozpoznawania wzorców) i opracowano wiele rozwiązań tego problemu. Zastosowanie algorytmów typu k-NN (k Nearest Neighbour - k najbliższych sąsiadów) lub NM (Nearest Mean - najbliższy średnia) umożliwia zaklasyfikowanie danego algorytmu do jednej z grup. Jest to możliwie dzięki wykorzystaniu reprezentacji zdjęcia jako wektora liczb. Oba algorytmy dysponują zbiorem uczącym, który opisuje dane grupy do których może zostać klasyfikowany dany wzorzec. 
 W przypadku NM dla każdej z grup obliczana jest średnia wektorów, następnie obliczana jest odległość między wektorem podlegającym klasyfikacji, a średnimi zbiorów. Wektor zostaje zaklasyfikowany do zbioru, którego średnia jest w najmniejszej odległości od wektora. 
 W przypadku algorytmu k-NN odległość jest obliczana pomiędzy wszystkimi wektorami ze zbioru uczącego. Następnie zostaje wybrane k najbliższych sąsiadów. Zbiór, którego najwięcej przedstawicieli zostało wybranch wygrywa. Dla przypadku dychotomii jeżeli k jest nieparzyste możliwa jest jednoznaczna klasyfikacja. Gdy ilość zbiorów do których można zaklasyfikować obraz jest większa od dwóch możliwe jest wystąpienie wypadku w którym nie można jednoznacznie zaklasyfikować obiekt. 
 W przypadku systemu kontroli dostępu może być rozsądne wprowadzenie maksymalnej odległości między średnią lub najbliższym sąsiadem a klasyfikowanym wektorem przy której może następić klasyfikacja. Powyżej tej odległości obraz nie powinien być zaklasyfikowany do którejkolwiek z grup. 
 Dodatkowo warto zwrócić uwagę na brak kontroli PCA nad przetwarzanymi danymi. Jest to metoda statystyczna, na jej wejście można podać zdjęcie myszy lub samochodu, które zostanie przetworzone. Nie wiadomo jakie współrzędne można uzyskać, dzięki takiej operacji. System rozpoznawania twarzy powinien więc odrzucić takie zdjęcie na etapie wykrywania pozycji twarzy.
- 
- 
-\section{Zebranie zbioru danych uczących}
-\subsection{Metodyka}
-
-Ile obrazów było w zbiorze uczącym dla PCA
-
-Badanie wpływu oświetlenia
-Badanie wpływu kątu pod jakim zrobiono zdjęcie
-Badanie wpływu okularów?
-Badanie wpływu podania randomowego zdjęcia na system (np. zdjęcie mojego biurka)
 
 
-\subsection{Automatyzacja badań}
+\subsection{Singular Value Decomposition}
 
 
+\subsection{Inne podejścia do problemu redukcji wymiarowości}
+
+
+\newpage
 
 \section{Bezpieczeństwo systemu}
 W trakcie realizacji projektu specjalnościowego podjęto próbę zadresowania kwesti oszukania całego systemu poprzez przedstawianie systemowi zdjęć ludzi, którym wcześniej przyznano prawo dostępu. Jest to realne zagrorzenie, z którym twórcy systemów biometrycznych muszą się mierzyć. Dobrym przykładem może być tutaj system FaceID w IphoneX firmy Apple. Twórcy systemu zapewniali że nie da go się oszukać poprzez wykonanie masek 3d imitujących twarz człowieka. 9 listopada 2017 roku ekseprci z firmy Bkav oświadczyli że udało im się złamać zabezpieczenia poprzez wykonanie specjalnej maski, wykorzystując drukarkę 3D, silikonowe elementy, wydruki 2D, oraz materiał imitujący skórę \cite{FaceID hacked}. Dodatkowo system FaceID okazał się nie być odporny na podobieństwo występujące między bliźniakami jednojajowymi. Bezpieczeństwo systemów biometrycznych jest więc bardzo ważną kwestią i podjęto próbę zbadania tych zagadnień.
@@ -547,6 +562,24 @@ Operacja ta jest powtarzana, aż punkt $q$ uzyska stabilną wartość (jego wsp�
 
 Dzięki wyznaczonym narożnikom można wyznaczyć wenętrzne i zewnętrzne kamery. Wartości te są następnie wykorzystane do estymacji pozycji \ref{fig:pose}, oraz do usunięcia zakłóceń z obrazu. 
 
+\subsection{Geometria epipolarna}
+
+Zakładając wcześniej przyjęty model rzeczywistej kamery oraz stosując uproszczenie polegające na przeniesieniu płaszczyzny obrazu przed ognisko (w rzeczywistych kamerach płaszczyzna ta znajduje się za ogniskiem) możemy zauważyć pewne zależności geometryczne dla punktu widzianego z dwóch kamer. 
+
+\begin{figure}
+\centering
+	\includegraphics[width=0.70\textwidth]{epipolar.jpg}\par\vspace{1cm}
+\caption{Podstawowa koncepcja geometrii epipolarnej.}
+	\label{fig:gradient}
+\end{figure}
+
+Pierwszym spostrzeniem jest fakt że ogniska obu kamer, punkt P oraz jego projekcje na płaszczyznę obrazu leżą na jednej płaszczyźnie. Linia poprowadzona pomiędzy ogniskami kamer jest nazywana linią główną (ang. baseline). 
+Punkty przecięcia linii głównej z płaszczyzną główną ($e$) nazywane są epipolami (ang. epipoles). Jeśli obie kamery się widzą to epipole są widoczne jako środek drugiej kamery na obrazie.
+Płaszczyzna przechodząca przez dowolny punkt P widziany w obu kamerach, oraz przez linię główną jest nazywana płaszczyzną epipolarną.
+Linia epipolarną nazywamy linię będącą na przecięciu płaszczyzny obrazu z płaszczyzną epipolarną. Wszystkie linie epipolarne przecinają się w epipolach.
+
+Warto zwrócić uwagę na to że linia $F P$ jest widziana na drugim obrazie jako odpowiadająca linia epipolarna. Oznacza to więc, że szukając odpowiednika piksela z jednego obrazu na drugim, należy szukać wzdłuż epilinii, a nie na całym obrazie. Jest to znaczące ułatwienie, które będzie miało duże znaczenie przy obliczaniu dysparycji.
+
 \subsection{Szacowanie głębokości}
 
 Kolejnym krokiem jest obliczenie mapy dysparycji oraz na jej podstawie wyznaczenie głębokości. 
@@ -604,10 +637,25 @@ Christopher M. Bishop.
 \textit{Pattern recognition and machine learning}.
 Springer Science + Business Media, New York 2009
 
+\bibitem{Ślot}
+Krzysztof Ślot.
+\textit{Rozpoznawanie biometryczne. Nowe metody ilościowej reprezentacji obiektów}
+Wydawnictwo Komunikacji i Łączności, Warszawa 2000
+
 \bibitem{Osowski}
 Stanisław Osowski.
 \textit{Sieci Neuronowe w ujęciu algorytmicznym}
 Wydawnictwo Naukowo-Techniczne, Warszawa 1996
+
+\bibitem{AdaBoost}
+Yoav Freund, Robert E. Schapire.
+\textit{A Short Introduction to Boosting}
+AT\&T Labs - Research. Shannon Laboratory
+
+\bibitem{Kaskada Haara}
+Paul Viola, Michael Jones.
+\textit{Rapid Object Detection using a Boosted Cascade of Simple Features}.
+Cambridge 2001
 
 \bibitem{Dokumentacja OpenCV}
 Dokumentacja biblioteki OpenCv 
@@ -616,6 +664,12 @@ Dokumentacja biblioteki OpenCv
 \bibitem{Tutoriale OpenCV}
 Zbiór tutoriali z OpenCV
 \\\texttt{https://docs.opencv.org/3.0-beta/doc/py\_tutorials/py\_tutorials.html}
+
+\bibitem{Stereo}
+Hartley, R.~I. i Zisserman, A.
+\textit{Multiple View Geometry in Computer Vision}
+Cambridge University Press, 2004
+
 
 \bibitem{FaceID hacked}
 News o pokonaniu zabezpieczeń systemu FaceID
