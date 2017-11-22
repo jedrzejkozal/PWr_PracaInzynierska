@@ -42,15 +42,24 @@
 
 
 \section{Wstęp}
-Celem pracy jest porównanie metod i algorytmów umożliwiających wykrycie twarzy na zdjęciu, oraz wyznaczenie wektora uczącego dla sieci neuronowej na podstawie wyznaczonego zdjęcia twarzy. Projekt ten jest częścią systemu biometrycznej kontroli dostępu. Za implementację sieci neuronowych oraz analizę algorytmów związanych z sieciami odpowiadał Filip Guzy. Za architekturę systemu, oraz komunikację pomiędzy komponentami odpowiadał Michał Leś.
+Celem pracy jest porównanie metod i algorytmów umożliwiających wykrycie twarzy na zdjęciu, oraz wyznaczenie wektora uczącego dla sieci neuronowej na podstawie wyznaczonego zdjęcia twarzy. Projekt ten jest częścią systemu biometrycznej kontroli dostępu. Za implementację sieci neuronowych oraz analizę algorytmów związanych z sieciami odpowiadał Filip Guzy. Za architekturę systemu, oraz komunikację pomiędzy komponentami odpowiadał Michał Leś. 
+
+Celem całego projektu było skonstruowanie prostego systemu kontroli dostępu opartego na rozpoznawaniu twarzy. System ma określać czy na wykonanym zdjęciu występuje twarz. Ponadto przedmiotem pracy było wyznaczenie sposobu na ekstrakcję cech ze zdjęcia i przygotowanie wektora uczącego dla sieci. Zadaniem sieci neuronowej jest klasyfikacja czy danemu użytkownikowi przyznano wcześniej dostęp czy też nie.
+
+System oryginalnie został zaprojektowany na mikrokomputer Rasbery Pi. W projekcie wykorzystano Rasbery Pi ILEŚTAM. Przy projektowaniu systemu fakt ten miał niebagatelne znaczenie, ze względu na ograniczone pokłady mocy obliczeniowej. Architekutra systemu została zaprojektowana w taki sposób, aby system można było z łatwością przenosić na inne platformy. 
+
 \subsection{Omówienie zagadnienia}
 
 \subsection{Omawiany komponent jako część większego systemu}
+
+Jak wspomniano we wstępie komponent opisany w niniejszej pracy jest częścią większego systemu. W tej sekcji pracy przedstawiono założenia projektowe, zaprezentowano szerszy ogląd na cały system. Omówiono komponent z programistycznego punktu widzenia: omówiono wzorce projektowe, praktyki jakich przesztrzegano projektując komponent oraz uzasadniono wybór narzędzi.
+
 \subsubsection{Wykorzystane wzorce projektowe}
 
 W celu ułatwienia pracy współpracownikom w projekcie został utworzony wydzielony łatwo wymienialny komponent. W celu ułatwienia pracy badawczej komponent został podzielony na mniejsze elementy z wykorzystaniem obiektowych wzorców projektowych.
 Do reprezentacji całego komponentu wybrano wzorzec fabryka. Zapewniono w ten sposób elastyczność użytkownikom klasy, ponieważ mogą oni zdecydować w jaki sposób współrzędne będące wynikiem działania algorytmów mają być przedstawione. Zapewniono klasę bazową do przechowywania współrzędnych, po której dziedziczą poszczególne reprezentacje, takie jak bezpośrednie przechowywanie danych w pamięci programu, czy zapis na pamięć nieulotną w postaci pliku z rozszerzeniem .npy z biblioteki numpy.
 W celu zwiększenia elastyczności w obrębie komponentu do wyboru algorytmów dwukrotnie wykorzystano wzorzec strategia. Stworzono klasy bazowe do reprezentacji podstawowych własności algorytmu, które następnie implementowano w klasach pochodnych. Modyfikacja ta ułatwiła pracę badawczą i usystematyzowała strukturę projektu.
+
 \subsubsection{Wykorzystane zasady i dobre praktyki programowania}
 
 W trakcie realizacji projektu oprócz wykorzystania wzorców projektowych posługiwano się także dobrymi zasadami SOLID oraz clean code. Pozwalają one na zachowanie większego porządku oraz czytelności kodu. Dobra organizacja kodu oraz porządek ułatwiają rozwijanie projektu oraz systematyzują pracę. Nie zdecydowano się na wykorzystanie testów jednostkowych ze względu na dynamiczny charakter projektu. Definiowanie zachowań w testach jednostkowych jest kosztowne, a częste zmiany powodują że praca ta momentami byłaby zbędna.
@@ -73,9 +82,8 @@ Do przeprowadzenia badań jako bazy twarzy wykorzystano zbiór zdjęć dostępny
 \newpage
 
 \section{Implementacja algorytmów – detekcja twarzy}
- 
-\subsection{Przetwarzanie obrazu po akwizycji} 
- 
+
+Pierwszym wymaganiem po zdolności do akwizycji obrazów jest określenie czy uzyskane zdjęcie przestawia twarz. W niniejszym rozdziale omówiono możliwe metody detekcji twarzy na dwuwymiarowym obrazie. Szczegółowo omówiono przyjęte rozwiązanie, oraz podano uzasadnienie dlaczego zostało ono wybrane.
 
 \subsection{Kaskady Haara}
 Alogrytm Kaskad Haara (lub detektor Viola-Jones) wykorzystuje serię cech do określenia czy na zdjęciu w określonym miejscu znajduje się szukany obiekt. Cecha jest tutaj rozumiana jako prostokąt podzielony na części. Pod każda z części dodawane są wartości pikseli, następnie wartości z obu obszarów są od siebie odejmowane. Pomysł ten przypomina falkę Haara, stąd nazwa algorytmu. Tak uzyskana wartość musi przekroczyć odpowiedni próg, który decyduje o tym czy w danym miejscu rozpoznano twarz. Jak podano w \cite{Kaskada Haara}, aby móc szybciej obliczać wartości pikseli pod odpowiednim obszarem wykorzystuje się obraz kumulacyjny (ang. integral image). Jest on zdefiniowany jako:
@@ -106,7 +114,7 @@ Wykorzystanie AdaBoost pozwoliło na wybranie cech generujących najmniejszy bł
 
 Dysponując zbiorem chech można przystąpić do klasyfikacji obrazu. Odbywa się to kaskadowo. W pierwszym etapie wykorzystuje się klasyfikator złożony najczęściej z jednej lub dwóch cech. Klasyfikacja jest przperowadzana na całym obrazie, aby wykryć gdzie może znajdować się twarz. W kolejnych etapach ilość cech jest zwiększana (najczęściej wykładniczo). Jeśli w danym obszarze nie została wykrytwa twarz zostaje on pominięty w dalszych etapach. Pozwala to znacząco ograniczyć ilość wykonywanych operacji. Zaleca się aby w pierwszym etapie wykorzystawać cechę z wysokim współczynnikiem fałszywych negatywnych rezultatów (ang. false negative) - w tym przypadku obszarów zawierających twarz błędnie zaklasyfikowanych jako nie będących twarzą.
 
-Kaskady Haara są szybkie, przez co chętnie wykorzystuje się je w zastoswaniach wymagającego przetwarzania obrazów w czasie rzeczywistym.
+Kaskady Haara są szybkie, przez co chętnie wykorzystuje się je w zastoswaniach wymagającego przetwarzania obrazów w czasie rzeczywistym. Było to także motywacją przy wyborze tej metody w omawianym systemie. Rozwiązanie daje to zadowalające wyniki przy jednoczesnym szybkim działaniu. W rozważanym systemie kosztowność obliczeniowa musi być brana pod uwagę, biorąc pod uwagę, że oryginalna platforma sprzętowa na którą został przewidziany system to Rasbery Pi.
 
 \subsection{Inne sposoby rozwiązanie problemu}
  
@@ -117,7 +125,11 @@ Kaskady Haara są szybkie, przez co chętnie wykorzystuje się je w zastoswaniac
  
 \section{Implementacja algorytmów – ekstrakcja cech}
 
-Pomiędzy tymi etapami obraz jest obcinany do rozmiaru 64 $\times$ 64, w celu zwiększenia szybkości przetwarzania.
+Ninjeszy rozdział traktuje o algorytmach umożliwiających ekstrakcję cech twarzy ze zdjęcia. Dysponując zdjęciem twarzy należy zaproponować sposób utworzenia wektora, będącego reprezentatywnym odzwierciedleniem ilościowych cech ze zdjęcia i jednocześnie umożliwi sieci neuronnowej dokonanie klasyfikacji. Zadanie to jest bardzo abstrakcyjne, zależy od wielu czynników i trudno jest określić rezultaty.
+
+W rozdziale tym skupiono się głównie nad podejściem polegającym na zastosowaniem algorytmów redukcji wymiarowości, takich jak PCA czy SVD. Jest to dość popularne rozwiązanie i w przypadku PCA można uzyskać wyniki mające wizualną interpretację, co jest bardzo pomocne przy pracy nad tego typu problemem.
+
+Obraz po wykryciu twarzy jest obcniany do kwadratu, na którym wykryto twarz, następinie obraz jest obcinany do rozmiaru 64 $\times$ 64, w celu ujednolicenia rozmiarów przetwarzanych obrazów oraz zwiększenia szybkości przetwarzania.
  
 \subsection{Principle Components Analysis}
 
@@ -396,13 +408,15 @@ Dodatkowo warto zwrócić uwagę na brak kontroli PCA nad przetwarzanymi danymi.
 
 \newpage
 
-\section{Bezpieczeństwo systemu}
+\section{Zabezpieczenie przed możliwością oszukania systemu}
 W trakcie realizacji projektu specjalnościowego podjęto próbę zadresowania kwesti oszukania całego systemu poprzez przedstawianie systemowi zdjęć ludzi, którym wcześniej przyznano prawo dostępu. Jest to realne zagrorzenie, z którym twórcy systemów biometrycznych muszą się mierzyć. Dobrym przykładem może być tutaj system FaceID w IphoneX firmy Apple. Twórcy systemu zapewniali że nie da go się oszukać poprzez wykonanie masek 3d imitujących twarz człowieka. 9 listopada 2017 roku ekseprci z firmy Bkav oświadczyli że udało im się złamać zabezpieczenia poprzez wykonanie specjalnej maski, wykorzystując drukarkę 3D, silikonowe elementy, wydruki 2D, oraz materiał imitujący skórę \cite{FaceID hacked}. Dodatkowo system FaceID okazał się nie być odporny na podobieństwo występujące między bliźniakami jednojajowymi. Bezpieczeństwo systemów biometrycznych jest więc bardzo ważną kwestią i podjęto próbę zbadania tych zagadnień.
 
 \subsection{Przyjęta metodyka}
 Zbadano możliwości jakie daje ekstrakcja głębi z wykorzystaniem dwóch kamer. W obecnym projekcie systemu zintegrowanie systemu ekstrakcji głębi byłoby trudne, ponieważ w projekcie wykorzystywana jest kamera Ruberby Pi, podłączona przez port CSI, a mikrokomputery Rasbry Pi posiadają tylko jeden port CSI. Do badań wykorzystano dwie kamerki internetowo Creative VF0770. Do ekstrakcji głębi wykorzystano funkcje biblioteki OpenCV. Celem było uzyskanie mapy punktów w 3D, które następnie miały być aproksymowane płaszczyzną. Następnie należało wyznaczyć błąd aproksymacji, oraz próg, od którego mapa punktów miała być uznawana za płaską.
 
 \subsection{Podstawy teoretyczne}
+
+Przed przedstawieniem wyników omówiono przyjęte założenia teoretyczne. W nimniejszej sekcji zostały omówione takie koncepcje jak pinhole camera model, model zniekształceń w biblitece OpenCv, podstawowe założenia geometrii epipolarnej oraz wyznaczanie mapy głębokości na podstawie dysparycji.
 
 \subsubsection{Model kamery}
 Przed przystąpieniem do ekstrakcji głębi należy ustalić model działania pojedyńczej kamery oraz zrozumieć jakie zakłócenia obrazu występują.
@@ -627,9 +641,14 @@ Warto zwrócić uwagę że wzór \ref{eq:disp} nie traci na ogólności, gdy pun
 		\includegraphics[width=5.5cm]{falt_test_face1L.jpg}
 	\end{minipage}
 	\begin{minipage}{5.5cm}
-		\includegraphics[width=5.5cm]{result_fail.png}
-	\end{minipage}		
-	\caption{Obraz płaskiego zdjęcią sfotografowany lewą kamerą oraz wynik ekstrakcji głebokości. }
+		\includegraphics[width=5.5cm]{falt_test_face1R.jpg}
+	\end{minipage}
+	
+	\centerline{
+	\begin{minipage}{10.5cm}
+		\includegraphics[width=10.5cm]{result_fail.png}
+	\end{minipage}}	
+	\caption{Obraz płaskiego zdjęcią sfotografowany lewą i prawą kamerą oraz wynik ekstrakcji głebokości. }
 	\label{fig:extraction_fail}
 \end{figure}
 
