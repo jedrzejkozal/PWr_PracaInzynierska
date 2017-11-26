@@ -1,0 +1,25 @@
+\BOOKMARK [0][-]{chapter.1}{Wstep}{}% 1
+\BOOKMARK [1][-]{section.1.1}{Om\363wienie zagadnienia}{chapter.1}% 2
+\BOOKMARK [1][-]{section.1.2}{Omawiany komponent jako czesc wiekszego systemu}{chapter.1}% 3
+\BOOKMARK [2][-]{subsection.1.2.1}{Wykorzystane wzorce projektowe}{section.1.2}% 4
+\BOOKMARK [2][-]{subsection.1.2.2}{Wykorzystane zasady i dobre praktyki programowania}{section.1.2}% 5
+\BOOKMARK [2][-]{subsection.1.2.3}{Wykorzystane biblioteki, narzedzia i zasoby}{section.1.2}% 6
+\BOOKMARK [0][-]{chapter.2}{Implementacja algorytm\363w \205 detekcja twarzy}{}% 7
+\BOOKMARK [1][-]{section.2.1}{Kaskady Haara}{chapter.2}% 8
+\BOOKMARK [1][-]{section.2.2}{Inne sposoby rozwiazanie problemu}{chapter.2}% 9
+\BOOKMARK [0][-]{chapter.3}{Implementacja algorytm\363w \205 ekstrakcja cech}{}% 10
+\BOOKMARK [1][-]{section.3.1}{Principle Components Analysis}{chapter.3}% 11
+\BOOKMARK [2][-]{subsection.3.1.1}{Wstep matematyczny}{section.3.1}% 12
+\BOOKMARK [2][-]{subsection.3.1.2}{Realizacja algorytmu}{section.3.1}% 13
+\BOOKMARK [2][-]{subsection.3.1.3}{Interpretacja}{section.3.1}% 14
+\BOOKMARK [2][-]{subsection.3.1.4}{PCA jako samodzielny system rozpoznawania twarzy}{section.3.1}% 15
+\BOOKMARK [1][-]{section.3.2}{Singular Value Decomposition}{chapter.3}% 16
+\BOOKMARK [1][-]{section.3.3}{Inne podejscia do problemu redukcji wymiarowosci}{chapter.3}% 17
+\BOOKMARK [0][-]{chapter.4}{Zabezpieczenie przed mozliwoscia oszukania systemu}{}% 18
+\BOOKMARK [1][-]{section.4.1}{Przyjeta metodyka}{chapter.4}% 19
+\BOOKMARK [1][-]{section.4.2}{Podstawy teoretyczne}{chapter.4}% 20
+\BOOKMARK [2][-]{subsection.4.2.1}{Kalibracja kamery}{section.4.2}% 21
+\BOOKMARK [2][-]{subsection.4.2.2}{Geometria epipolarna}{section.4.2}% 22
+\BOOKMARK [2][-]{subsection.4.2.3}{Szacowanie g\233ebokosci}{section.4.2}% 23
+\BOOKMARK [1][-]{section.4.3}{Wyniki}{chapter.4}% 24
+\BOOKMARK [0][-]{chapter.5}{Zakonczenie}{}% 25

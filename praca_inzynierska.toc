@@ -1,0 +1,27 @@
+\contentsline {section}{\numberline {0.1}Wst\IeC {\k e}p}{1}
+\contentsline {subsection}{\numberline {0.1.1}Om\IeC {\'o}wienie zagadnienia}{2}
+\contentsline {subsection}{\numberline {0.1.2}Omawiany komponent jako cz\IeC {\k e}\IeC {\'s}\IeC {\'c} wi\IeC {\k e}kszego systemu}{2}
+\contentsline {subsubsection}{Wykorzystane wzorce projektowe}{2}
+\contentsline {subsubsection}{Wykorzystane zasady i dobre praktyki programowania}{2}
+\contentsline {subsubsection}{Wykorzystane biblioteki, narz\IeC {\k e}dzia i zasoby}{2}
+\contentsline {section}{\numberline {0.2}Implementacja algorytm\IeC {\'o}w \IeC {\textendash } detekcja twarzy}{4}
+\contentsline {subsection}{\numberline {0.2.1}Kaskady Haara}{4}
+\contentsline {subsection}{\numberline {0.2.2}Inne sposoby rozwi\IeC {\k a}zanie problemu}{6}
+\contentsline {section}{\numberline {0.3}Implementacja algorytm\IeC {\'o}w \IeC {\textendash } ekstrakcja cech}{7}
+\contentsline {subsection}{\numberline {0.3.1}Principle Components Analysis}{7}
+\contentsline {subsubsection}{Wst\IeC {\k e}p matematyczny}{7}
+\contentsline {subsubsection}{Realizacja algorytmu}{9}
+\contentsline {subsubsection}{Interpretacja}{11}
+\contentsline {subsubsection}{PCA jako samodzielny system rozpoznawania twarzy}{12}
+\contentsline {subsection}{\numberline {0.3.2}Singular Value Decomposition}{12}
+\contentsline {subsection}{\numberline {0.3.3}Inne podej\IeC {\'s}cia do problemu redukcji wymiarowo\IeC {\'s}ci}{12}
+\contentsline {section}{\numberline {0.4}Zabezpieczenie przed mo\IeC {\.z}liwo\IeC {\'s}ci\IeC {\k a} oszukania systemu}{13}
+\contentsline {subsection}{\numberline {0.4.1}Przyj\IeC {\k e}ta metodyka}{13}
+\contentsline {subsection}{\numberline {0.4.2}Podstawy teoretyczne}{13}
+\contentsline {subsubsection}{Model kamery}{13}
+\contentsline {subsubsection}{Zak\IeC {\l }\IeC {\'o}cenia}{16}
+\contentsline {subsection}{\numberline {0.4.3}Kalibracja kamery}{17}
+\contentsline {subsection}{\numberline {0.4.4}Geometria epipolarna}{18}
+\contentsline {subsection}{\numberline {0.4.5}Szacowanie g\IeC {\l }\IeC {\k e}boko\IeC {\'s}ci}{18}
+\contentsline {subsection}{\numberline {0.4.6}Wyniki}{20}
+\contentsline {section}{\numberline {0.5}Zako\IeC {\'n}czenie}{21}
