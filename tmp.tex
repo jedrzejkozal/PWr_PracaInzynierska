@@ -28,7 +28,7 @@
 
 \maketitle
 
-
+\linespread{1.5}
 
 \chapter{Wstęp}
 Celem pracy jest porównanie metod i algorytmów umożliwiających wykrycie twarzy na zdjęciu, oraz wyznaczenie wektora uczącego dla sieci neuronowej na podstawie wyznaczonego zdjęcia twarzy. Projekt ten jest częścią systemu biometrycznej kontroli dostępu. Za implementację sieci neuronowych oraz analizę algorytmów związanych z sieciami odpowiadał Filip Guzy. Za architekturę systemu, oraz komunikację pomiędzy komponentami odpowiadał Michał Leś. 
@@ -363,10 +363,6 @@ W przypadku NM dla każdej z grup obliczana jest średnia wektorów, następnie 
 W przypadku algorytmu k-NN odległość jest obliczana pomiędzy wszystkimi wektorami ze zbioru uczącego. Następnie zostaje wybrane k najbliższych sąsiadów. Zbiór, którego najwięcej przedstawicieli zostało wybranch wygrywa. Dla przypadku dychotomii jeżeli k jest nieparzyste możliwa jest jednoznaczna klasyfikacja. Gdy ilość zbiorów do których można zaklasyfikować obraz jest większa od dwóch możliwe jest wystąpienie wypadku w którym nie można jednoznacznie zaklasyfikować obiekt. 
 W przypadku systemu kontroli dostępu może być rozsądne wprowadzenie maksymalnej odległości między średnią lub najbliższym sąsiadem a klasyfikowanym wektorem przy której może następić klasyfikacja. Powyżej tej odległości obraz nie powinien być zaklasyfikowany do którejkolwiek z grup. 
 Dodatkowo warto zwrócić uwagę na brak kontroli PCA nad przetwarzanymi danymi. Jest to metoda statystyczna, na jej wejście można podać zdjęcie myszy lub samochodu, które zostanie przetworzone. Nie wiadomo jakie współrzędne można uzyskać, dzięki takiej operacji. System rozpoznawania twarzy powinien więc odrzucić takie zdjęcie na etapie wykrywania pozycji twarzy.
-
-
-\section{Singular Value Decomposition}
-
 
 \section{Inne podejścia do problemu redukcji wymiarowości}
 
@@ -710,6 +706,11 @@ Hartley, R.~I. i Zisserman, A.
 \textit{Multiple View Geometry in Computer Vision}
 Cambridge University Press, 2004
 
+\bibitem{OpenCV}
+Itseez.
+\textit{Open Source Computer Vision Library}
+\\\texttt{https://github.com/itseez/opencv}
+
 \bibitem{Dokumentacja OpenCV}
 Dokumentacja biblioteki OpenCv 
 \\\texttt{https://docs.opencv.org/2.4/index.html}
@@ -717,6 +718,14 @@ Dokumentacja biblioteki OpenCv
 \bibitem{Tutoriale OpenCV}
 Zbiór tutoriali z OpenCV
 \\\texttt{https://docs.opencv.org/3.0-beta/doc/py\_tutorials/py\_tutorials.html}
+
+\bibitem{scikit-learn}
+Pedregosa, F. and Varoquaux, G. and Gramfort, A. and Michel, V.
+         and Thirion, B. and Grisel, O. and Blondel, M. and Prettenhofer, P.
+         and Weiss, R. and Dubourg, V. and Vanderplas, J. and Passos, A. and
+         Cournapeau, D. and Brucher, M. and Perrot, M. and Duchesnay, E.
+ \textit{Scikit-learn: Machine Learning in {P}ython}
+ Journal of Machine Learning Research, volume 12, pages 2825-2830, year 2011
 
 \bibitem{FaceID hacked}
 News o pokonaniu zabezpieczeń systemu FaceID

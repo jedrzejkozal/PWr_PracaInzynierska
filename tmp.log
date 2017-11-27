@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  26 NOV 2017 14:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.24)  27 NOV 2017 20:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -814,13 +814,13 @@ l.52
 
 ] [2] [3]
 Rozdzia\PlPrIeC {\l } 2.
-<haar_features.jpg, id=126, 321.2pt x 272.01625pt>
+<haar_features.jpg, id=122, 321.2pt x 272.01625pt>
 File: haar_features.jpg Graphic file (type jpg)
  <use haar_features.jpg>
 Package pdftex.def Info: haar_features.jpg used on input line 90.
 (pdftex.def)             Requested size: 227.62204pt x 192.77177pt.
 
-<haar.png, id=128, 335.2525pt x 203.76125pt>
+<haar.png, id=124, 335.2525pt x 203.76125pt>
 File: haar.png Graphic file (type png)
  <use haar.png>
 Package pdftex.def Info: haar.png used on input line 101.
@@ -828,284 +828,284 @@ Package pdftex.def Info: haar.png used on input line 101.
  [4
 
 
-] [5 <./haar_features.jpg> <./haar.png (PNG copy)>] <test.jpg, id=148, 642.4pt 
+] [5 <./haar_features.jpg> <./haar.png (PNG copy)>] <test.jpg, id=144, 642.4pt 
 x 481.8pt>
 File: test.jpg Graphic file (type jpg)
 
 <use test.jpg>
 Package pdftex.def Info: test.jpg used on input line 117.
 (pdftex.def)             Requested size: 182.09485pt x 136.5719pt.
- <test_result.jpg, id=149, 642.4pt x 478.78876pt>
+ <test_result.jpg, id=145, 642.4pt x 478.78876pt>
 File: test_result.jpg Graphic file (type jpg)
 
 <use test_result.jpg>
 Package pdftex.def Info: test_result.jpg used on input line 118.
 (pdftex.def)             Requested size: 182.09485pt x 135.71832pt.
- [6 <./test.jpg> <./test_result.jpg>]
+ [6 <./test.jpg> <./test_result.jpg>] [7]
 Rozdzia\PlPrIeC {\l } 3.
-[7
+[8
 
 
-] [8pdfTeX warning (ext4): destination with the same identifier (name{equation.
+] [9pdfTeX warning (ext4): destination with the same identifier (name{equation.
 3.1.3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.211 \begin{align}
-                   ] [9]
+l.208 \end{align*}
+                  ] [10]
 Overfull \hbox (20.51245pt too wide) in paragraph at lines 306--307
 []\OT4/cmr/m/n/12 Po kon-wer-sji do ory-gi-nal-nej wy-mia-row-±ci dys-po-nu-je-
 my ba-z¡ $\OML/plm/m/it/12 M$ \OT4/cmr/m/n/12 wek-to-rów $\OML/plm/m/it/12 D$\O
 T4/cmr/m/n/12 -wymiarowych.
  []
 
-[10] <face_1.jpg, id=211, 64.24pt x 64.24pt>
+[11] <face_1.jpg, id=210, 64.24pt x 64.24pt>
 File: face_1.jpg Graphic file (type jpg)
  <use face_1.jpg>
 Package pdftex.def Info: face_1.jpg used on input line 335.
 (pdftex.def)             Requested size: 56.9055pt x 56.90678pt.
 
-<100.jpg, id=212, 64.24pt x 64.24pt>
+<100.jpg, id=211, 64.24pt x 64.24pt>
 File: 100.jpg Graphic file (type jpg)
  <use 100.jpg>
 Package pdftex.def Info: 100.jpg used on input line 338.
 (pdftex.def)             Requested size: 56.9055pt x 56.90678pt.
 
-<200.jpg, id=213, 64.24pt x 64.24pt>
+<200.jpg, id=212, 64.24pt x 64.24pt>
 File: 200.jpg Graphic file (type jpg)
  <use 200.jpg>
 Package pdftex.def Info: 200.jpg used on input line 341.
 (pdftex.def)             Requested size: 56.9055pt x 56.90678pt.
 
-<300.jpg, id=214, 64.24pt x 64.24pt>
+<300.jpg, id=213, 64.24pt x 64.24pt>
 File: 300.jpg Graphic file (type jpg)
  <use 300.jpg>
 Package pdftex.def Info: 300.jpg used on input line 344.
 (pdftex.def)             Requested size: 56.9055pt x 56.90678pt.
 
-<400.jpg, id=215, 64.24pt x 64.24pt>
+<400.jpg, id=214, 64.24pt x 64.24pt>
 File: 400.jpg Graphic file (type jpg)
  <use 400.jpg>
 Package pdftex.def Info: 400.jpg used on input line 347.
 (pdftex.def)             Requested size: 56.9055pt x 56.90678pt.
- [11 <./face_1.jpg> <./100.jpg> <./200.jpg> <./300.jpg> <./400.jpg>] [12]
+ [12] [13 <./face_1.jpg> <./100.jpg> <./200.jpg> <./300.jpg> <./400.jpg>] [14]
 Rozdzia\PlPrIeC {\l } 4.
-<pinhole_camera_model.png, id=232, 602.25pt x 424.58624pt>
+[15
+
+
+] <pinhole_camera_model.png, id=241, 602.25pt x 424.58624pt>
 File: pinhole_camera_model.png Graphic file (type png)
 
 <use pinhole_camera_model.png>
-Package pdftex.def Info: pinhole_camera_model.png used on input line 392.
+Package pdftex.def Info: pinhole_camera_model.png used on input line 388.
 (pdftex.def)             Requested size: 409.71689pt x 288.86383pt.
 
-Overfull \hbox (48.5776pt too wide) in paragraph at lines 394--396
+Overfull \hbox (48.5776pt too wide) in paragraph at lines 390--392
  \OT4/cmr/m/n/12 https://docs.opencv.org/2.4/modules/calib3d/doc/camera[]calibr
 ation[]and[]3d[]reconstruction.html 
  []
 
-[13
-
-
-] [14 <./pinhole_camera_model.png>]
-<pinhole.jpg, id=247, 573.14125pt x 377.41pt>
+[16 <./pinhole_camera_model.png>]
+<pinhole.jpg, id=251, 573.14125pt x 377.41pt>
 File: pinhole.jpg Graphic file (type jpg)
  <use pinhole.jpg>
-Package pdftex.def Info: pinhole.jpg used on input line 429.
+Package pdftex.def Info: pinhole.jpg used on input line 425.
 (pdftex.def)             Requested size: 409.71689pt x 269.80003pt.
 
-<rzutowanie.jpg, id=249, 389.455pt x 500.87125pt>
+<rzutowanie.jpg, id=253, 389.455pt x 500.87125pt>
 File: rzutowanie.jpg Graphic file (type jpg)
  <use rzutowanie.jpg>
-Package pdftex.def Info: rzutowanie.jpg used on input line 456.
+Package pdftex.def Info: rzutowanie.jpg used on input line 452.
 (pdftex.def)             Requested size: 227.62204pt x 292.73718pt.
-
-<0.jpg, id=251, 64.24pt x 64.24pt>
+ [17 <./pinhole.jpg>] <0.jpg, id=261, 64.24pt x 64.24pt>
 File: 0.jpg Graphic file (type jpg)
  <use 0.jpg>
-Package pdftex.def Info: 0.jpg used on input line 470.
+Package pdftex.def Info: 0.jpg used on input line 466.
 (pdftex.def)             Requested size: 56.9055pt x 56.90678pt.
 
-<1.jpg, id=252, 64.24pt x 64.24pt>
+<1.jpg, id=262, 64.24pt x 64.24pt>
 File: 1.jpg Graphic file (type jpg)
  <use 1.jpg>
-Package pdftex.def Info: 1.jpg used on input line 472.
+Package pdftex.def Info: 1.jpg used on input line 468.
 (pdftex.def)             Requested size: 56.9055pt x 56.90678pt.
 
-<2.jpg, id=253, 64.24pt x 64.24pt>
+<2.jpg, id=263, 64.24pt x 64.24pt>
 File: 2.jpg Graphic file (type jpg)
  <use 2.jpg>
-Package pdftex.def Info: 2.jpg used on input line 475.
+Package pdftex.def Info: 2.jpg used on input line 471.
 (pdftex.def)             Requested size: 56.9055pt x 56.90678pt.
 
-<3.jpg, id=254, 64.24pt x 64.24pt>
+<3.jpg, id=264, 64.24pt x 64.24pt>
 File: 3.jpg Graphic file (type jpg)
  <use 3.jpg>
-Package pdftex.def Info: 3.jpg used on input line 478.
+Package pdftex.def Info: 3.jpg used on input line 474.
 (pdftex.def)             Requested size: 56.9055pt x 56.90678pt.
 
-<4.jpg, id=255, 64.24pt x 64.24pt>
+<4.jpg, id=265, 64.24pt x 64.24pt>
 File: 4.jpg Graphic file (type jpg)
  <use 4.jpg>
-Package pdftex.def Info: 4.jpg used on input line 481.
+Package pdftex.def Info: 4.jpg used on input line 477.
 (pdftex.def)             Requested size: 56.9055pt x 56.90678pt.
 
-<392.jpg, id=256, 64.24pt x 64.24pt>
+<392.jpg, id=266, 64.24pt x 64.24pt>
 File: 392.jpg Graphic file (type jpg)
  <use 392.jpg>
-Package pdftex.def Info: 392.jpg used on input line 485.
+Package pdftex.def Info: 392.jpg used on input line 481.
 (pdftex.def)             Requested size: 56.9055pt x 56.90678pt.
 
-<393.jpg, id=257, 64.24pt x 64.24pt>
+<393.jpg, id=267, 64.24pt x 64.24pt>
 File: 393.jpg Graphic file (type jpg)
  <use 393.jpg>
-Package pdftex.def Info: 393.jpg used on input line 488.
+Package pdftex.def Info: 393.jpg used on input line 484.
 (pdftex.def)             Requested size: 56.9055pt x 56.90678pt.
 
-<394.jpg, id=258, 64.24pt x 64.24pt>
+<394.jpg, id=268, 64.24pt x 64.24pt>
 File: 394.jpg Graphic file (type jpg)
  <use 394.jpg>
-Package pdftex.def Info: 394.jpg used on input line 491.
+Package pdftex.def Info: 394.jpg used on input line 487.
 (pdftex.def)             Requested size: 56.9055pt x 56.90678pt.
 
-<395.jpg, id=259, 64.24pt x 64.24pt>
+<395.jpg, id=269, 64.24pt x 64.24pt>
 File: 395.jpg Graphic file (type jpg)
  <use 395.jpg>
-Package pdftex.def Info: 395.jpg used on input line 494.
+Package pdftex.def Info: 395.jpg used on input line 490.
 (pdftex.def)             Requested size: 56.9055pt x 56.90678pt.
 
-<396.jpg, id=260, 64.24pt x 64.24pt>
+<396.jpg, id=270, 64.24pt x 64.24pt>
 File: 396.jpg Graphic file (type jpg)
  <use 396.jpg>
-Package pdftex.def Info: 396.jpg used on input line 497.
+Package pdftex.def Info: 396.jpg used on input line 493.
 (pdftex.def)             Requested size: 56.9055pt x 56.90678pt.
- [15 <./pinhole.jpg>]
-<600px-Barrel_distortion.png, id=267, 602.25pt x 602.25pt>
+
+<600px-Barrel_distortion.png, id=271, 602.25pt x 602.25pt>
 File: 600px-Barrel_distortion.png Graphic file (type png)
 
 <use 600px-Barrel_distortion.png>
-Package pdftex.def Info: 600px-Barrel_distortion.png used on input line 511.
+Package pdftex.def Info: 600px-Barrel_distortion.png used on input line 507.
 (pdftex.def)             Requested size: 85.35826pt x 85.35284pt.
 
-<600px-Pincushion_distortion.png, id=268, 602.25pt x 602.25pt>
+<600px-Pincushion_distortion.png, id=272, 602.25pt x 602.25pt>
 File: 600px-Pincushion_distortion.png Graphic file (type png)
 
 <use 600px-Pincushion_distortion.png>
-Package pdftex.def Info: 600px-Pincushion_distortion.png used on input line 514
+Package pdftex.def Info: 600px-Pincushion_distortion.png used on input line 510
 .
 (pdftex.def)             Requested size: 85.35826pt x 85.35284pt.
 
-<600px-Mustache_distortion.png, id=269, 602.25pt x 602.25pt>
+<600px-Mustache_distortion.png, id=273, 602.25pt x 602.25pt>
 File: 600px-Mustache_distortion.png Graphic file (type png)
 
 <use 600px-Mustache_distortion.png>
-Package pdftex.def Info: 600px-Mustache_distortion.png used on input line 517.
+Package pdftex.def Info: 600px-Mustache_distortion.png used on input line 513.
 (pdftex.def)             Requested size: 85.35826pt x 85.35284pt.
- [16 <./rzutowanie.jpg> <./0.jpg> <./1.jpg> <./2.jpg> <./3.jpg> <./4.jpg> <./39
-2.jpg> <./393.jpg> <./394.jpg> <./395.jpg> <./396.jpg>] <cornersubpix.png, id=2
-77, 520.94624pt x 221.82875pt>
+ [18 <./rzutowanie.jpg>]
+<cornersubpix.png, id=283, 520.94624pt x 221.82875pt>
 File: cornersubpix.png Graphic file (type png)
-
-<use cornersubpix.png>
-Package pdftex.def Info: cornersubpix.png used on input line 543.
+ <use cornersubpix.png>
+Package pdftex.def Info: cornersubpix.png used on input line 539.
 (pdftex.def)             Requested size: 318.66946pt x 135.69443pt.
- [17 <./600px-Barrel_distortion.png> <./600px-Pincushion_distortion.png> <./600
-px-Mustache_distortion.png> <./cornersubpix.png>]
-<left1.jpg, id=290, 642.4pt x 481.8pt>
+
+<left1.jpg, id=284, 642.4pt x 481.8pt>
 File: left1.jpg Graphic file (type jpg)
  <use left1.jpg>
-Package pdftex.def Info: left1.jpg used on input line 571.
+Package pdftex.def Info: left1.jpg used on input line 567.
 (pdftex.def)             Requested size: 99.58464pt x 74.68558pt.
 
-<left10.jpg, id=291, 642.4pt x 481.8pt>
+<left10.jpg, id=285, 642.4pt x 481.8pt>
 File: left10.jpg Graphic file (type jpg)
  <use left10.jpg>
-Package pdftex.def Info: left10.jpg used on input line 574.
+Package pdftex.def Info: left10.jpg used on input line 570.
 (pdftex.def)             Requested size: 99.58464pt x 74.68558pt.
 
-<left27.jpg, id=292, 642.4pt x 481.8pt>
+<left27.jpg, id=286, 642.4pt x 481.8pt>
 File: left27.jpg Graphic file (type jpg)
  <use left27.jpg>
-Package pdftex.def Info: left27.jpg used on input line 577.
+Package pdftex.def Info: left27.jpg used on input line 573.
 (pdftex.def)             Requested size: 99.58464pt x 74.68558pt.
 
-<left8.jpg, id=293, 642.4pt x 481.8pt>
+<left8.jpg, id=287, 642.4pt x 481.8pt>
 File: left8.jpg Graphic file (type jpg)
  <use left8.jpg>
-Package pdftex.def Info: left8.jpg used on input line 586.
+Package pdftex.def Info: left8.jpg used on input line 582.
 (pdftex.def)             Requested size: 99.58464pt x 74.68558pt.
 
-<left17.jpg, id=294, 642.4pt x 481.8pt>
+<left17.jpg, id=288, 642.4pt x 481.8pt>
 File: left17.jpg Graphic file (type jpg)
  <use left17.jpg>
-Package pdftex.def Info: left17.jpg used on input line 589.
+Package pdftex.def Info: left17.jpg used on input line 585.
 (pdftex.def)             Requested size: 99.58464pt x 74.68558pt.
 
-<left24.jpg, id=295, 642.4pt x 481.8pt>
+<left24.jpg, id=289, 642.4pt x 481.8pt>
 File: left24.jpg Graphic file (type jpg)
  <use left24.jpg>
-Package pdftex.def Info: left24.jpg used on input line 592.
+Package pdftex.def Info: left24.jpg used on input line 588.
 (pdftex.def)             Requested size: 99.58464pt x 74.68558pt.
-
-<epipolar.jpg, id=297, 674.52pt x 413.545pt>
+ [19 <./0.jpg> <./1.jpg> <./2.jpg> <./3.jpg> <./4.jpg> <./392.jpg> <./393.jpg> 
+<./394.jpg> <./395.jpg> <./396.jpg> <./600px-Barrel_distortion.png> <./600px-Pi
+ncushion_distortion.png> <./600px-Mustache_distortion.png>] [20 <./cornersubpix
+.png> <./left1.jpg> <./left10.jpg> <./left27.jpg> <./left8.jpg> <./left17.jpg> 
+<./left24.jpg>]
+<epipolar.jpg, id=309, 674.52pt x 413.545pt>
 File: epipolar.jpg Graphic file (type jpg)
  <use epipolar.jpg>
-Package pdftex.def Info: epipolar.jpg used on input line 606.
+Package pdftex.def Info: epipolar.jpg used on input line 602.
 (pdftex.def)             Requested size: 318.66946pt x 195.3758pt.
 
-<ekstrakcja.jpg, id=298, 641.39626pt x 634.37pt>
+<ekstrakcja.jpg, id=310, 641.39626pt x 634.37pt>
 File: ekstrakcja.jpg Graphic file (type jpg)
  <use ekstrakcja.jpg>
-Package pdftex.def Info: ekstrakcja.jpg used on input line 624.
+Package pdftex.def Info: ekstrakcja.jpg used on input line 620.
 (pdftex.def)             Requested size: 270.30118pt x 267.34346pt.
- [18 <./left1.jpg> <./left10.jpg> <./left27.jpg> <./left8.jpg> <./left17.jpg> <
-./left24.jpg>] <falt_test_face1L.jpg, id=310, 637.38126pt x 472.76625pt>
+ [21 <./epipolar.jpg>] <falt_test_face1L.jpg, id=321, 637.38126pt x 472.76625pt
+>
 File: falt_test_face1L.jpg Graphic file (type jpg)
 
 <use falt_test_face1L.jpg>
-Package pdftex.def Info: falt_test_face1L.jpg used on input line 650.
+Package pdftex.def Info: falt_test_face1L.jpg used on input line 646.
 (pdftex.def)             Requested size: 156.49014pt x 116.0704pt.
 
-<falt_test_face1R.jpg, id=311, 597.23125pt x 444.66125pt>
+<falt_test_face1R.jpg, id=322, 597.23125pt x 444.66125pt>
 File: falt_test_face1R.jpg Graphic file (type jpg)
 
 <use falt_test_face1R.jpg>
-Package pdftex.def Info: falt_test_face1R.jpg used on input line 653.
+Package pdftex.def Info: falt_test_face1R.jpg used on input line 649.
 (pdftex.def)             Requested size: 156.49014pt x 116.5116pt.
- <result_fail.png, id=312, 1919.17pt x 1073.00874pt>
+ <result_fail.png, id=323, 1919.17pt x 1073.00874pt>
 File: result_fail.png Graphic file (type png)
 
 <use result_fail.png>
-Package pdftex.def Info: result_fail.png used on input line 659.
+Package pdftex.def Info: result_fail.png used on input line 655.
 (pdftex.def)             Requested size: 298.75394pt x 167.01866pt.
- [19 <./epipolar.jpg>] [20 <./ekstrakcja.jpg> <./falt_test_face1L.jpg> <./falt_
-test_face1R.jpg> <./result_fail.png (PNG copy)>] [21]
+ [22 <./ekstrakcja.jpg>] [23 <./falt_test_face1L.jpg> <./falt_test_face1R.jpg> 
+<./result_fail.png (PNG copy)>]
 Rozdzia\PlPrIeC {\l } 5.
-[22
+[24
 
 
 ]
-Underfull \hbox (badness 3354) in paragraph at lines 688--691
+Underfull \hbox (badness 3354) in paragraph at lines 684--687
 []\OT4/cmr/m/n/12 Stanisªaw Osow-ski. \OT4/cmr/m/it/12 Sie-ci Neu-ro-no-we w uj
 ¦-ciu al-go-ryt-micz-nym \OT4/cmr/m/n/12 Wy-daw-nic-two
  []
 
-LaTeX Font Info:    Try loading font information for OT4+cmtt on input line 715
+LaTeX Font Info:    Try loading font information for OT4+cmtt on input line 712
 .
 (/usr/share/texlive/texmf-dist/tex/latex/polski/ot4cmtt.fd
 File: ot4cmtt.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
 )
-Underfull \hbox (badness 10000) in paragraph at lines 722--724
+Underfull \hbox (badness 10000) in paragraph at lines 731--733
 \OT4/cmtt/m/n/12 http://www.bkav.com/d/top-news/-/view[]content/content/103968/
 face-id-
  []
 
-[23
+[25
 
 
 ] (./tmp.toc)
 \tf@toc=\write4
 \openout4 = `tmp.toc'.
 
- [24
+ [26
 
 
 ] (./tmp.lof
@@ -1118,31 +1118,31 @@ Overfull \hbox (143.90407pt too wide) in paragraph at lines 14--14
 \tf@lof=\write5
 \openout5 = `tmp.lof'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 731.
- [25
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 740.
+ [27
 
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 731.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 740.
  (./tmp.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 731.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 731.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 740.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 740.
 Package rerunfilecheck Info: File `tmp.out' has not changed.
-(rerunfilecheck)             Checksum: 720FAA8157D7D6628E7B8E241B020418;1891.
+(rerunfilecheck)             Checksum: DE5209DE35EFC97401B4263DDB4B5592;1816.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 731.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 740.
  ) 
 Here is how much of TeX's memory you used:
- 8485 strings out of 493077
- 124047 string characters out of 6138295
- 225317 words of memory out of 5000000
- 11741 multiletter control sequences out of 15000+600000
+ 8489 strings out of 493077
+ 124087 string characters out of 6138295
+ 225381 words of memory out of 5000000
+ 11742 multiletter control sequences out of 15000+600000
  16730 words of font info for 47 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,17n,39p,1207b,385s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,18n,39p,1207b,385s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/pl/pltt.enc}{/usr/share/texliv
 e/texmf-dist/fonts/enc/dvips/pl/plit.enc}{/usr/share/texlive/texmf-dist/fonts/e
 nc/dvips/pl/plmi.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/pl/plrm.enc
@@ -1164,10 +1164,10 @@ texlive/texmf-dist/fonts/type1/public/pl/plsy10.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/public/pl/plsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/
 public/pl/plsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plti12
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/pltt12.pfb>
-Output written on tmp.pdf (26 pages, 1434570 bytes).
+Output written on tmp.pdf (28 pages, 1435228 bytes).
 PDF statistics:
- 494 PDF objects out of 1000 (max. 8388607)
- 394 compressed objects within 4 object streams
- 108 named destinations out of 1000 (max. 500000)
- 386 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 501 PDF objects out of 1000 (max. 8388607)
+ 399 compressed objects within 4 object streams
+ 111 named destinations out of 1000 (max. 500000)
+ 378 words of extra memory for PDF output out of 10000 (max. 10000000)
 
