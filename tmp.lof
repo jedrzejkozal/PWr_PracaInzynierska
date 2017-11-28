@@ -5,16 +5,16 @@
 \contentsline {figure}{\numberline {2.3}{\ignorespaces Wykrywanie punkt\IeC {\'o}w charakterystycznych twarzy.\relax }}{6}{figure.caption.3}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Por\IeC {\'o}wnanie rekonstrukcji twarzy na postawie r\IeC {\'o}\IeC {\.z}nej liczby wykorzystanych sk\IeC {\l }adowych.\relax }}{13}{figure.caption.4}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Por\IeC {\'o}wnanie eigenfaces.\relax }}{13}{figure.caption.5}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Scena przy przyj\IeC {\k e}tym modelu kamery.\relax }}{16}{figure.caption.6}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Ilustracja zale\IeC {\.z}no\IeC {\'s}ci mi\IeC {\k e}dzy uk\IeC {\l }adami wsp\IeC {\'o}\IeC {\l }rz\IeC {\k e}dnymi a punktem.\relax }}{17}{figure.caption.7}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Rzut z g\IeC {\'o}ry na scen\IeC {\k e}.\relax }}{18}{figure.caption.8}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Por\IeC {\'o}wnanie eigenfaces.\relax }}{19}{figure.caption.9}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces R\IeC {\'o}\IeC {\.z}ne rodzaje dystorcji (od lewej): beczkowa, poduszkowa oraz falista.\relax }}{19}{figure.caption.11}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Gradient szachownicy. \IeC {\'z}r\IeC {\'o}d\IeC {\l }o: https://docs.opencv.org/2.4/modules/imgproc/doc/feature\_detection.html\relax }}{20}{figure.caption.12}
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Wykryte naro\IeC {\.z}niki szachownicy. \relax }}{20}{figure.caption.13}
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Estymacja orientacji szachownicy. \relax }}{20}{figure.caption.14}
-\contentsline {figure}{\numberline {4.9}{\ignorespaces Podstawowa koncepcja geometrii epipolarnej.\relax }}{21}{figure.caption.15}
-\contentsline {figure}{\numberline {4.10}{\ignorespaces Ekstrakcja g\IeC {\l }\IeC {\k e}bi na podstawie dysparycji obraz\IeC {\'o}w z dw\IeC {\'o}ch kamer. \relax }}{22}{figure.caption.16}
-\contentsline {figure}{\numberline {4.11}{\ignorespaces Obraz p\IeC {\l }askiego zdj\IeC {\k e}ci\IeC {\k a} sfotografowany lew\IeC {\k a} i praw\IeC {\k a} kamer\IeC {\k a} oraz wynik ekstrakcji g\IeC {\l }eboko\IeC {\'s}ci. \relax }}{23}{figure.caption.17}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Scena przy przyj\IeC {\k e}tym modelu kamery.\relax }}{17}{figure.caption.7}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Ilustracja zale\IeC {\.z}no\IeC {\'s}ci mi\IeC {\k e}dzy uk\IeC {\l }adami wsp\IeC {\'o}\IeC {\l }rz\IeC {\k e}dnymi a punktem.\relax }}{18}{figure.caption.8}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Rzut z g\IeC {\'o}ry na scen\IeC {\k e}.\relax }}{19}{figure.caption.9}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces R\IeC {\'o}\IeC {\.z}ne rodzaje dystorcji (od lewej): beczkowa, poduszkowa oraz falista.\relax }}{19}{figure.caption.11}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Gradient szachownicy. \IeC {\'z}r\IeC {\'o}d\IeC {\l }o: https://docs.opencv.org/2.4/modules/imgproc/doc/feature\_detection.html\relax }}{20}{figure.caption.12}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Wykryte naro\IeC {\.z}niki szachownicy. \relax }}{21}{figure.caption.13}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Estymacja orientacji szachownicy. \relax }}{21}{figure.caption.14}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Podstawowa koncepcja geometrii epipolarnej.\relax }}{22}{figure.caption.15}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Ekstrakcja g\IeC {\l }\IeC {\k e}bi na podstawie dysparycji obraz\IeC {\'o}w z dw\IeC {\'o}ch kamer. \relax }}{22}{figure.caption.16}
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Obraz p\IeC {\l }askiego zdj\IeC {\k e}ci\IeC {\k a} sfotografowany lew\IeC {\k a} i praw\IeC {\k a} kamer\IeC {\k a} oraz wynik ekstrakcji g\IeC {\l }eboko\IeC {\'s}ci. \relax }}{23}{figure.caption.17}
 \addvspace {10\p@ }

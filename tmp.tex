@@ -1,4 +1,4 @@
-\documentclass[oneside]{mgr}
+\documentclass[oneside, eng]{mgr}
 
 \usepackage{polski}
 \usepackage[utf8]{inputenc}
@@ -353,6 +353,45 @@ Przyjrzyjmy się przez moment co tak na prawdę zyskujemy w wyniku działania al
 
 Jak widać na rys. \ref{fig:rekonstrukcja} wraz ze zwiększeniem się ilości składowych jakość rekosntrukcji zdjęcia się polepsza. Użycie większej ilości składowych nie ma sensu, co można zaobserwować w wyglądzie rekonstrukcji z wykorzystanie 300 i 400 składowych. PCA jest bardzo lubianą metodą, ponieważ jest bardzo intuicyjna oraz pozwala na wizualne sprawdzenie własnych rezultatów.
 
+\begin{figure}
+\centering
+	\parbox{2cm}{
+		\includegraphics[width=2cm]{0.jpg}
+		}
+	\begin{minipage}{2cm}
+		\includegraphics[width=2cm]{1.jpg}
+	\end{minipage}
+	\begin{minipage}{2cm}
+		\includegraphics[width=2cm]{2.jpg}
+	\end{minipage}
+	\begin{minipage}{2cm}
+		\includegraphics[width=2cm]{3.jpg}
+	\end{minipage}
+	\begin{minipage}{2cm}
+		\includegraphics[width=2cm]{4.jpg}
+	\end{minipage}\\
+	
+	\begin{minipage}{2cm}
+		\includegraphics[width=2cm]{392.jpg}
+	\end{minipage}
+	\begin{minipage}{2cm}
+		\includegraphics[width=2cm]{393.jpg}
+	\end{minipage}
+	\begin{minipage}{2cm}
+		\includegraphics[width=2cm]{394.jpg}
+	\end{minipage}
+	\begin{minipage}{2cm}
+		\includegraphics[width=2cm]{395.jpg}
+	\end{minipage}
+	\begin{minipage}{2cm}
+		\includegraphics[width=2cm]{396.jpg}
+	\end{minipage}
+	
+	\caption{Porównanie eigenfaces.}
+Górny wiersz - wektory 0-4, dolny wiersz - wektory 392-396.
+	\label{fig:eigenfaces}
+\end{figure}
+
 W omawianym zagadnieniu wektory własne zyskały specjalną nazwę eigenfaces (twarze własne). Można zobaczyć jak wyglądają aplikując technikę odtwarzania zdjęcia na podstawie współrzędnych z przestrni o zredukowanej wymiarowości. Efekty zostały zaprezentowane na rys. \ref{fig:eigenfaces}. 
 
 Jak można łatwo zaobserwować wektory 0-4 zawierają najbardziej istotne zmiany pomiędzy poszczególnymi obrazami ze zbioru obserwacji. Wektora 392-396 przypominają losowy szum i niosą informację o szczegółach twarzy. Można zauważyć że pominięcie składowych z niższą wartością własną powoduje mniejszą utratę informacji.
@@ -365,6 +404,46 @@ W przypadku systemu kontroli dostępu może być rozsądne wprowadzenie maksymal
 Dodatkowo warto zwrócić uwagę na brak kontroli PCA nad przetwarzanymi danymi. Jest to metoda statystyczna, na jej wejście można podać zdjęcie myszy lub samochodu, które zostanie przetworzone. Nie wiadomo jakie współrzędne można uzyskać, dzięki takiej operacji. System rozpoznawania twarzy powinien więc odrzucić takie zdjęcie na etapie wykrywania pozycji twarzy.
 
 \section{Inne podejścia do problemu redukcji wymiarowości}
+Istnieje wiele algorytmów umożliwiających redukcję wymiarowości. Ze względu na rosnącą ilość danych do przetwarzania, alorytmy te zyskały na znaczeniu. W niniejszym fragmencie pracy zostaną omówione zasady działania trzech algorytmów umożliwiających redukcję wymiarowości.
+
+\subsection{Nonnegative Matrix Factorization}
+
+Nonnegative Matrix Factorization (NMF) jest sposobem rozkładu macierzy na dwie mniejsze. Przyjmimy że dana jest macierz $V_{m \times n}$, która ma zostać podana redukcji wymiarowości. Macierz ta zostaje wyrażona jako iloczyn dwóch mniejszych macierzy:
+
+\begin{equation}
+	V \approx WH
+\label{NMF}
+\end{equation}
+
+Zakłada się rozmiary macierzy: $W_{m \times k}$ oraz $H_{k \times n}$, dla $k \leq min(m,n)$. Dodatkowo przyjmuje się że zarówno $W$ jak i $H$ są nieujemne. Łatwo można zauważyć że stosując taki zapis i przyjmując stosunkowo małą wartość $k$ można zapisać $V$ z wykorzystaniem zmniejszej ilości zmiennych. Dodatkowo korzystając ze spostrzerzenia że wektory kolumnowe $V$ mogą zostać zapisane jako:
+
+\begin{equation}
+	\bb{v}_i = W \bb{h}_i
+\end{equation}
+
+można przyjąć W jako bazę przestrzeni definiowanej przez $V$.
+
+Dokładny rozkład we wzorze \ref{NMF} nie musi istnieć dla dowolnego $k$, dlatego nie może zostać umieszoczony znak równości. Zwykle w trakcie szukania $W$ i $H$ przyjmuje się że ich iloczyn ma się znajdować w odpowiednio niewielkiej odległości od $V$. Najczęściej rozważane wartości błędu to:
+
+\begin{align*}
+	||A - B||^2 &= \sum_{ij} (A_{ij} - B_{ij})^2 \\
+	  D(A||B)   &= \sum_{ij} (A_{ij} log \frac{A_{ij}}{B_{ij}} - A_{ij} + B_{ij})
+\end{align*}
+
+Pierwsza z prezentowanych norm to znana norma L2, czyli odległość Euklidesowa. Drugie równanie to zmodyfikowana wersja dywergencji Kullbacka-Leiblera dla nieujemnych macierzy. Jest to wielkość informująca nas o tym jak wiele informacji tracimy korzystając z estymacji $B$ rozkładu $A$. Wielkość ta nie jest normną, ponieważ nie jest symetryczna.
+
+W pracy \cite{NMF} zaprponowano iteracyjne metody znajdowania $W$ i $H$ dla obu miar błędu. Polegały one na stopniowym poprawianiu wartości obu macierzy. Pierwszy rodzaj polegał na przemnażaniu aktualnej wartości $W$ i $H$ przez odpowiednie współczynniki. Drugi rodzaj opierał się na dodowaniu odpowiedniej poprawki (rozwiązanie przypominające szukanie optimum funkcji z wykorzystaniem gradientu). W obu przypadkach początkowe wartości były losowe, co powodowało, że rezultaty uzyskiwane przez algorytm mogły być różne dla tej samej macierzy $V$. Dodatkowym ryzykiem jest utknięcie w minimum lokalnym.
+
+W pracy \cite{NMF_SVD} zapropnowano metodę wyznaczania $W$ i $H$, która nie inicjalizuje losowo wartości początkowych, tylko korzysta z rozkładu SVD (singular-value decomposition - rozkład według wartości osobliwych), który dla macierzy $A$ o wartościach rzeczywistych zapisujemy jako:
+
+\begin{equation}
+	A = U \Sigma V^T
+\end{equation}
+
+$U$ oraz $V$ są ortogonalne, a $\Sigma$ jest macierzą diagonalną, na przekątnej której leżą tzw. wartości osobliwe. Wektory kolumnowe $U$ są nazywane lewymi wektorami osobliwymi, wektory $V$ są nazywane prawymi wektorami osobliwymi. Autorzy \cite{NMF_SVD} wykorzystali lewe i prawe wektory osobliwe odpowiadające największym wartościom osobliwym $\Sigma$ do inicjalizacji $W$ i $H$. Umożliwiło to poprawienie wyników, oraz uzyskanie algorytmu dającego te same rezultaty dla takiego samego wejścia. Dodatkowo czas działania programu korzystającego z tej metody stał się bardziej deterministyczny.
+
+\subsection{Independent Components Analysis}
+
 
 
 \newpage
@@ -456,47 +535,6 @@ Kokrzystając z wcześniejszych równań można zapisać:
 
 Na rys \ref{fig:projection_up} można zauważyć że równania te mają proste uzasadnienie geometryczne. Z twierdzenia Talesa otrzymujemy: 
 $\frac{x_0}{f} = \frac{x}{z}$. Wartość $u$ możemy uzskać poprzez dodanie do $x_0$ z poprzedniego równania $c_x$. Dla y rozumowanie jest analogiczne.
-
-
-
-\begin{figure}
-\centering
-	\parbox{2cm}{
-		\includegraphics[width=2cm]{0.jpg}
-		}
-	\begin{minipage}{2cm}
-		\includegraphics[width=2cm]{1.jpg}
-	\end{minipage}
-	\begin{minipage}{2cm}
-		\includegraphics[width=2cm]{2.jpg}
-	\end{minipage}
-	\begin{minipage}{2cm}
-		\includegraphics[width=2cm]{3.jpg}
-	\end{minipage}
-	\begin{minipage}{2cm}
-		\includegraphics[width=2cm]{4.jpg}
-	\end{minipage}\\
-	
-	\begin{minipage}{2cm}
-		\includegraphics[width=2cm]{392.jpg}
-	\end{minipage}
-	\begin{minipage}{2cm}
-		\includegraphics[width=2cm]{393.jpg}
-	\end{minipage}
-	\begin{minipage}{2cm}
-		\includegraphics[width=2cm]{394.jpg}
-	\end{minipage}
-	\begin{minipage}{2cm}
-		\includegraphics[width=2cm]{395.jpg}
-	\end{minipage}
-	\begin{minipage}{2cm}
-		\includegraphics[width=2cm]{396.jpg}
-	\end{minipage}
-	
-	\caption{Porównanie eigenfaces.}
-Górny wiersz - wektory 0-4, dolny wiersz - wektory 392-396.
-	\label{fig:eigenfaces}
-\end{figure}
 
 
 \subsubsection{Zakłócenia}
@@ -696,13 +734,24 @@ Paul Viola, Michael Jones.
 Cambridge 2001
 
 \bibitem{Landmark face detector}
-Vahid Kazemi and Josephine Sullivan
+Vahid Kazemi, Josephine Sullivan.
 \textit{One Millisecond Face Alignment with an Ensemble of Regression Trees}
 KTH, Royal Institute of Technology
 Computer Vision and Active Perception Lab, 2014
 
+\bibitem{NMF}
+Daniel D. Lee and Seung, H. Sebastian.
+\textit{Advances in Neural Information Processing Systems 13: Algorithms for Non-negative Matrix Factorization}
+str. 556-562
+MIT Press, 2001
+
+\bibitem{NMF_SVD}
+C. Boutsidis, E. Gallopoulos.
+\textit{SVD based initialization: A head start for nonnegative matrix factorization}
+University of Patras 2007
+
 \bibitem{Stereo}
-Hartley, R.~I. i Zisserman, A.
+Hartley, R.~I., Zisserman, A.
 \textit{Multiple View Geometry in Computer Vision}
 Cambridge University Press, 2004
 
@@ -725,7 +774,7 @@ Pedregosa, F. and Varoquaux, G. and Gramfort, A. and Michel, V.
          and Weiss, R. and Dubourg, V. and Vanderplas, J. and Passos, A. and
          Cournapeau, D. and Brucher, M. and Perrot, M. and Duchesnay, E.
  \textit{Scikit-learn: Machine Learning in {P}ython}
- Journal of Machine Learning Research, volume 12, pages 2825-2830, year 2011
+ Journal of Machine Learning Research, volume 12, strony 2825-2830, 2011
 
 \bibitem{FaceID hacked}
 News o pokonaniu zabezpieczeń systemu FaceID
