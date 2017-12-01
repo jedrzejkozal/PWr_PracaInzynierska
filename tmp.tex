@@ -16,12 +16,12 @@
 
 
 \title{Biometryczny system kontroli dostępu - przetwarzanie obrazów i przygotowanie danych dla sieci neuronowych}
-\engtitle{Biometric Control Access System - image processing and preparing data for neural networks}
+\engtitle{Biometric access control system - image and data preprocessing for neural nets}
 \author{Jędrzej Kozal}
 \supervisor{dr  inż. Piotr Ciskowski}
 
 \field{Automatyka i Robotyka (AIR)}
-\specialisation{Technologie informacyjne w systemach automatyki (ART)}
+\specialisation{Technologie informacyjne \\ w systemach automatyki (ART)}
 
 \begin{document}
 \bibliographystyle{plabbrv}
@@ -110,14 +110,14 @@ Dysponując zbiorem chech można przystąpić do klasyfikacji obrazu. Odbywa si�
 
 Kaskady Haara są szybkie, przez co chętnie wykorzystuje się je w zastoswaniach wymagającego przetwarzania obrazów w czasie rzeczywistym. Było to także motywacją przy wyborze tej metody w omawianym systemie. Rozwiązanie daje to zadowalające wyniki przy jednoczesnym szybkim działaniu. W rozważanym systemie kosztowność obliczeniowa musi być brana pod uwagę, biorąc pod uwagę, że oryginalna platforma sprzętowa na którą został przewidziany system to Rasbery Pi.
 
-\section{Inne sposoby rozwiązanie problemu}
+\section{Inne sposoby rozwiązania problemu} \label{geometrical_features}
 
 \begin{figure}
 \centering
 	\includegraphics[width=0.40\textwidth,natwidth=310,natheight=642]{test.jpg}
 	\includegraphics[width=0.40\textwidth,natwidth=310,natheight=642]{test_result.jpg}
 \caption{Wykrywanie punktów charakterystycznych twarzy.}
-Po lewo oryginalny obraz, po prawo obraz z zaczaczonym rezultatami detekcji. Do detekcji wykrozystano 68 cech.
+W lewej części oryginalny obraz z kamertki, wprawej części obraz z zaczaczonym rezultatami detekcji. Wykrozystano 68 cechy.
 	\label{fig:face_landmark_detect}
 \end{figure}
 
@@ -701,8 +701,33 @@ Dokonano kalibracji kamery, wyznaczno współczynniki wewnętrzne i zewnętrzne 
 
 Trudno jest określić jedną przyczynę niepowodzenia. Na pewno ważną rolę odgrywa kalibracja kamer. Wielokrotnie podejmowano próbę poprawiania uzyskiwanych wyników poprzez ponowną kalibrację, ale nie wpłynęło to w znaczący sposób na rezultaty. W związku z ograniczoną ilością czasu projekt nie mógł zostać ukończony, pomimo wielu godzin poświęconych na analizę problemu.
 
+
+
 \chapter{Zakończenie}
 
+\section{Podsumowanie projektu}
+
+W trakcie realizacji projektu przeanalizowano dostępne metody detekcji twarzy i ekstrakcji cech. Następnie wybrano algorytmy adekwatne dla realizowanego projektu i wykorzystano je. Bardzo pomocne były biblioteki, które pozwoliły skupić się na wykorzystaniu algorytmów. Oszczędziło to czas potrzebny na implementację rozwiązań. W projekcie przyjęto rozwiążanie polegające na detekcji twarzy i wykorzystaniu algorytmów redukcji wymiarowości do przygotowania wektora uczącego dla sieci o wielkości 400 elementów. Jest to dość popularne rozwiązanie tego problemu i daje dość dobre rezulataty. Nie przeprowadzono testów modułowych, system był testowany jako całość. Powodem takiego stanu rzeczy jest trudność w testowaniu omawianego komponentu, ze względu na dość abstrakcyjny charakter, w porównanianu do reszy abstrakcji. Testowanie rezultatów działania całego systemu jest kosztowne, ponieważ dowolna zmiana w systemie ekstrakcji cech, powoduje konieczność zaczynania procesu uczenia sieci neuronowej od nowa, co jest kosztowne i czasochłonne. W dalszej części tego rozdziału przedstawiono koncepcję testów modułowych dla komponentu realizującego ekstrakcję cech.
+
+Realizowany projekt umożliwił także opracowanie i wykorzystanie wydajnych sposobów na pracę w grupie. Komponentowe podejście do systemu było bardzo dobrym rozwiążaniem, umożliwiającym zrównoleglenie pracy. Dodatkowo ustalenie interfejsów między komponentami pozwala na przeprowadzanie daleko idących zmian w obrębie komponentu, bez konieczności zmiany innych części systemu. Przeprowadzenie refaktoryzacji kodu po spełenieniu podstawowych założeń systemu było bardzo pomocne i ułatwiło rozwój aplikacji.
+
+\section{Możliwe usprawnienia}
+
+System w obecnym stanie spełnia podstawowe założenia jakie zostały przed nim postawione, t.j. rozpoznawanie twarzy niewielkiej grupy osób oraz ich identyfikacja. Jednakże jest wiele aspektów które można poprawić i rozwinąć. W nimniejszej sekcji przeprowadzono dyskusję najważniejszych problemów, które należy zadresować przy pracy nad projektem.
+
+\subsubsection{Testy modułowe}
+
+Jednym z pomysłów na rozwój systemu jest porównanie efektów działania algorytmów redukcji wymiarowości. Metodyka takich testów miałaby polegać na utworzeniu bazy zdjęć różnych osób i porównanie odległości współrzędnych przyporządkowanych danym zdjęciom z bazy przez różne algorytmy. Możliwe do analizowania miary to: średnia odległość, największa i najmnijesza odległość, mediana oraz wariancja. Przy takim porównaniu należy oczywiście wybrać odpowiedni rodzaj normy. Takie podjeście umożliwiłoby uniezależnie wyników omawianego komponentu od sieci neuronowej, co znacznie ułatwiłoby badania właściowości proponwanych rozwiążań. Warto zwrócić uwagę że takie rozwiażanie pozwala na testowanie dowolnego podejścia do problemu. Ustalenie wspólnego zbioru zdjęć dla porównywanych algorytmów, normy dla przestrzeni cech, oraz miar i progów dla każdej z miar umożliwiłoby automatyzację testów.
+
+
+\subsubsection{Zbadanie wpływu czynników wizualnych na wyniki systemu}
+Mając dostęp do usystematyzowanych testów można dokładnie zbadać wyniki jakie osiąga system oraz jego odporność na czynniki wizualne. Do takich czynników zalicza się: różne ustawienie twarzy, oświetlenie kierunkowe twarzy, pory dnia, zarost czy okulary. Proponuje się przyjęcie zbioru zdjęć jednej osoby w różnych warunkach oświetleniowych i porównanie uzyskanych wektorów.
+
+\subsubsection{Geometryczne cechy}
+W rozdziale \ref{geometrical_features} przedstawiono koncepcję wykorzystania innego rozdzaju cech. Polega na przygotowania wektora cech z gemetryczną interpretacją. Każdy element takiego wektora mógłby oznaczać odległość między charakterystycznymi punktami twarzy. Aby uniezależnić uzyskiwane wyniki od odległości wszystkie odległości muszą być względne. W przypadku tego typu wektora należy przetestować jak sieć neuronowa poradzi sobie z tego typu cechami, oraz zbadać wpływ pozy twarzy na osiągane wyniki. Alogrytmy estymujące położenie punktów charakterystycznych z reguły potrafią sobie poradzić z oświetleniem, więc nie byłby to czynnik mający wielkie znaczenie w tym przyadku, można go jednakże dodać do testów, dla podwójnego sprawdzenia.
+
+\subsubsection{Ekstrakcja głębi}
+Ekstrackja głęibi na podstawie obrazów z dwóch kamer w obecnym stanie projektu nie daje zadowalających rezultatów. Fakt ten prawdopodobnie jest spowodowany złą kalibracją kamry, bądź niewałściwym położeniem, bądź określniem położenia kamer. Jest to część projektu, która musi zostać dopracowana, następnie może zostać zintegrowana do systemu. Poza zwiększeniem bezpieczeństwa systemu można wykorzystać mapę głębi do ekstrakcji cech. Ponieważ taka mapa ma zbyt wiele punktów konieczne byłoby wykorzystanie algorytmów redukcji wymiarowości. Bardzo ciekawe mogłoby być porównanie wyników uzykiwanych przez system na podstawie obrazów 2D i 3D. Informacje uzyskane dzięki estymacji głębi otwierają bardzo wiele możliwości rozwoju systemu.
 
 
 \newpage
@@ -726,7 +751,7 @@ Wydawnictwo Naukowo-Techniczne, Warszawa 1996
 \bibitem{AdaBoost}
 Yoav Freund, Robert E. Schapire.
 \textit{A Short Introduction to Boosting}
-AT\&T Labs - Research. Shannon Laboratory
+Journal of Japanese Society for Artificial Intelligence, 1999
 
 \bibitem{Kaskada Haara}
 Paul Viola, Michael Jones.
@@ -749,6 +774,11 @@ MIT Press, 2001
 C. Boutsidis, E. Gallopoulos.
 \textit{SVD based initialization: A head start for nonnegative matrix factorization}
 University of Patras 2007
+
+\bibitem{ICA}
+Aapo Hyvärinen, Erkki Oja
+\textit{Independent Component Analysis: Algorithms and Applications}
+Helsinki University of Technology, 2000
 
 \bibitem{Stereo}
 Hartley, R.~I., Zisserman, A.

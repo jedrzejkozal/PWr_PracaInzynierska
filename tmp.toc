@@ -6,7 +6,7 @@
 \contentsline {subsection}{\numberline {1.2.3}Wykorzystane biblioteki, narz\IeC {\k e}dzia i zasoby}{2}{subsection.1.2.3}
 \contentsline {chapter}{\numberline {2}Implementacja algorytm\IeC {\'o}w \IeC {\textendash } detekcja twarzy}{4}{chapter.2}
 \contentsline {section}{\numberline {2.1}Kaskady Haara}{4}{section.2.1}
-\contentsline {section}{\numberline {2.2}Inne sposoby rozwi\IeC {\k a}zanie problemu}{6}{section.2.2}
+\contentsline {section}{\numberline {2.2}Inne sposoby rozwi\IeC {\k a}zania problemu}{6}{section.2.2}
 \contentsline {chapter}{\numberline {3}Implementacja algorytm\IeC {\'o}w \IeC {\textendash } ekstrakcja cech}{8}{chapter.3}
 \contentsline {section}{\numberline {3.1}Principle Components Analysis}{8}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}Wst\IeC {\k e}p matematyczny}{8}{subsection.3.1.1}
@@ -26,3 +26,9 @@
 \contentsline {subsection}{\numberline {4.2.3}Szacowanie g\IeC {\l }\IeC {\k e}boko\IeC {\'s}ci}{21}{subsection.4.2.3}
 \contentsline {section}{\numberline {4.3}Wyniki}{24}{section.4.3}
 \contentsline {chapter}{\numberline {5}Zako\IeC {\'n}czenie}{25}{chapter.5}
+\contentsline {section}{\numberline {5.1}Podsumowanie projektu}{25}{section.5.1}
+\contentsline {section}{\numberline {5.2}Mo\IeC {\.z}liwe usprawnienia}{25}{section.5.2}
+\contentsline {subsubsection}{Testy modu\IeC {\l }owe}{26}{section*.18}
+\contentsline {subsubsection}{Zbadanie wp\IeC {\l }ywu czynnik\IeC {\'o}w wizualnych na wyniki systemu}{26}{section*.19}
+\contentsline {subsubsection}{Geometryczne cechy}{26}{section*.20}
+\contentsline {subsubsection}{Ekstrakcja g\IeC {\l }\IeC {\k e}bi}{26}{section*.21}

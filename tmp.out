@@ -6,7 +6,7 @@
 \BOOKMARK [2][-]{subsection.1.2.3}{Wykorzystane biblioteki, narzedzia i zasoby}{section.1.2}% 6
 \BOOKMARK [0][-]{chapter.2}{Implementacja algorytm\363w \205 detekcja twarzy}{}% 7
 \BOOKMARK [1][-]{section.2.1}{Kaskady Haara}{chapter.2}% 8
-\BOOKMARK [1][-]{section.2.2}{Inne sposoby rozwiazanie problemu}{chapter.2}% 9
+\BOOKMARK [1][-]{section.2.2}{Inne sposoby rozwiazania problemu}{chapter.2}% 9
 \BOOKMARK [0][-]{chapter.3}{Implementacja algorytm\363w \205 ekstrakcja cech}{}% 10
 \BOOKMARK [1][-]{section.3.1}{Principle Components Analysis}{chapter.3}% 11
 \BOOKMARK [2][-]{subsection.3.1.1}{Wstep matematyczny}{section.3.1}% 12
@@ -24,3 +24,5 @@
 \BOOKMARK [2][-]{subsection.4.2.3}{Szacowanie g\233ebokosci}{section.4.2}% 24
 \BOOKMARK [1][-]{section.4.3}{Wyniki}{chapter.4}% 25
 \BOOKMARK [0][-]{chapter.5}{Zakonczenie}{}% 26
+\BOOKMARK [1][-]{section.5.1}{Podsumowanie projektu}{chapter.5}% 27
+\BOOKMARK [1][-]{section.5.2}{Mozliwe usprawnienia}{chapter.5}% 28
