@@ -16,19 +16,19 @@
 \contentsline {section}{\numberline {3.2}Inne podej\IeC {\'s}cia do problemu redukcji wymiarowo\IeC {\'s}ci}{14}{section.3.2}
 \contentsline {subsection}{\numberline {3.2.1}Nonnegative Matrix Factorization}{14}{subsection.3.2.1}
 \contentsline {subsection}{\numberline {3.2.2}Independent Components Analysis}{15}{subsection.3.2.2}
-\contentsline {chapter}{\numberline {4}Zabezpieczenie przed mo\IeC {\.z}liwo\IeC {\'s}ci\IeC {\k a} oszukania systemu}{16}{chapter.4}
-\contentsline {section}{\numberline {4.1}Przyj\IeC {\k e}ta metodyka}{16}{section.4.1}
-\contentsline {section}{\numberline {4.2}Podstawy teoretyczne}{16}{section.4.2}
-\contentsline {subsubsection}{Model kamery}{17}{section*.6}
-\contentsline {subsubsection}{Zak\IeC {\l }\IeC {\'o}cenia}{19}{section*.10}
-\contentsline {subsection}{\numberline {4.2.1}Kalibracja kamery}{20}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Geometria epipolarna}{21}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Szacowanie g\IeC {\l }\IeC {\k e}boko\IeC {\'s}ci}{21}{subsection.4.2.3}
+\contentsline {chapter}{\numberline {4}Zabezpieczenie przed mo\IeC {\.z}liwo\IeC {\'s}ci\IeC {\k a} oszukania systemu}{17}{chapter.4}
+\contentsline {section}{\numberline {4.1}Przyj\IeC {\k e}ta metodyka}{17}{section.4.1}
+\contentsline {section}{\numberline {4.2}Podstawy teoretyczne}{17}{section.4.2}
+\contentsline {subsubsection}{Model kamery}{18}{section*.6}
+\contentsline {subsubsection}{Zak\IeC {\l }\IeC {\'o}cenia}{20}{section*.10}
+\contentsline {subsection}{\numberline {4.2.1}Kalibracja kamery}{21}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Geometria epipolarna}{22}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Szacowanie g\IeC {\l }\IeC {\k e}boko\IeC {\'s}ci}{22}{subsection.4.2.3}
 \contentsline {section}{\numberline {4.3}Wyniki}{24}{section.4.3}
-\contentsline {chapter}{\numberline {5}Zako\IeC {\'n}czenie}{25}{chapter.5}
-\contentsline {section}{\numberline {5.1}Podsumowanie projektu}{25}{section.5.1}
-\contentsline {section}{\numberline {5.2}Mo\IeC {\.z}liwe usprawnienia}{25}{section.5.2}
-\contentsline {subsubsection}{Testy modu\IeC {\l }owe}{26}{section*.18}
-\contentsline {subsubsection}{Zbadanie wp\IeC {\l }ywu czynnik\IeC {\'o}w wizualnych na wyniki systemu}{26}{section*.19}
-\contentsline {subsubsection}{Geometryczne cechy}{26}{section*.20}
-\contentsline {subsubsection}{Ekstrakcja g\IeC {\l }\IeC {\k e}bi}{26}{section*.21}
+\contentsline {chapter}{\numberline {5}Zako\IeC {\'n}czenie}{26}{chapter.5}
+\contentsline {section}{\numberline {5.1}Podsumowanie projektu}{26}{section.5.1}
+\contentsline {section}{\numberline {5.2}Mo\IeC {\.z}liwe usprawnienia}{26}{section.5.2}
+\contentsline {subsubsection}{Testy modu\IeC {\l }owe}{27}{section*.18}
+\contentsline {subsubsection}{Zbadanie wp\IeC {\l }ywu czynnik\IeC {\'o}w wizualnych na wyniki systemu}{27}{section*.19}
+\contentsline {subsubsection}{Geometryczne cechy}{27}{section*.20}
+\contentsline {subsubsection}{Ekstrakcja g\IeC {\l }\IeC {\k e}bi}{27}{section*.21}

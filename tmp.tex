@@ -444,7 +444,55 @@ $U$ oraz $V$ są ortogonalne, a $\Sigma$ jest macierzą diagonalną, na przekąt
 
 \subsection{Independent Components Analysis}
 
+Rozważmy następujący problem: dana jest obserwacja $x$ będąca liniową kombinacją wielu sygnałów $s$ o niegaussowskim rozkładzie:
 
+\begin{equation}
+	x_j = a_{j1} s_1 + a_{j2} s_2 + ... + a_{jn} s_m
+\end{equation}
+
+Powższe równanie opisuje wartość $j$-tej obserwacji. Zarówno $x$ i $s$ są $n$-wymiarowymi wektorami. Zapis może zostać uogólniony przez zapis macierzowy:
+
+\begin{equation}
+	\bb{x} = A \bb{s}
+	\label{ICA model}
+\end{equation}
+
+$A_{n \times n}$ jest nazywane macierzą mieszania (angl. mixing matrix), $\bb{s}$ jest nazywane nieznależną składową. Celem jest odzyskanie niezależnych składowych $\bb{s}$ na podstawie $\bb{x}$. Zauważmy że: $\bb{s} = A^{-1}\bb{x} = W \bb{x}$. $W$ jest nazywana macierzą rozdzielania (angl. unmixing matrix). 
+
+Można sobie wyobrazić że problem ten występuje w kontekście analizy sygnału mowy: dysponujemy sygnałem w którym wiele osób mówi jednocześnie a chcemy uzyskać osobne wypowiedzi poszczególnych osób (problem cocktail party). 
+
+W \cite{ICA} podano rozwiązanie problemu opierające się na centralnym twierdzeniu granicznym:
+
+Załóżmy że wartość oczekiwana $\bb{x}$ i $\bb{s}$ jest równa 0, oraz wariancja niezależnych składowych jest równa 1. Możemy to zrobić ponieważ dla rozkładów o niezerowej średniej można odjąć średnią. Ograniczenie nałożone na wariację $\bb{s}$ jest spowodowane przez rówónanie \ref{ICA model}, konkretniej wartość $\bb{s}$ może zostać obliczona z dokładnością do stałej ($\bb{s}$ może zostać przemnożone przez dowolne $p$, jeśli $A$ zostanie przemnożone przez $\frac{1}{p}$). Stosując to ograniczenie unikamy zbyt wielkich wartości niezależnych składowych  Dodatkowo załóżmy że wszystkie niezależne składowe $\bb{s}$ mają taki sam rozkład i są niezależnymi zmiennymi losowymi. Wprowadźmy $\bb{y}$ jako liniową kombinację $\bb{x}$:
+
+\begin{equation}
+	\bb{y} = \bb{w}^T \bb{x}
+\end{equation}
+
+Jeśli $\bb{w}$ jest fragmentem macierzy $W$, to $\bb{y}$ musi odpowiadać jednej z niezależnych składowych. Nie możemy bezpośrednio wyznaczyć $\bb{y}$, ponieważ nie znamy $A$ i $\bb{s}$, możemy co najwyżej je estymować. Przyjmijmy:
+
+\begin{equation}
+	\bb{z} = A^T \bb{w}
+\end{equation}
+
+Wykorzystując nową zmienną możemy zapisać:
+
+\begin{equation}
+	\bb{y} = \bb{w}^T \bb{x} = \bb{w}^T A \bb{s} = \bb{z}^T \bb{s} 
+\end{equation}
+
+Widzimy więc że $y$ jest kombinacją liniową \bb{s}. Zgodnie z centralnym twierdzeniem granicznym suma dowolnych rozkładów prawdopodobieństwa dąży do rozkładu Gaussa, jeśli jest spełniony warunek Lindeberga, a w szczególności gdy $E[X] = 0$ i $\sum_{k=1}^{n}var[X] = 1$ to:
+
+\begin{equation}
+	\sum_{k=1}^{n} X_k \to N(0,1)
+\end{equation}
+
+Widzimy więc że $\bb{y}$ będące kombinacją liniową wektorów $\bb{s}$, będzie bardziej "gaussowskie", niż dowolna z niezależnych składowych osobno. Założyliśmy że $s$ nie ma rozkładu Gaussa, więc $\bb{y}$ będzie równe $\bb{s}$, gdy będzie najmniej gaussowskie, co jest jednoznaczne z tylko jedną niezerową wartością w wektorze $\bb{z}$.
+
+Autorzy \cite{ICA} proponują miary niegaussowskości opartą na kurtozie, bądź ujemnej entropii. Negatywna entropia może być dość dobrym estymatorem stopnia w jakim rozkład nie jest gassowski, jest nieujemna i równa zero tylko dla rozkładu Gaussa.
+
+
+Oprócz zastosowania w analizie mowy, często podowaną aplikacją ICA jest ocenianie aktywności mózgu w poszczególnych obszarach na podstawie sygnałów z elektrod rozmieszczonych w różnych miejscach głowy. W kontekście tej pracy zalezienie wektorów $s$, mogących definiować bazę nowej przestrzeni prowadzi do redukcji wymiarowowści danych.
 
 \newpage
 
@@ -575,7 +623,8 @@ Kalibracja kamery odbywa się poprzez fotografowanie szachownicy pod różnymi k
 \begin{figure}
 \centering
 	\includegraphics[width=0.70\textwidth]{cornersubpix.png}\par\vspace{1cm}
-\caption{Gradient szachownicy. \\ źródło: https://docs.opencv.org/2.4/modules/imgproc/doc/feature\_detection.html}
+\caption{Gradient szachownicy.}
+źródło: https://docs.opencv.org/2.4/modules/imgproc/doc/feature\_detection.html
 	\label{fig:gradient}
 \end{figure}
 
