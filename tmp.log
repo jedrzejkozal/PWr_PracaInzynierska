@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2017.9.11)  1 DEC 2017 12:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2017.9.11)  1 DEC 2017 14:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -765,10 +765,10 @@ Rozdzia\PlPrIeC {\l } 3.
                                                   \fi \fi 
 l.208 \end{align*}
                   ] [10]
-Overfull \hbox (20.51245pt too wide) in paragraph at lines 306--307
-[]\OT4/cmr/m/n/12 Po kon-wer-sji do ory-gi-nal-nej wy-mia-row-±ci dys-po-nu-je-
-my ba-z¡ $\OML/plm/m/it/12 M$ \OT4/cmr/m/n/12 wek-to-rów $\OML/plm/m/it/12 D$\O
-T4/cmr/m/n/12 -wymiarowych.
+Overfull \hbox (26.061pt too wide) in paragraph at lines 306--307
+[]\OT4/cmr/m/n/12 Po kon-wer-sji do ory-gi-nal-nej wy-mia-ro-wo-±ci dys-po-nu-j
+e-my ba-z¡ $\OML/plm/m/it/12 M$ \OT4/cmr/m/n/12 wek-to-rów $\OML/plm/m/it/12 D$
+\OT4/cmr/m/n/12 -wymiarowych.
  []
 
 [11] <face_1.jpg, id=226, 64.24pt x 64.24pt>
@@ -1051,11 +1051,11 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 819.
 Here is how much of TeX's memory you used:
  8459 strings out of 493105
  124216 string characters out of 6137072
- 225869 words of memory out of 5000000
+ 224869 words of memory out of 5000000
  11632 multiletter control sequences out of 15000+600000
  16730 words of font info for 47 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,18n,38p,1234b,440s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,18n,38p,1257b,440s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/pl/pltt.enc}{/usr/share/texliv
 e/texmf-dist/fonts/enc/dvips/pl/plit.enc}{/usr/share/texlive/texmf-dist/fonts/e
 nc/dvips/pl/plmi.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/pl/plrm.enc
@@ -1077,7 +1077,7 @@ texlive/texmf-dist/fonts/type1/public/pl/plsy10.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/public/pl/plsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/
 public/pl/plsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plti12
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/pltt12.pfb>
-Output written on tmp.pdf (31 pages, 1450854 bytes).
+Output written on tmp.pdf (31 pages, 1450918 bytes).
 PDF statistics:
  553 PDF objects out of 1000 (max. 8388607)
  447 compressed objects within 5 object streams

@@ -40,7 +40,7 @@ System oryginalnie został zaprojektowany na mikrokomputer Rasbery Pi. W projekc
 
 \section{Omówienie zagadnienia}
 
-\section{Omawiany komponent jako część większego systemu}
+\section{Omawiany komponent jako część większego systemu} 
 
 Jak wspomniano we wstępie komponent opisany w niniejszej pracy jest częścią większego systemu. W tej sekcji pracy przedstawiono założenia projektowe, zaprezentowano szerszy ogląd na cały system. Omówiono komponent z programistycznego punktu widzenia: omówiono wzorce projektowe, praktyki jakich przesztrzegano projektując komponent oraz uzasadniono wybór narzędzi.
 
@@ -58,9 +58,9 @@ W trakcie realizacji projektu oprócz wykorzystania wzorców projektowych posłu
 Projekt systemu biometrycznej kontroli dostępu został zrealizowany całkowicie w języku programowania Python. Decyzja ta była podyktowana głównie znaczącą ilością gotowych bibliotek, które znacząco ułatwiają pracę. Wykorzystana została wersja języka 2.7.9, ponieważ biblioteki języka Python często wymagają wersji 2.7 lub wyższej. W omawianym komponencie wykorzystano biblioteki NumPy, SciPy, scikit-learn, openCV oraz Dlib. 
 NumPy to biblioteka zawierająca wiele algorytmów do realizacji obliczeń numerycznych oraz implementację wielu matematycznych narzędzi związanych z algebrą liniową. Implementacja algorytmów macierzowych z NumPy cieszy się dużą popularnością, dlatego warto poświęcić czas na poznanie tej biblioteki, ponieważ stanowi ona fundament wielu innych projektów i bibliotek.
 SciPy jest biblioteką wykorzystywaną do obliczeń naukowych i inżynierskich. Zawiera algorytmy umożliwiające przeprowadzane obliczeń w wielu dziedzinach, dlatego również jest wykorzystywana jako baza innych projektów.
-Instalacja SciPy jest prerekwizytem do instlacji scikit-learn. Scikit-learn to biblioteka zawierająca wiele algorytmów z dziedziny machine learning oraz pattern recognition. Jest to kluczowa bilioteka w omawianym projekcie, ponieważ dostarcza najistatniejszych narzędzi. Jej zastosowanie znacznie ułatwiło pracę.
+Instalacja SciPy jest prerekwizytem do instlacji scikit-learn. Scikit-learn to biblioteka zawierająca wiele algorytmów z dziedziny machine learning oraz pattern recognition. Jest to kluczowa biblioteka w omawianym projekcie, ponieważ dostarcza najistatniejszych narzędzi. Jej zastosowanie znacznie ułatwiło pracę.
 OpenCv stanowi poteżny zbiór narzędzi do analizy oraz przetwarzania obrazów. Rozpowszechniana w ramach licencji . Twórcy biblioteki skupiają się na działanie w czasie rzeczywistym i zapewniają wielordzeniowe przetwarzanie. Jest to znaczące ułatwienie biorąc pod uwagę podstawową platformę sprzętową, na której był realizowany projekt. 
-Dlib jest biblioteką przewidzianą głównie dla języka C++, jednakże możliwe jest także wykorzystanie jest w Pythonie. Zawiera głównie algorytmu z dziedziny ML. W omawianym projekcie została wykorzystana do zbadania możliwości alternantywnych metod detekcji twarzy.
+Dlib jest biblioteką przewidzianą głównie dla języka C++, jednakże możliwe jest także wykorzystanie jest w Pythonie. Zawiera głównie algorytmu z dziedziny ML. W omawianym projekcie została wykorzystana do zbadania możliwości alternatywnych metod detekcji twarzy.
 
 Wszystkie wymienione biblioteki są rozpowszechniane w ramach licencji new-BSD lub 3-clause BSD, co oznacza że wolno je wykorzystywać w celach akademickich lub komercyjnych. Zastosowanie bibliotek dostarczających zoptymalizowanych algorytmów znacznie ułatwiło i usystematyzowało pracę nad projektem.
 
@@ -77,7 +77,7 @@ Do przeprowadzenia badań jako bazy twarzy wykorzystano zbiór zdjęć dostępny
 Pierwszym wymaganiem po zdolności do akwizycji obrazów jest określenie czy uzyskane zdjęcie przestawia twarz. W niniejszym rozdziale omówiono możliwe metody detekcji twarzy na dwuwymiarowym obrazie. Szczegółowo omówiono przyjęte rozwiązanie, oraz podano uzasadnienie dlaczego zostało ono wybrane.
 
 \section{Kaskady Haara}
-Alogrytm Kaskad Haara (lub detektor Viola-Jones) wykorzystuje serię cech do określenia czy na zdjęciu w określonym miejscu znajduje się szukany obiekt. Cecha jest tutaj rozumiana jako prostokąt podzielony na części. Pod każda z części dodawane są wartości pikseli, następnie wartości z obu obszarów są od siebie odejmowane. Pomysł ten przypomina falkę Haara, stąd nazwa algorytmu. Tak uzyskana wartość musi przekroczyć odpowiedni próg, który decyduje o tym czy w danym miejscu rozpoznano twarz. Jak podano w \cite{Kaskada Haara}, aby móc szybciej obliczać wartości pikseli pod odpowiednim obszarem wykorzystuje się obraz kumulacyjny (ang. integral image). Jest on zdefiniowany jako:
+Algorytm Kaskad Haara (lub detektor Viola-Jones) wykorzystuje serię cech do określenia czy na zdjęciu w określonym miejscu znajduje się szukany obiekt. Cecha jest tutaj rozumiana jako prostokąt podzielony na części. Pod każda z części dodawane są wartości pikseli, następnie wartości z obu obszarów są od siebie odejmowane. Pomysł ten przypomina falkę Haara, stąd nazwa algorytmu. Tak uzyskana wartość musi przekroczyć odpowiedni próg, który decyduje o tym czy w danym miejscu rozpoznano twarz. Jak podano w \cite{Kaskada Haara}, aby móc szybciej obliczać wartości pikseli pod odpowiednim obszarem wykorzystuje się obraz kumulacyjny (ang. integral image). Jest on zdefiniowany jako:
 
 \begin{equation}
 	ii(x,y) = \sum_{x' \leq x, y' \leq y} i(x',y')
@@ -93,7 +93,7 @@ Funkcja ta przypomina dyskretną dystrybuantę dwuwymiarowej zmiennej losowej. J
 	\label{fig:features}
 \end{figure}
 
-Nawet dla najmiejsznych obrazów można rozważać wiele cech. W celu ograniczenia ilości analizowanych cech wykorzystano alogrytm AdaBoost \cite{AdaBoost}. Alogrytm ten dysponując zbiorem uczącym oraz zbiorem słabych hipotez przydziela wagi hipotezom, oceniając ich skuteczność. Dodatkowo wagi otrzymują także przykłady ze zbioru uczącego. Każdorazowo kiedy dany przykład zostanie źle zaklasyfikowany, jego waga jest zwiększana. 
+Nawet dla najmiejsznych obrazów można rozważać wiele cech. W celu ograniczenia ilości analizowanych cech wykorzystano alogrytm AdaBoost \cite{AdaBoost}. Algorytm ten dysponując zbiorem uczącym oraz zbiorem słabych hipotez przydziela wagi hipotezom, oceniając ich skuteczność. Dodatkowo wagi otrzymują także przykłady ze zbioru uczącego. Każdorazowo kiedy dany przykład zostanie źle zaklasyfikowany, jego waga jest zwiększana. 
 
 
 \begin{figure}
@@ -106,9 +106,9 @@ Nawet dla najmiejsznych obrazów można rozważać wiele cech. W celu ograniczen
 
 Wykorzystanie AdaBoost pozwoliło na wybranie cech generujących najmniejszy błąd. Ilość użytych cech wpływa na jakość algorytmu, jednocześnie zwiększając czas potrzebny na obliczenia. Jak można zauważyć na \ref{fig:best_features} najlepsze cechy mają dość intuicyjną interpretację: spodziewamy się że obraz w okolicach oczu będzie ciemniejszy niż w okolicach policzków, oraz że środek nosa będzie jaśniejszy niż obszary po bokach.
 
-Dysponując zbiorem chech można przystąpić do klasyfikacji obrazu. Odbywa się to kaskadowo. W pierwszym etapie wykorzystuje się klasyfikator złożony najczęściej z jednej lub dwóch cech. Klasyfikacja jest przperowadzana na całym obrazie, aby wykryć gdzie może znajdować się twarz. W kolejnych etapach ilość cech jest zwiększana (najczęściej wykładniczo). Jeśli w danym obszarze nie została wykrytwa twarz zostaje on pominięty w dalszych etapach. Pozwala to znacząco ograniczyć ilość wykonywanych operacji. Zaleca się aby w pierwszym etapie wykorzystawać cechę z wysokim współczynnikiem fałszywych negatywnych rezultatów (ang. false negative) - w tym przypadku obszarów zawierających twarz błędnie zaklasyfikowanych jako nie będących twarzą.
+Dysponując zbiorem cech można przystąpić do klasyfikacji obrazu. Odbywa się to kaskadowo. W pierwszym etapie wykorzystuje się klasyfikator złożony najczęściej z jednej lub dwóch cech. Klasyfikacja jest przeprowadzana na całym obrazie, aby wykryć gdzie może znajdować się twarz. W kolejnych etapach ilość cech jest zwiększana (najczęściej wykładniczo). Jeśli w danym obszarze nie została wykryta twarz zostaje on pominięty w dalszych etapach. Pozwala to znacząco ograniczyć ilość wykonywanych operacji. Zaleca się aby w pierwszym etapie wykorzystywać cechę z wysokim współczynnikiem fałszywych negatywnych rezultatów (ang. false negative) - w tym przypadku obszarów zawierających twarz błędnie zaklasyfikowanych jako nie będących twarzą.
 
-Kaskady Haara są szybkie, przez co chętnie wykorzystuje się je w zastoswaniach wymagającego przetwarzania obrazów w czasie rzeczywistym. Było to także motywacją przy wyborze tej metody w omawianym systemie. Rozwiązanie daje to zadowalające wyniki przy jednoczesnym szybkim działaniu. W rozważanym systemie kosztowność obliczeniowa musi być brana pod uwagę, biorąc pod uwagę, że oryginalna platforma sprzętowa na którą został przewidziany system to Rasbery Pi.
+Kaskady Haara są szybkie, przez co chętnie wykorzystuje się je w zastosowaniach wymagającego przetwarzania obrazów w czasie rzeczywistym. Było to także motywacją przy wyborze tej metody w omawianym systemie. Rozwiązanie daje to zadowalające wyniki przy jednoczesnym szybkim działaniu. W rozważanym systemie kosztowność obliczeniowa musi być brana pod uwagę, biorąc pod uwagę, że oryginalna platforma sprzętowa na którą został przewidziany system to Rasbery Pi.
 
 \section{Inne sposoby rozwiązania problemu} \label{geometrical_features}
 
@@ -121,29 +121,29 @@ W lewej części oryginalny obraz z kamertki, wprawej części obraz z zaczaczon
 	\label{fig:face_landmark_detect}
 \end{figure}
 
-Do całego problemu można zastosować inne podejscie polegające na szukaniu charakterystycznych punktów twarzy. W pracy \cite{Landmark face detector} wykorzystano boosting drzewa gradientu do stworzenia kaskady regresorów. Dysponując zbiorem uczącym zawierającym zdjęcia twarzy oraz współrzędne punktów charakterystycznych można wyznaczyć kaskadę regresorów liniowych. Zakładamy że estymowany kształt punktów charakterystycznych dowolnej twarzy może być wyrażony jako kombinacja liniowa kształtu punktów charakterystycznych z odpowiednio dużego zbioru uczącego. Każdy regresor to drzewo decyzyjne, które w liściach przechowuje wektor, który powinien zostać dodany do aktualnej ekstymacji punktów charakterystycznych (zbiór współrzędnych x i y które powinny być kolejno dodane do każdej współrzędnej). W pierwszym kroku jako estymacja jest wykorzystywany średni kształt z bazy zdjęć uczących. Następnie każdy regresor delikatnie poprawnia estymację, przesuwając punkty w odpowiednią stronę. Na rys. \ref{fig:face_landmark_detect} przedstawiono efekty detekcji twarzy z wykorzystaniem implelmetancji z biblioteki Dlib.
+Do całego problemu można zastosować inne podejście polegające na szukaniu charakterystycznych punktów twarzy. W pracy \cite{Landmark face detector} wykorzystano boosting drzewa gradientu do stworzenia kaskady regresorów. Dysponując zbiorem uczącym zawierającym zdjęcia twarzy oraz współrzędne punktów charakterystycznych można wyznaczyć kaskadę regresorów liniowych. Zakładamy że estymowany kształt punktów charakterystycznych dowolnej twarzy może być wyrażony jako kombinacja liniowa kształtu punktów charakterystycznych z odpowiednio dużego zbioru uczącego. Każdy regresor to drzewo decyzyjne, które w liściach przechowuje wektor, który powinien zostać dodany do aktualnej estymacji punktów charakterystycznych (zbiór współrzędnych x i y które powinny być kolejno dodane do każdej współrzędnej). W pierwszym kroku jako estymacja jest wykorzystywany średni kształt z bazy zdjęć uczących. Następnie każdy regresor delikatnie poprawia estymację, przesuwając punkty w odpowiednią stronę. Na rys. \ref{fig:face_landmark_detect} przedstawiono efekty detekcji twarzy z wykorzystaniem implementacji z biblioteki Dlib.
 
-Omawiane rozwiązanie umożliwia całkowicie inne podejście do problemu ekstrakcji cech. Mając wyestymowane charakterystyczne punkty twarzy, oraz mierząc odległości między poszczególnymi punktami można przygotować wektor uczący mający bardzo fizyczne interpretację. Dodając informację na temat koloru oczy czy skóry, można skonstruować zupełnie inne wektory cech niż proponowany w tej pracy. 
+Omawiane rozwiązanie umożliwia całkowicie inne podejście do problemu ekstrakcji cech. Mając estymatę charakterystyczne punkty twarzy, oraz mierząc odległości między poszczególnymi punktami można przygotować wektor uczący mający bardzo fizyczne interpretację. Dodając informację na temat koloru oczy czy skóry, można skonstruować zupełnie inne wektory cech niż proponowany w tej pracy. 
 
 \newpage
  
 \chapter{Implementacja algorytmów – ekstrakcja cech}
 
-Ninjeszy rozdział traktuje o algorytmach umożliwiających ekstrakcję cech twarzy ze zdjęcia. Dysponując zdjęciem twarzy należy zaproponować sposób utworzenia wektora, będącego reprezentatywnym odzwierciedleniem ilościowych cech ze zdjęcia i jednocześnie umożliwi sieci neuronnowej dokonanie klasyfikacji. Zadanie to jest bardzo abstrakcyjne, zależy od wielu czynników i trudno jest określić rezultaty.
+Niniejszy rozdział traktuje o algorytmach umożliwiających ekstrakcję cech twarzy ze zdjęcia. Dysponując zdjęciem twarzy należy zaproponować sposób utworzenia wektora, będącego reprezentatywnym odzwierciedleniem ilościowych cech ze zdjęcia i jednocześnie umożliwi sieci neuronowej dokonanie klasyfikacji. Zadanie to jest bardzo abstrakcyjne, zależy od wielu czynników i trudno jest określić rezultaty.
 
 W rozdziale tym skupiono się głównie nad podejściem polegającym na zastosowaniem algorytmów redukcji wymiarowości, takich jak PCA czy SVD. Jest to dość popularne rozwiązanie i w przypadku PCA można uzyskać wyniki mające wizualną interpretację, co jest bardzo pomocne przy pracy nad tego typu problemem.
 
-Obraz po wykryciu twarzy jest obcniany do kwadratu, na którym wykryto twarz, następinie obraz jest obcinany do rozmiaru 64 $\times$ 64, w celu ujednolicenia rozmiarów przetwarzanych obrazów oraz zwiększenia szybkości przetwarzania.
+Obraz po wykryciu twarzy jest obcinany do kwadratu, na którym wykryto twarz, następnie obraz jest obcinany do rozmiaru 64 $\times$ 64, w celu ujednolicenia rozmiarów przetwarzanych obrazów oraz zwiększenia szybkości przetwarzania.
  
 \section{Principle Components Analysis}
 
-Principle Components Analysis (PCA) jest algorytmem redukcji wymiarowości danych. Mając określony zbiór obserwacji, będący reprezentatywną reprezentacją próbą analizowanej przestrzeni należy wyznaczyć zbiór wektorów bazowych, tak aby wariancja danych z zbioru obserwacji względem nowo wyznaczownych wektorów bazowych była jak najwyższa.
+Principle Components Analysis (PCA) jest algorytmem redukcji wymiarowości danych. Mając określony zbiór obserwacji, będący reprezentatywną reprezentacją próbą analizowanej przestrzeni należy wyznaczyć zbiór wektorów bazowych, tak aby wariancja danych z zbioru obserwacji względem nowo wyznaczonych wektorów bazowych była jak najwyższa.
 
 \subsection{Wstęp matematyczny}
 
 Przedstawione tutaj wyprowadzenie jest podawane za Pattern recognition and machine learning.
 
-Zakładamy że dany jest zbiór $D$-wymiarowych wektorów obserwacji: $\bb{x}_n , n \in 1,...,N $. Celem jest znalezienie nowej $M$-wymiarowej bazy ($M < D$), takiej że wariancja zbioru wektorów $\bb{x}_n$ po zrzutowaniu na nową bazę jest największa. W celu pokazania procesu i rozumowania przyjmijmy że szukamy jednego wektora $\bb{u}_1$. Wektor ten, ponieważ ma stanowić bazę musi być D-wymiarowy. Dodatkowo przyjmiejemy że wektor $\bb{u}_1$ jest jednostkowy, co zapiszemy w postaci warunku:
+Zakładamy że dany jest zbiór $D$-wymiarowych wektorów obserwacji: $\bb{x}_n , n \in 1,...,N $. Celem jest znalezienie nowej $M$-wymiarowej bazy ($M < D$), takiej że wariancja zbioru wektorów $\bb{x}_n$ po zrzutowaniu na nową bazę jest największa. W celu pokazania procesu i rozumowania przyjmijmy że szukamy jednego wektora $\bb{u}_1$. Wektor ten, ponieważ ma stanowić bazę musi być D-wymiarowy. Dodatkowo przyjmiemy że wektor $\bb{u}_1$ jest jednostkowy, co zapiszemy w postaci warunku:
 \begin{equation} \label{eq:wektor_jednostkowy}
 	\bb{u}_1^{T}\bb{u}_1 = 1
 \end{equation}
@@ -188,14 +188,14 @@ Definiujemy macierz kowariancji S dla zbioru obserwacji $\bb{x}_n$:
 	S = \frac{1}{N} \sum_{n=1}^{N} (\bb{x}_n - \overline{\bb{x}})(\bb{x}_n - \overline{\bb{x}})^T
 \end{equation}
 
-Jak łatwo zauważyć w powższym wzorze wartości oczekiwane zostały zastąpione średnimi, ponieważ nie dysponujemy rozkładami zmiennnych losowych, tylko zbiorem obserwacji.
+Jak łatwo zauważyć w powyższym wzorze wartości oczekiwane zostały zastąpione średnimi, ponieważ nie dysponujemy rozkładami zmiennnych losowych, tylko zbiorem obserwacji.
 
 Definiujemy wariancję zbioru obserwacji względem wektora $u_1$:
 \begin{equation}
 	s^2 = \frac{1}{N} \sum_{n=1}^{N}(\bb{u}_1^T \bb{x}_n - \bb{u}_1^T\overline{\bb{x}})^2 = \bb{u}_1^T S \bb{u}_1
 \end{equation}
 
-Chcąc maksymalizować wariancję $s^2$ musimy pamiętać o warunku $\ref{eq:wektor_jednostkowy}$. Otrzymujemy więc probelm optymalizacji polegający na znalezieniu maksimum warunkowego funkcji $f(\bb{u}_1)$ z ograniczniem $g(\bb{u}_1)$:
+Chcąc maksymalizować wariancję $s^2$ musimy pamiętać o warunku $\ref{eq:wektor_jednostkowy}$. Otrzymujemy więc probelm optymalizacji polegający na znalezieniu maksimum warunkowego funkcji $f(\bb{u}_1)$ z ograniczeniem $g(\bb{u}_1)$:
 \begin{align*}
 	f(\bb{u}_1) &= \bb{u}_1^T S \bb{u}_1 \\
 	g(\bb{u}_1) &= 1 - \bb{u}_1^T \bb{u}_1 = 0
@@ -263,7 +263,7 @@ Mnożąc $(11)$ lewostronnie przez $u_1^T$ otrzymujemy:
 Lewa część $(13)$ to wariancja, która ma być maksymalizowana. Aby uzyskać jak największą wariancję zbioru obserwacji po zrzutowaniu na kierunek wyznaczany przez $\bb{u}_1$ należy wybrać największą wartość własną macierzy S. Odpowiadający jej wektor własny jest szukanym wektorem $\bb{u}_1$. Dla kolejnych wektorów $\bb{u}$ należy znaleźć kolejne największe wartości własne i wektory własne.
 
 \subsection{Realizacja algorytmu} 
-Korzystając z PCA można zniejszyć wymiarowość danych w taki sposób aby zachować najwięcej informacji. Działanie algorytmu można zasadniczo podzielić na dwa etapy. Pierwszy to uzyskanie bazy wektorów, która zostanie wykorzystana w drugim etapie do uzyksania nowej reprezentacji wektorów z oryginalnej przestrzeni.
+Korzystając z PCA można zmniejszyć wymiarowość danych w taki sposób aby zachować najwięcej informacji. Działanie algorytmu można zasadniczo podzielić na dwa etapy. Pierwszy to uzyskanie bazy wektorów, która zostanie wykorzystana w drugim etapie do uzyskania nowej reprezentacji wektorów z oryginalnej przestrzeni.
 
 W pierwszym etapie należy obliczyć wartości własne macierzy kowariancji, jak to zostało pokazane w poprzednim dziale. Przyjmijmy że dysponujemy macierzą pomiarów:
 \begin{align}
@@ -280,7 +280,7 @@ W pierwszym etapie należy obliczyć wartości własne macierzy kowariancji, jak
 	\end{array} \right)
 \end{align}
 
-Zdefinujmy macierz A, powstałą w wyniku odjęcia od każdego wiersza średniej:
+Zdefiniujmy macierz A, powstałą w wyniku odjęcia od każdego wiersza średniej:
 \begin{equation}
 	A_{D \times N} = 
 	\left( \begin{array}{llll}
@@ -294,16 +294,16 @@ Dysponując macierzą A, można zapisać S w postaci:
 	S_{D \times D} = \frac{1}{N} A A^T
 \end{equation}
 
-Co jest całkowcie zgodnie z definicją \ref{eq:cov}. Kolejnym krokiem będzie wyznacznie wektorów i wartości własnych, posortowanie wektorów własnych według nierosnącej wartości własnych oraz wybranie M wektorów wałasnych. 
+Co jest całkowicie zgodnie z definicją \ref{eq:cov}. Kolejnym krokiem będzie wyznaczenie wektorów i wartości własnych, posortowanie wektorów własnych według nierosnącej wartości własnych oraz wybranie M wektorów własnych. 
 
-Należy zwrócić uwagę na wymiar macierzy S. Przypomnijmy że D to wymiar wektora pomiarowego, co w przypadku zdjęć oznacza wartość każdego piksela przeniesiona kolejno do elementów wektora. W pracy tej zdjęcia przed podaniem na wejście algorytmu ekstrakcji cech były konwertowane do skali szarości i obcinane do rozmiaru 64 $\times$ 64 pikseli, co oznacza że wektor pomiarowy zawierał 4096 współrzędnych. Biorąc pod uwagę złożoność obliczeniową alogrytmów szukania wektorów własnych może to powodować problemy z wydajnością. Można temu zapobiec poprzez zamianę miejscami macierze $A$ i $A^T$ w iloczynie. Obliczając wartości własne macierzy $A^T A$ musimy wrócić do $D$-wymiarowości przestrzeni, co jest możliwe z wykorzystaniem następującej własności:
+Należy zwrócić uwagę na wymiar macierzy S. Przypomnijmy że D to wymiar wektora pomiarowego, co w przypadku zdjęć oznacza wartość każdego piksela przeniesiona kolejno do elementów wektora. W pracy tej zdjęcia przed podaniem na wejście algorytmu ekstrakcji cech były konwertowane do skali szarości i obcinane do rozmiaru 64 $\times$ 64 pikseli, co oznacza że wektor pomiarowy zawierał 4096 współrzędnych. Biorąc pod uwagę złożoność obliczeniową algorytmów szukania wektorów własnych może to powodować problemy z wydajnością. Można temu zapobiec poprzez zamianę miejscami macierze $A$ i $A^T$ w iloczynie. Obliczając wartości własne macierzy $A^T A$ musimy wrócić do $D$-wymiarowości przestrzeni, co jest możliwe z wykorzystaniem następującej własności:
 \begin{equation}
 	u_i = A v_i
 \end{equation}
 
-Gdzie $v_i$ oznacza wartość własną macierzy $A^T A$. Poprzez zamianę miejscami macierzy $A$ i $A^T$ zyskujemy inny wymiar macierzy. Iloczyn ma teraz rozmiar NxN. Przypomnijmy że N to liczność zbioru obserwacji. Zazwyczaj N jest znacznie niższe od D, co może przyśpieszyć obliczenia. Korzystając z tego uproszczenia należy pamiętać że zostaje nałożone ogranicznie co wielkości M. Jako że zostają obliczone wektory własne macierzy o rozmiarze NxN, może ich być co najwyżej N. Oznacza że ilość wymiarów danych po redukcji nie może przekraczać ilość danych ze zbioru obserwacji ($M < N$). Ogranicznie to nie jest zbyt dotkliwe, gdy dysponujemy odpowiednio wielkim zbiorem testowym. W przypadku tej pracy dostępność danych stanowiących podstawę nie stanowiła problemu.
+Gdzie $v_i$ oznacza wartość własną macierzy $A^T A$. Poprzez zamianę miejscami macierzy $A$ i $A^T$ zyskujemy inny wymiar macierzy. Iloczyn ma teraz rozmiar NxN. Przypomnijmy że N to liczność zbioru obserwacji. Zazwyczaj N jest znacznie niższe od D, co może przyśpieszyć obliczenia. Korzystając z tego uproszczenia należy pamiętać że zostaje nałożone ograniczenie co wielkości M. Jako że zostają obliczone wektory własne macierzy o rozmiarze NxN, może ich być co najwyżej N. Oznacza że ilość wymiarów danych po redukcji nie może przekraczać ilość danych ze zbioru obserwacji ($M < N$). Ograniczenie to nie jest zbyt dotkliwe, gdy dysponujemy odpowiednio wielkim zbiorem testowym. W przypadku tej pracy dostępność danych stanowiących podstawę nie stanowiła problemu.
 
-Po konwersji do oryginalnej wymiarowści dysponujemy bazą $M$ wektorów $D$-wymiarowych. Zbiór $M$ wektorów jest nazywany wartościami własnymi i zostanie wykorzystany w drugim etapie. Dla uproszczenia wektory własne zostaną włączone do jednej macierzy:
+Po konwersji do oryginalnej wymiarowości dysponujemy bazą $M$ wektorów $D$-wymiarowych. Zbiór $M$ wektorów jest nazywany wartościami własnymi i zostanie wykorzystany w drugim etapie. Dla uproszczenia wektory własne zostaną włączone do jednej macierzy:
 \begin{equation}
 	U = 
 	\left( \begin{array}{l}
@@ -323,7 +323,7 @@ Drugim etapem działania algorytmu jest redukcja wymiarowości wektora $\bb{w}$ 
 Jak łatwo można zauważyć $\overline{\bb{x}}$ oraz $U$ zależą bezpośrednio od zbioru obserwacji jakim dysponujemy na początku. Dobranie zbioru reprezentatywnego dla danej przestrzeni jest kluczowe. Pierwszy etap działania algorytmu polegający na generacji wektorów własnych definiuje przekształcenie. Drugi etap działania pozwala na redukcję wymiarowości dowolnego $D$-wymiarowego wektora zgodnie z regułami ustalonymi w pierwszym kroku.
 
 \subsection{Interpretacja}
-Przyjrzyjmy się przez moment co tak na prawdę zyskujemy w wyniku działania algorytmu PCA. Przez odjęcie średniej przesuwamy środek nowopowstałego układu współrzędnych do punktu gdzie znajdowała się średnia zbioru obserwacji. Dodatkowo po odjęciu średniej wektor reprezentuje jedynie różnicę miedzy średnią (środkiem nowego układu współrzędnych), a punktem końcowym. Jest więc reprezentacją unikatowych cech w zbiorze obserwacji. Wybranie wektorów własnych, będących osiami - kierunkami z największą wariancją powoduje że odrzucając część bazy wektorów tracimy tak mało wektórów jak to jest tylko możliwe. W celach badawczych można wrócić do oryginalnej przestrzeni, aby porównać błąd przybliżenia oraz przeanalizować jak bardzo reprezentatyne są uzyskane wyniki. W przypadku zdjęć możliwa jest wręcz wizualne porównanie jak bardzo oryginalne zdjęcie i zdjęcie odtworzone po redukcji wymiarowości są podobne do siebie. Rekonstrukcja odbywam się w następujący sposób:
+Przyjrzyjmy się przez moment co tak na prawdę zyskujemy w wyniku działania algorytmu PCA. Przez odjęcie średniej przesuwamy środek nowo powstałego układu współrzędnych do punktu gdzie znajdowała się średnia zbioru obserwacji. Dodatkowo po odjęciu średniej wektor reprezentuje jedynie różnicę miedzy średnią (środkiem nowego układu współrzędnych), a punktem końcowym. Jest więc reprezentacją unikatowych cech w zbiorze obserwacji. Wybranie wektorów własnych, będących osiami - kierunkami z największą wariancją powoduje że odrzucając część bazy wektorów tracimy tak mało wektorów jak to jest tylko możliwe. W celach badawczych można wrócić do oryginalnej przestrzeni, aby porównać błąd przybliżenia oraz przeanalizować jak bardzo reprezentacyjne są uzyskane wyniki. W przypadku zdjęć możliwa jest wręcz wizualne porównanie jak bardzo oryginalne zdjęcie i zdjęcie odtworzone po redukcji wymiarowości są podobne do siebie. Rekonstrukcja odbywam się w następujący sposób:
 \begin{equation}
 	v = \overline{x} + \sum_{n=1}^{M}u_n
 \end{equation}
@@ -351,7 +351,7 @@ Przyjrzyjmy się przez moment co tak na prawdę zyskujemy w wyniku działania al
 	\label{fig:rekonstrukcja}
 \end{figure}
 
-Jak widać na rys. \ref{fig:rekonstrukcja} wraz ze zwiększeniem się ilości składowych jakość rekosntrukcji zdjęcia się polepsza. Użycie większej ilości składowych nie ma sensu, co można zaobserwować w wyglądzie rekonstrukcji z wykorzystanie 300 i 400 składowych. PCA jest bardzo lubianą metodą, ponieważ jest bardzo intuicyjna oraz pozwala na wizualne sprawdzenie własnych rezultatów.
+Jak widać na rys. \ref{fig:rekonstrukcja} wraz ze zwiększeniem się ilości składowych jakość rekonstrukcji zdjęcia się polepsza. Użycie większej ilości składowych nie ma sensu, co można zaobserwować w wyglądzie rekonstrukcji z wykorzystanie 300 i 400 składowych. PCA jest bardzo lubianą metodą, ponieważ jest bardzo intuicyjna oraz pozwala na wizualne sprawdzenie własnych rezultatów.
 
 \begin{figure}
 \centering
@@ -392,19 +392,19 @@ Górny wiersz - wektory 0-4, dolny wiersz - wektory 392-396.
 	\label{fig:eigenfaces}
 \end{figure}
 
-W omawianym zagadnieniu wektory własne zyskały specjalną nazwę eigenfaces (twarze własne). Można zobaczyć jak wyglądają aplikując technikę odtwarzania zdjęcia na podstawie współrzędnych z przestrni o zredukowanej wymiarowości. Efekty zostały zaprezentowane na rys. \ref{fig:eigenfaces}. 
+W omawianym zagadnieniu wektory własne zyskały specjalną nazwę eigenfaces (twarze własne). Można zobaczyć jak wyglądają aplikując technikę odtwarzania zdjęcia na podstawie współrzędnych z przestrzeni o zredukowanej wymiarowości. Efekty zostały zaprezentowane na rys. \ref{fig:eigenfaces}. 
 
 Jak można łatwo zaobserwować wektory 0-4 zawierają najbardziej istotne zmiany pomiędzy poszczególnymi obrazami ze zbioru obserwacji. Wektora 392-396 przypominają losowy szum i niosą informację o szczegółach twarzy. Można zauważyć że pominięcie składowych z niższą wartością własną powoduje mniejszą utratę informacji.
 
 \subsection{PCA jako samodzielny system rozpoznawania twarzy}
-Principle komponents analysis powoduje przeniesienie zdjęcia mającego wizualną reprezentację na abstrakcyjny wektor liczb. Umożliwia to skontruowanie klasyfikatora z wykorzystaniem algorytmów umożliwiających klasyfikację. Jest to zagadnienie dobrze znane w dziedzinie Pattern Recognition (rozpoznawania wzorców) i opracowano wiele rozwiązań tego problemu. Zastosowanie algorytmów typu k-NN (k Nearest Neighbour - k najbliższych sąsiadów) lub NM (Nearest Mean - najbliższy średnia) umożliwia zaklasyfikowanie danego algorytmu do jednej z grup. Jest to możliwie dzięki wykorzystaniu reprezentacji zdjęcia jako wektora liczb. Oba algorytmy dysponują zbiorem uczącym, który opisuje dane grupy do których może zostać klasyfikowany dany wzorzec. 
+Principle components analysis powoduje przeniesienie zdjęcia mającego wizualną reprezentację na abstrakcyjny wektor liczb. Umożliwia to skonstruowanie klasyfikatora z wykorzystaniem algorytmów umożliwiających klasyfikację. Jest to zagadnienie dobrze znane w dziedzinie Pattern Recognition (rozpoznawania wzorców) i opracowano wiele rozwiązań tego problemu. Zastosowanie algorytmów typu k-NN (k Nearest Neighbour - k najbliższych sąsiadów) lub NM (Nearest Mean - najbliższy średnia) umożliwia zaklasyfikowanie danego algorytmu do jednej z grup. Jest to możliwie dzięki wykorzystaniu reprezentacji zdjęcia jako wektora liczb. Oba algorytmy dysponują zbiorem uczącym, który opisuje dane grupy do których może zostać klasyfikowany dany wzorzec. 
 W przypadku NM dla każdej z grup obliczana jest średnia wektorów, następnie obliczana jest odległość między wektorem podlegającym klasyfikacji, a średnimi zbiorów. Wektor zostaje zaklasyfikowany do zbioru, którego średnia jest w najmniejszej odległości od wektora. 
-W przypadku algorytmu k-NN odległość jest obliczana pomiędzy wszystkimi wektorami ze zbioru uczącego. Następnie zostaje wybrane k najbliższych sąsiadów. Zbiór, którego najwięcej przedstawicieli zostało wybranch wygrywa. Dla przypadku dychotomii jeżeli k jest nieparzyste możliwa jest jednoznaczna klasyfikacja. Gdy ilość zbiorów do których można zaklasyfikować obraz jest większa od dwóch możliwe jest wystąpienie wypadku w którym nie można jednoznacznie zaklasyfikować obiekt. 
-W przypadku systemu kontroli dostępu może być rozsądne wprowadzenie maksymalnej odległości między średnią lub najbliższym sąsiadem a klasyfikowanym wektorem przy której może następić klasyfikacja. Powyżej tej odległości obraz nie powinien być zaklasyfikowany do którejkolwiek z grup. 
+W przypadku algorytmu k-NN odległość jest obliczana pomiędzy wszystkimi wektorami ze zbioru uczącego. Następnie zostaje wybrane k najbliższych sąsiadów. Zbiór, którego najwięcej przedstawicieli zostało wybranych wygrywa. Dla przypadku dychotomii jeżeli k jest nieparzyste możliwa jest jednoznaczna klasyfikacja. Gdy ilość zbiorów do których można zaklasyfikować obraz jest większa od dwóch możliwe jest wystąpienie wypadku w którym nie można jednoznacznie zaklasyfikować obiekt. 
+W przypadku systemu kontroli dostępu może być rozsądne wprowadzenie maksymalnej odległości między średnią lub najbliższym sąsiadem a klasyfikowanym wektorem przy której może nastąpić klasyfikacja. Powyżej tej odległości obraz nie powinien być zaklasyfikowany do którejkolwiek z grup. 
 Dodatkowo warto zwrócić uwagę na brak kontroli PCA nad przetwarzanymi danymi. Jest to metoda statystyczna, na jej wejście można podać zdjęcie myszy lub samochodu, które zostanie przetworzone. Nie wiadomo jakie współrzędne można uzyskać, dzięki takiej operacji. System rozpoznawania twarzy powinien więc odrzucić takie zdjęcie na etapie wykrywania pozycji twarzy.
 
 \section{Inne podejścia do problemu redukcji wymiarowości}
-Istnieje wiele algorytmów umożliwiających redukcję wymiarowości. Ze względu na rosnącą ilość danych do przetwarzania, alorytmy te zyskały na znaczeniu. W niniejszym fragmencie pracy zostaną omówione zasady działania trzech algorytmów umożliwiających redukcję wymiarowości.
+Istnieje wiele algorytmów umożliwiających redukcję wymiarowości. Ze względu na rosnącą ilość danych do przetwarzania, algorytmy te zyskały na znaczeniu. W niniejszym fragmencie pracy zostaną omówione zasady działania trzech algorytmów umożliwiających redukcję wymiarowości.
 
 \subsection{Nonnegative Matrix Factorization}
 
@@ -415,7 +415,7 @@ Nonnegative Matrix Factorization (NMF) jest sposobem rozkładu macierzy na dwie 
 \label{NMF}
 \end{equation}
 
-Zakłada się rozmiary macierzy: $W_{m \times k}$ oraz $H_{k \times n}$, dla $k \leq min(m,n)$. Dodatkowo przyjmuje się że zarówno $W$ jak i $H$ są nieujemne. Łatwo można zauważyć że stosując taki zapis i przyjmując stosunkowo małą wartość $k$ można zapisać $V$ z wykorzystaniem zmniejszej ilości zmiennych. Dodatkowo korzystając ze spostrzerzenia że wektory kolumnowe $V$ mogą zostać zapisane jako:
+Zakłada się rozmiary macierzy: $W_{m \times k}$ oraz $H_{k \times n}$, dla $k \leq min(m,n)$. Dodatkowo przyjmuje się że zarówno $W$ jak i $H$ są nieujemne. Łatwo można zauważyć że stosując taki zapis i przyjmując stosunkowo małą wartość $k$ można zapisać $V$ z wykorzystaniem mniejszej ilości zmiennych. Dodatkowo korzystając ze spostrzeżenia że wektory kolumnowe $V$ mogą zostać zapisane jako:
 
 \begin{equation}
 	\bb{v}_i = W \bb{h}_i
@@ -423,18 +423,18 @@ Zakłada się rozmiary macierzy: $W_{m \times k}$ oraz $H_{k \times n}$, dla $k 
 
 można przyjąć W jako bazę przestrzeni definiowanej przez $V$.
 
-Dokładny rozkład we wzorze \ref{NMF} nie musi istnieć dla dowolnego $k$, dlatego nie może zostać umieszoczony znak równości. Zwykle w trakcie szukania $W$ i $H$ przyjmuje się że ich iloczyn ma się znajdować w odpowiednio niewielkiej odległości od $V$. Najczęściej rozważane wartości błędu to:
+Dokładny rozkład we wzorze \ref{NMF} nie musi istnieć dla dowolnego $k$, dlatego nie może zostać umieszczony znak równości. Zwykle w trakcie szukania $W$ i $H$ przyjmuje się że ich iloczyn ma się znajdować w odpowiednio niewielkiej odległości od $V$. Najczęściej rozważane wartości błędu to:
 
 \begin{align*}
 	||A - B||^2 &= \sum_{ij} (A_{ij} - B_{ij})^2 \\
 	  D(A||B)   &= \sum_{ij} (A_{ij} log \frac{A_{ij}}{B_{ij}} - A_{ij} + B_{ij})
 \end{align*}
 
-Pierwsza z prezentowanych norm to znana norma L2, czyli odległość Euklidesowa. Drugie równanie to zmodyfikowana wersja dywergencji Kullbacka-Leiblera dla nieujemnych macierzy. Jest to wielkość informująca nas o tym jak wiele informacji tracimy korzystając z estymacji $B$ rozkładu $A$. Wielkość ta nie jest normną, ponieważ nie jest symetryczna.
+Pierwsza z prezentowanych norm to znana norma L2, czyli odległość Euklidesowa. Drugie równanie to zmodyfikowana wersja dywergencji Kullbacka-Leiblera dla nieujemnych macierzy. Jest to wielkość informująca nas o tym jak wiele informacji tracimy korzystając z estymacji $B$ rozkładu $A$. Wielkość ta nie jest norną, ponieważ nie jest symetryczna.
 
-W pracy \cite{NMF} zaprponowano iteracyjne metody znajdowania $W$ i $H$ dla obu miar błędu. Polegały one na stopniowym poprawianiu wartości obu macierzy. Pierwszy rodzaj polegał na przemnażaniu aktualnej wartości $W$ i $H$ przez odpowiednie współczynniki. Drugi rodzaj opierał się na dodowaniu odpowiedniej poprawki (rozwiązanie przypominające szukanie optimum funkcji z wykorzystaniem gradientu). W obu przypadkach początkowe wartości były losowe, co powodowało, że rezultaty uzyskiwane przez algorytm mogły być różne dla tej samej macierzy $V$. Dodatkowym ryzykiem jest utknięcie w minimum lokalnym.
+W pracy \cite{NMF} zaproponowano iteracyjne metody znajdowania $W$ i $H$ dla obu miar błędu. Polegały one na stopniowym poprawianiu wartości obu macierzy. Pierwszy rodzaj polegał na przemnażaniu aktualnej wartości $W$ i $H$ przez odpowiednie współczynniki. Drugi rodzaj opierał się na dodawaniu odpowiedniej poprawki (rozwiązanie przypominające szukanie optimum funkcji z wykorzystaniem gradientu). W obu przypadkach początkowe wartości były losowe, co powodowało, że rezultaty uzyskiwane przez algorytm mogły być różne dla tej samej macierzy $V$. Dodatkowym ryzykiem jest utknięcie w minimum lokalnym.
 
-W pracy \cite{NMF_SVD} zapropnowano metodę wyznaczania $W$ i $H$, która nie inicjalizuje losowo wartości początkowych, tylko korzysta z rozkładu SVD (singular-value decomposition - rozkład według wartości osobliwych), który dla macierzy $A$ o wartościach rzeczywistych zapisujemy jako:
+W pracy \cite{NMF_SVD} zaproponowano metodę wyznaczania $W$ i $H$, która nie inicjalizuje losowo wartości początkowych, tylko korzysta z rozkładu SVD (singular-value decomposition - rozkład według wartości osobliwych), który dla macierzy $A$ o wartościach rzeczywistych zapisujemy jako:
 
 \begin{equation}
 	A = U \Sigma V^T
@@ -450,17 +450,17 @@ $U$ oraz $V$ są ortogonalne, a $\Sigma$ jest macierzą diagonalną, na przekąt
 
 \chapter{Zabezpieczenie przed możliwością oszukania systemu}
 
-W trakcie realizacji projektu specjalnościowego podjęto próbę zadresowania kwesti oszukania całego systemu poprzez przedstawianie systemowi zdjęć ludzi, którym wcześniej przyznano prawo dostępu. Jest to realne zagrorzenie, z którym twórcy systemów biometrycznych muszą się mierzyć. Dobrym przykładem może być tutaj system FaceID w IphoneX firmy Apple. Twórcy systemu zapewniali że nie da go się oszukać poprzez wykonanie masek 3d imitujących twarz człowieka. 9 listopada 2017 roku ekseprci z firmy Bkav oświadczyli że udało im się złamać zabezpieczenia poprzez wykonanie specjalnej maski, wykorzystując drukarkę 3D, silikonowe elementy, wydruki 2D, oraz materiał imitujący skórę \cite{FaceID hacked}. Dodatkowo system FaceID okazał się nie być odporny na podobieństwo występujące między bliźniakami jednojajowymi. Bezpieczeństwo systemów biometrycznych jest więc bardzo ważną kwestią i podjęto próbę zbadania tych zagadnień.
+W trakcie realizacji projektu specjalnościowego podjęto próbę zaadresowania kwestii oszukania całego systemu poprzez przedstawianie systemowi zdjęć ludzi, którym wcześniej przyznano prawo dostępu. Jest to realne zagrożenie, z którym twórcy systemów biometrycznych muszą się mierzyć. Dobrym przykładem może być tutaj system FaceID w IphoneX firmy Apple. Twórcy systemu zapewniali że nie da go się oszukać poprzez wykonanie masek 3d imitujących twarz człowieka. 9 listopada 2017 roku eksperci z firmy Bkav oświadczyli że udało im się złamać zabezpieczenia poprzez wykonanie specjalnej maski, wykorzystując drukarkę 3D, silikonowe elementy, wydruki 2D, oraz materiał imitujący skórę \cite{FaceID hacked}. Dodatkowo system FaceID okazał się nie być odporny na podobieństwo występujące między bliźniakami jednojajowymi. Bezpieczeństwo systemów biometrycznych jest więc bardzo ważną kwestią i podjęto próbę zbadania tych zagadnień.
 
 \section{Przyjęta metodyka}
-Zbadano możliwości jakie daje ekstrakcja głębi z wykorzystaniem dwóch kamer. W obecnym projekcie systemu zintegrowanie systemu ekstrakcji głębi byłoby trudne, ponieważ w projekcie wykorzystywana jest kamera Ruberby Pi, podłączona przez port CSI, a mikrokomputery Rasbry Pi posiadają tylko jeden port CSI. Do badań wykorzystano dwie kamerki internetowo Creative VF0770. Do ekstrakcji głębi wykorzystano funkcje biblioteki OpenCV. Celem było uzyskanie mapy punktów w 3D, które następnie miały być aproksymowane płaszczyzną. Następnie należało wyznaczyć błąd aproksymacji, oraz próg, od którego mapa punktów miała być uznawana za płaską.
+Zbadano możliwości jakie daje ekstrakcja głębi z wykorzystaniem dwóch kamer. W obecnym projekcie systemu zintegrowanie systemu ekstrakcji głębi byłoby trudne, ponieważ w projekcie wykorzystywana jest kamera Rasbery Pi, podłączona przez port CSI, a mikrokomputery Rasbery Pi posiadają tylko jeden port CSI. Do badań wykorzystano dwie kamerki internetowo Creative VF0770. Do ekstrakcji głębi wykorzystano funkcje biblioteki OpenCV. Celem było uzyskanie mapy punktów w 3D, które następnie miały być aproksymowane płaszczyzną. Następnie należało wyznaczyć błąd aproksymacji, oraz próg, od którego mapa punktów miała być uznawana za płaską.
 
 \section{Podstawy teoretyczne}
 
-Przed przedstawieniem wyników omówiono przyjęte założenia teoretyczne. W nimniejszej sekcji zostały omówione takie koncepcje jak pinhole camera model, model zniekształceń w biblitece OpenCv, podstawowe założenia geometrii epipolarnej oraz wyznaczanie mapy głębokości na podstawie dysparycji.
+Przed przedstawieniem wyników omówiono przyjęte założenia teoretyczne. W nimniejszej sekcji zostały omówione takie koncepcje jak pinhole camera model, model zniekształceń w bibliotece OpenCv, podstawowe założenia geometrii epipolarnej oraz wyznaczanie mapy głębokości na podstawie dysparycji.
 
 \subsubsection{Model kamery}
-Przed przystąpieniem do ekstrakcji głębi należy ustalić model działania pojedyńczej kamery oraz zrozumieć jakie zakłócenia obrazu występują.
+Przed przystąpieniem do ekstrakcji głębi należy ustalić model działania pojedynczej kamery oraz zrozumieć jakie zakłócenia obrazu występują.
 
 \begin{figure}
 \centering
@@ -486,7 +486,7 @@ Najczęściej rozpowszechnionym modelem jest tzw. pinhole camera model. W modelu
 
 W powyższym równaniu $X, Y$ oraz $Z$ to współrzędne punktu w zewnętrznym układzie współrzędnych.
 $u$ i $v$ to współrzędne w układzie kamery.
-Macierz R i wektor T to macierz rotacji i wektor translacji opisujące orientację i położenie kamery względem zewnętrznego układu współrzędnych. Zaliczaję się one do parametrów zewnętrznych, ponieważ nie zależą od samej kamery, ale od jej położenia i oreintacji. Parametry te opisują transformację punktu z globalnego układu współrzędnych do układu współrzędnych kamery. 
+Macierz R i wektor T to macierz rotacji i wektor translacji opisujące orientację i położenie kamery względem zewnętrznego układu współrzędnych. Zaliczaję się one do parametrów zewnętrznych, ponieważ nie zależą od samej kamery, ale od jej położenia i orientacji. Parametry te opisują transformację punktu z globalnego układu współrzędnych do układu współrzędnych kamery. 
 
 \begin{align*}
 	\left( \begin{array}{l} x \\ y \\ z \end{array} \right) =
@@ -519,7 +519,7 @@ Macierz K jest zawiera parametry wewnętrzne kamery i jest definiowana jako:
 
 Gdzie $f$ to długość ogniskowej, $c_x, c_y$ jest punktem w którym oś optyczna przecina się płaszczyzną obrazu (ang. principal point), zwykle znajdujący się w środku obrazu.
 
-Kokrzystając z wcześniejszych równań można zapisać:
+Korzystając z wcześniejszych równań można zapisać:
 
 \begin{align*}
 	u = f \frac{x}{z} + c_x \\
@@ -534,7 +534,7 @@ Kokrzystając z wcześniejszych równań można zapisać:
 \end{figure}
 
 Na rys \ref{fig:projection_up} można zauważyć że równania te mają proste uzasadnienie geometryczne. Z twierdzenia Talesa otrzymujemy: 
-$\frac{x_0}{f} = \frac{x}{z}$. Wartość $u$ możemy uzskać poprzez dodanie do $x_0$ z poprzedniego równania $c_x$. Dla y rozumowanie jest analogiczne.
+$\frac{x_0}{f} = \frac{x}{z}$. Wartość $u$ możemy uzyskać poprzez dodanie do $x_0$ z poprzedniego równania $c_x$. Dla y rozumowanie jest analogiczne.
 
 
 \subsubsection{Zakłócenia}
@@ -585,7 +585,7 @@ Załóżmy że $\bb{q}$ jest narożnikiem szachownicy, a $\bb{p}_i$ jest punktem
 	E_i = \nabla f_{\bb{p}_i}^T (\bb{q} - \bb{p}_i)
 \end{equation}
 
-Gdzie $\nabla f_{\bb{p}_i}$ jest gradientem, w punkcie $p_i$. Jest to równanie na iloczn skalarny i będzie ono równe zero, gdy $\bb{p}_i$ będzie prostopadłe do gradientu. Przyrównując powyższe równanie do zera, oraz mnożąc obie strony przez $\nabla f_{\bb{p}_i}$ otrzymujemy:
+Gdzie $\nabla f_{\bb{p}_i}$ jest gradientem, w punkcie $p_i$. Jest to równanie na iloczyn skalarny i będzie ono równe zero, gdy $\bb{p}_i$ będzie prostopadłe do gradientu. Przyrównując powyższe równanie do zera, oraz mnożąc obie strony przez $\nabla f_{\bb{p}_i}$ otrzymujemy:
 
 \begin{align*}
 	\nabla f_{\bb{p}_i} \nabla f_{\bb{p}_i}^T \bb{q} - \nabla f_{\bb{p}_i} \nabla f_{\bb{p}_i}^T \bb{p}_i = 0
@@ -629,7 +629,7 @@ Operacja ta jest powtarzana, aż punkt $q$ uzyska stabilną wartość (jego wsp�
 	\label{fig:pose}
 \end{figure}
 
-Dzięki wyznaczonym narożnikom można wyznaczyć wenętrzne i zewnętrzne kamery. Wartości te są następnie wykorzystane do estymacji pozycji \ref{fig:pose}, oraz do usunięcia zakłóceń z obrazu. 
+Dzięki wyznaczonym narożnikom można wyznaczyć wewnętrzne i zewnętrzne kamery. Wartości te są następnie wykorzystane do estymacji pozycji \ref{fig:pose}, oraz do usunięcia zakłóceń z obrazu. 
 
 \subsection{Geometria epipolarna}
 
@@ -642,7 +642,7 @@ Zakładając wcześniej przyjęty model rzeczywistej kamery oraz stosując upros
 	\label{fig:gradient}
 \end{figure}
 
-Pierwszym spostrzeniem jest fakt że ogniska obu kamer, punkt P oraz jego projekcje na płaszczyznę obrazu leżą na jednej płaszczyźnie. Linia poprowadzona pomiędzy ogniskami kamer jest nazywana linią główną (ang. baseline). 
+Pierwszym spostrzeżeniem jest fakt że ogniska obu kamer, punkt P oraz jego projekcje na płaszczyznę obrazu leżą na jednej płaszczyźnie. Linia poprowadzona pomiędzy ogniskami kamer jest nazywana linią główną (ang. baseline). 
 Punkty przecięcia linii głównej z płaszczyzną główną ($e$) nazywane są epipolami (ang. epipoles). Jeśli obie kamery się widzą to epipole są widoczne jako środek drugiej kamery na obrazie.
 Płaszczyzna przechodząca przez dowolny punkt P widziany w obu kamerach, oraz przez linię główną jest nazywana płaszczyzną epipolarną.
 Linia epipolarną nazywamy linię będącą na przecięciu płaszczyzny obrazu z płaszczyzną epipolarną. Wszystkie linie epipolarne przecinają się w epipolach.
@@ -676,7 +676,7 @@ Po przekształceniach otrzymujemy:
 Gdzie $d$ jest dysparycją - różnicą wartości odpowiadających sobie pikseli na dwóch obrazach, szukanych wzdłuż epilinii.
 Znając ogniskową, odległość między kamerami, oraz obliczając różnicę między analogicznymi pikselami z dwóch obrazów możemy szacować głębię.
 
-Warto zwrócić uwagę że wzór \ref{eq:disp} nie traci na ogólności, gdy punkt $P$ znajdzie się pomiędzy osiami optycznymi kamer, ponieważ do odbliczenia podstawy trójkąta $P C_L C_R$ zostanie wykorzystana odległość między punktem w którym wiązka światła pada na prawą matrycą a osią optyczną prawej kamery. Odlgołość ta może zostać w takim wypadku wyrażona jako $\frac{1}{2}l-x_R$, gdzie $l$ to długość ekranu światłoczułego. Po podstawieniu podobniej wartości za odległość od osi optycznej lewej kamery do punktu przeciącia wiązki światła z lewą matrycą $\frac{1}{2}l$ się uprości i zostaniemy ze wzorem \ref{eq:disp}.
+Warto zwrócić uwagę że wzór \ref{eq:disp} nie traci na ogólności, gdy punkt $P$ znajdzie się pomiędzy osiami optycznymi kamer, ponieważ do obliczenia podstawy trójkąta $P C_L C_R$ zostanie wykorzystana odległość między punktem w którym wiązka światła pada na prawą matrycą a osią optyczną prawej kamery. Odległość ta może zostać w takim wypadku wyrażona jako $\frac{1}{2}l-x_R$, gdzie $l$ to długość ekranu światłoczułego. Po podstawieniu podobnej wartości za odległość od osi optycznej lewej kamery do punktu przecięcia wiązki światła z lewą matrycą $\frac{1}{2}l$ się uprości i zostaniemy ze wzorem \ref{eq:disp}.
 
 \begin{figure}
 	\centering
@@ -697,7 +697,7 @@ Warto zwrócić uwagę że wzór \ref{eq:disp} nie traci na ogólności, gdy pun
 
 
 \section{Wyniki}
-Dokonano kalibracji kamery, wyznaczno współczynniki wewnętrzne i zewnętrzne kamery. Jednkże nie udało się uzyskać zadowalających rezultatów. Po przedstawieniu systemowi zdjęcia osoby wyświetlonego na laptopie uzyskano mapę głębi przedstawioną na rys. \ref{fig:extraction_fail}. Jak można z łatwością zauważyć zauważyć na mapie głebości otrzymano punkty o różnej głębokości.
+Dokonano kalibracji kamery, wyznaczono współczynniki wewnętrzne i zewnętrzne kamery. Jednakże nie udało się uzyskać zadowalających rezultatów. Po przedstawieniu systemowi zdjęcia osoby wyświetlonego na laptopie uzyskano mapę głębi przedstawioną na rys. \ref{fig:extraction_fail}. Jak można z łatwością zauważyć zauważyć na mapie głębokości otrzymano punkty o różnej wartości współrzędnej z.
 
 Trudno jest określić jedną przyczynę niepowodzenia. Na pewno ważną rolę odgrywa kalibracja kamer. Wielokrotnie podejmowano próbę poprawiania uzyskiwanych wyników poprzez ponowną kalibrację, ale nie wpłynęło to w znaczący sposób na rezultaty. W związku z ograniczoną ilością czasu projekt nie mógł zostać ukończony, pomimo wielu godzin poświęconych na analizę problemu.
 
@@ -707,27 +707,27 @@ Trudno jest określić jedną przyczynę niepowodzenia. Na pewno ważną rolę o
 
 \section{Podsumowanie projektu}
 
-W trakcie realizacji projektu przeanalizowano dostępne metody detekcji twarzy i ekstrakcji cech. Następnie wybrano algorytmy adekwatne dla realizowanego projektu i wykorzystano je. Bardzo pomocne były biblioteki, które pozwoliły skupić się na wykorzystaniu algorytmów. Oszczędziło to czas potrzebny na implementację rozwiązań. W projekcie przyjęto rozwiążanie polegające na detekcji twarzy i wykorzystaniu algorytmów redukcji wymiarowości do przygotowania wektora uczącego dla sieci o wielkości 400 elementów. Jest to dość popularne rozwiązanie tego problemu i daje dość dobre rezulataty. Nie przeprowadzono testów modułowych, system był testowany jako całość. Powodem takiego stanu rzeczy jest trudność w testowaniu omawianego komponentu, ze względu na dość abstrakcyjny charakter, w porównanianu do reszy abstrakcji. Testowanie rezultatów działania całego systemu jest kosztowne, ponieważ dowolna zmiana w systemie ekstrakcji cech, powoduje konieczność zaczynania procesu uczenia sieci neuronowej od nowa, co jest kosztowne i czasochłonne. W dalszej części tego rozdziału przedstawiono koncepcję testów modułowych dla komponentu realizującego ekstrakcję cech.
+W trakcie realizacji projektu przeanalizowano dostępne metody detekcji twarzy i ekstrakcji cech. Następnie wybrano algorytmy adekwatne dla realizowanego projektu i wykorzystano je. Bardzo pomocne były biblioteki, które pozwoliły skupić się na tworzeniu systemu, a nie implementacji alogrytmów. Oszczędziło to czas potrzebny na implementację rozwiązań. W projekcie przyjęto rozwiązanie polegające na detekcji twarzy i wykorzystaniu algorytmów redukcji wymiarowości do przygotowania wektora uczącego dla sieci o wielkości 400 elementów. Jest to dość popularne rozwiązanie tego problemu i daje dość dobre rezultaty. Nie przeprowadzono testów modułowych, system był testowany jako całość. Powodem takiego stanu rzeczy jest trudność w testowaniu omawianego komponentu, ze względu na dość abstrakcyjny charakter, w porównanianu do reszy abstrakcji. Testowanie rezultatów działania całego systemu jest kosztowne, ponieważ dowolna zmiana w systemie ekstrakcji cech, powoduje konieczność zaczynania procesu uczenia sieci neuronowej od nowa, co jest kosztowne i czasochłonne. W dalszej części tego rozdziału przedstawiono koncepcję testów modułowych dla komponentu realizującego ekstrakcję cech.
 
-Realizowany projekt umożliwił także opracowanie i wykorzystanie wydajnych sposobów na pracę w grupie. Komponentowe podejście do systemu było bardzo dobrym rozwiążaniem, umożliwiającym zrównoleglenie pracy. Dodatkowo ustalenie interfejsów między komponentami pozwala na przeprowadzanie daleko idących zmian w obrębie komponentu, bez konieczności zmiany innych części systemu. Przeprowadzenie refaktoryzacji kodu po spełenieniu podstawowych założeń systemu było bardzo pomocne i ułatwiło rozwój aplikacji.
+Realizowany projekt umożliwił także opracowanie i wykorzystanie wydajnych sposobów na pracę w grupie. Komponentowe podejście do systemu było bardzo dobrym rozwiązaniem, umożliwiającym zrównoleglenie pracy. Dodatkowo ustalenie interfejsów między komponentami pozwala na przeprowadzanie daleko idących zmian w obrębie komponentu, bez konieczności zmiany innych części systemu. Przeprowadzenie refaktoryzacji kodu po spełnieniu podstawowych założeń systemu było bardzo pomocne i ułatwiło rozwój aplikacji.
 
 \section{Możliwe usprawnienia}
 
-System w obecnym stanie spełnia podstawowe założenia jakie zostały przed nim postawione, t.j. rozpoznawanie twarzy niewielkiej grupy osób oraz ich identyfikacja. Jednakże jest wiele aspektów które można poprawić i rozwinąć. W nimniejszej sekcji przeprowadzono dyskusję najważniejszych problemów, które należy zadresować przy pracy nad projektem.
+System w obecnym stanie spełnia podstawowe założenia jakie zostały przed nim postawione, t.j. rozpoznawanie twarzy niewielkiej grupy osób oraz ich identyfikacja. Jednakże jest wiele aspektów które można poprawić i rozwinąć. W niniejszej sekcji przeprowadzono dyskusję najważniejszych problemów, które należy zaadresować przy pracy nad projektem.
 
 \subsubsection{Testy modułowe}
 
-Jednym z pomysłów na rozwój systemu jest porównanie efektów działania algorytmów redukcji wymiarowości. Metodyka takich testów miałaby polegać na utworzeniu bazy zdjęć różnych osób i porównanie odległości współrzędnych przyporządkowanych danym zdjęciom z bazy przez różne algorytmy. Możliwe do analizowania miary to: średnia odległość, największa i najmnijesza odległość, mediana oraz wariancja. Przy takim porównaniu należy oczywiście wybrać odpowiedni rodzaj normy. Takie podjeście umożliwiłoby uniezależnie wyników omawianego komponentu od sieci neuronowej, co znacznie ułatwiłoby badania właściowości proponwanych rozwiążań. Warto zwrócić uwagę że takie rozwiażanie pozwala na testowanie dowolnego podejścia do problemu. Ustalenie wspólnego zbioru zdjęć dla porównywanych algorytmów, normy dla przestrzeni cech, oraz miar i progów dla każdej z miar umożliwiłoby automatyzację testów.
+Jednym z pomysłów na rozwój systemu jest porównanie efektów działania algorytmów redukcji wymiarowości. Metodyka takich testów miałaby polegać na utworzeniu bazy zdjęć różnych osób i porównanie odległości współrzędnych przyporządkowanych danym zdjęciom z bazy przez różne algorytmy. Możliwe do analizowania miary to: średnia odległość, największa i najmniejsza odległość, mediana oraz wariancja. Przy takim porównaniu należy oczywiście wybrać odpowiedni rodzaj normy. Takie podejście umożliwiłoby uniezależnienie wyników omawianego komponentu od sieci neuronowej, co znacznie ułatwiłoby badania właściwości proponowanych rozwiązań. Warto zwrócić uwagę że takie rozwiązanie pozwala na testowanie dowolnego podejścia do problemu. Ustalenie wspólnego zbioru zdjęć dla porównywanych algorytmów, normy dla przestrzeni cech, oraz miar i progów dla każdej z miar umożliwiłoby automatyzację testów.
 
 
 \subsubsection{Zbadanie wpływu czynników wizualnych na wyniki systemu}
 Mając dostęp do usystematyzowanych testów można dokładnie zbadać wyniki jakie osiąga system oraz jego odporność na czynniki wizualne. Do takich czynników zalicza się: różne ustawienie twarzy, oświetlenie kierunkowe twarzy, pory dnia, zarost czy okulary. Proponuje się przyjęcie zbioru zdjęć jednej osoby w różnych warunkach oświetleniowych i porównanie uzyskanych wektorów.
 
 \subsubsection{Geometryczne cechy}
-W rozdziale \ref{geometrical_features} przedstawiono koncepcję wykorzystania innego rozdzaju cech. Polega na przygotowania wektora cech z gemetryczną interpretacją. Każdy element takiego wektora mógłby oznaczać odległość między charakterystycznymi punktami twarzy. Aby uniezależnić uzyskiwane wyniki od odległości wszystkie odległości muszą być względne. W przypadku tego typu wektora należy przetestować jak sieć neuronowa poradzi sobie z tego typu cechami, oraz zbadać wpływ pozy twarzy na osiągane wyniki. Alogrytmy estymujące położenie punktów charakterystycznych z reguły potrafią sobie poradzić z oświetleniem, więc nie byłby to czynnik mający wielkie znaczenie w tym przyadku, można go jednakże dodać do testów, dla podwójnego sprawdzenia.
+W rozdziale \ref{geometrical_features} przedstawiono koncepcję wykorzystania innego rodzaju cech. Polega na przygotowania wektora cech z geometryczną interpretacją. Każdy element takiego wektora mógłby oznaczać odległość między charakterystycznymi punktami twarzy. Aby uniezależnić uzyskiwane wyniki od odległości wszystkie odległości muszą być względne. W przypadku tego typu wektora należy przetestować jak sieć neuronowa poradzi sobie z tego typu cechami, oraz zbadać wpływ pozy twarzy na osiągane wyniki. Algorytmy estymujące położenie punktów charakterystycznych z reguły potrafią sobie poradzić z oświetleniem, więc nie byłby to czynnik mający wielkie znaczenie w tym przypadku, można go jednakże dodać do testów, dla podwójnego sprawdzenia.
 
 \subsubsection{Ekstrakcja głębi}
-Ekstrackja głęibi na podstawie obrazów z dwóch kamer w obecnym stanie projektu nie daje zadowalających rezultatów. Fakt ten prawdopodobnie jest spowodowany złą kalibracją kamry, bądź niewałściwym położeniem, bądź określniem położenia kamer. Jest to część projektu, która musi zostać dopracowana, następnie może zostać zintegrowana do systemu. Poza zwiększeniem bezpieczeństwa systemu można wykorzystać mapę głębi do ekstrakcji cech. Ponieważ taka mapa ma zbyt wiele punktów konieczne byłoby wykorzystanie algorytmów redukcji wymiarowości. Bardzo ciekawe mogłoby być porównanie wyników uzykiwanych przez system na podstawie obrazów 2D i 3D. Informacje uzyskane dzięki estymacji głębi otwierają bardzo wiele możliwości rozwoju systemu.
+Ekstrakcja głębi na podstawie obrazów z dwóch kamer w obecnym stanie projektu nie daje zadowalających rezultatów. Fakt ten prawdopodobnie jest spowodowany złą kalibracją kamery, bądź niewłaściwym położeniem, bądź określeniem położenia kamer. Jest to część projektu, która musi zostać dopracowana, następnie może zostać zintegrowana do systemu. Poza zwiększeniem bezpieczeństwa systemu można wykorzystać mapę głębi do ekstrakcji cech. Ponieważ taka mapa ma zbyt wiele punktów konieczne byłoby wykorzystanie algorytmów redukcji wymiarowości. Bardzo ciekawe mogłoby być porównanie wyników uzyskiwanych przez system na podstawie obrazów 2D i 3D. Informacje uzyskane dzięki estymacji głębi otwierają bardzo wiele możliwości rozwoju systemu.
 
 
 \newpage
