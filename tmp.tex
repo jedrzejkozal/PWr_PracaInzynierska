@@ -31,7 +31,7 @@
 \linespread{1.5}
 
 \chapter{Wstęp}
-	Celem pracy jest porównanie metod i algorytmów umożliwiających wykrycie twarzy na zdjęciu, oraz wyznaczenie wektora uczącego dla sieci neuronowej na podstawie wykrytego obszaru zdjęcia zawierajacego twarz. Projekt ten jest częścią systemu biometrycznej kontroli dostępu. Za implementację sieci neuronowych oraz analizę algorytmów związanych z sieciami odpowiadał Filip Guzy. Za architekturę systemu, oraz komunikację pomiędzy komponentami odpowiadał Michał Leś. 
+	Celem pracy jest porównanie metod i algorytmów umożliwiających wykrycie twarzy na zdjęciu oraz wyznaczenie wektora uczącego dla sieci neuronowej na podstawie wykrytego obszaru zdjęcia zawierajacego twarz. Projekt ten jest częścią systemu biometrycznej kontroli dostępu. Za implementację sieci neuronowych oraz analizę algorytmów związanych z sieciami odpowiadał Filip Guzy. Za architekturę systemu, oraz komunikację pomiędzy komponentami odpowiadał Michał Leś. 
 
 Celem całego projektu było skonstruowanie prostego systemu kontroli dostępu opartego na rozpoznawaniu twarzy. System ma określać czy na wykonanym zdjęciu występuje twarz. Po wykryciu twarzy następuje ekstrakcja cech - wyznaczenie wektora cech i przygotowanie wektora uczącego dla sieci. Zadaniem sieci neuronowej jest klasyfikacja użytkownika i podjęcie decyzji czy danemu użytkownikowi powinien zostać przyznany dostęp, czy też nie.
 
@@ -113,7 +113,7 @@ W trakcie realizacji projektu oprócz wykorzystania wzorców projektowych posłu
 \begin{enumerate}
 \item Pojedyncza odpowiedzialność (Single resposibility)
 
-Zasada ta zawiera się w sformuowaniu: powinien istnieć jeden i tylko jeden powód do modyfikacji klasy. Każda z klas powinna mieć tylko jedną odpowiedzialność. Jednoznaczne zdefiniowanie odpowiedzialności klas umożliwia łatwiejszą modyfikację kodu i definiowanie nowych zachowań. Zasada ta prowadzi do powstania wielu klas w projekcie, jednakże rozsądne zaprojektowanie struktury klas pozwala na uniknięcie bałaganu w projekcie.
+Zasada ta zawiera się w sformuowaniu: powinien istnieć jeden i tylko jeden powód do modyfikacji klasy. Każda z klas powinna mieć tylko jedną odpowiedzialność. Jednoznaczne zdefiniowanie odpowiedzialności klas umożliwia łatwiejszą modyfikację kodu i definiowanie nowych zachowań. Zasada ta prowadzi do powstania wielu klas w projekcie, jednakże rozsądne zaprojektowanie struktury klas pozwala na uniknięcie nieporządku w projekcie.
 
 \item Otwarte/Zamknięte (Open/Closed)
 
@@ -121,7 +121,7 @@ Zasada ta oznacza że należy projektować i tworzyć klasy w taki sposób, aby 
 
 \item Zasada podstawienia Liskov (Liskov substitution)
 
-"Jeżeli q(x) jest udowadnialną własnością obiektu x typu T, to q(y) powinno być prawdziwe dla obiektu y typu S, gdzie S jest podtypem T." Zasada ta mówi że w dowolnym momencie klasa Bazowa może się zamienić z klasą pochodną. Przestrzeganie tej zasady umożliwia stosowanie wskaźników na klasę bazową wskazujące na klasy pochodne bez jakichkolwiek obaw. Klasa pochodna zachowa się w podobny sposób do klasy bazowej, bez niepożądanych bądź ukrytych efektów ubocznych wykonania funkcji. Najczęściej podawanym przykładem nieprzestrzegania tej zasady jest klasa Kwadrat dziedzicząca po klasie Prostokąt. Zmiana wysokości lub długości podstawy w klasie bazowej odpowiada jednej operacji zmiany długości boku w klasie pochodnej, przez co jedna z operacji z klasy bazowej przestaje mieć sens, a użycie klasy pochodnej w miejsce bazowej może mieć niepożądane skutki.
+"Jeżeli q(x) jest udowadnialną własnością obiektu x typu T, to q(y) powinno być prawdziwe dla obiektu y typu S, gdzie S jest podtypem T." Zasada ta mówi że w dowolnym momencie klasa bazowa może się zamienić z klasą pochodną. Przestrzeganie tej zasady umożliwia stosowanie wskaźników na klasę bazową wskazujące na klasy pochodne bez jakichkolwiek obaw. Klasa pochodna zachowa się w podobny sposób do klasy bazowej, bez niepożądanych bądź ukrytych efektów ubocznych wykonania funkcji. Najczęściej podawanym przykładem nieprzestrzegania tej zasady jest klasa Kwadrat dziedzicząca po klasie Prostokąt. Zmiana wysokości lub długości podstawy w klasie bazowej odpowiada jednej operacji zmiany długości boku w klasie pochodnej, przez co jedna z operacji z klasy bazowej traci sens, a użycie klasy pochodnej w miejsce bazowej może mieć niepożądane skutki.
 
 \item Zasada niezależności interfejsów (Interface segregation principle)
 
@@ -629,7 +629,7 @@ Oznacza to, że jesteśmy w~stanie na podstawie twarzy otrzymać konkretny wekto
 cech powiązany bezpośrednio z~wyglądem. Wadą takiego rozwiązania jest,
 że warunki związane z~otoczeniem lub pomiarem (takie jak ustawienie twarzy do zdjęcia) mogą mieć
 duży wpływ na badany przez nas wektor.
-\item Network Manager (autorstwo - Filip Guzy). Jest to uniwersalny zarządca siecią neuronową.
+\item Network Manager (autorstwo -- Filip Guzy). Jest to uniwersalny zarządca siecią neuronową.
 Głównym wejściem tego komponentu jest specjalnie przygotowany obiekt zawierający dane uczące do sieci neuronowej (pybrain.Dataset).
 Po przyjęciu takiego zbioru obiekt ten jest w~stanie nauczyć sieć neuronową, którą akurat reprezentuje
 (w ramach tego projektu był to perceptron wielowarstwowy) a następnie symulować działanie na tej sieci (aktywacja neuronów).
