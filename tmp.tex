@@ -35,10 +35,66 @@ Celem pracy jest porównanie metod i algorytmów umożliwiających wykrycie twar
 
 Celem całego projektu było skonstruowanie prostego systemu kontroli dostępu opartego na rozpoznawaniu twarzy. System ma określać czy na wykonanym zdjęciu występuje twarz. Po wykryciu twarzy następuje ekstrakcja cech - wyznaczenie wektora cech i przygotowanie wektora uczącego dla sieci. Zadaniem sieci neuronowej jest klasyfikacja użytkownika i podjęcie decyzji czy danemu użytkownikowi powinien zostać przyznany dostęp czy też nie.
 
-System oryginalnie został zaprojektowany na mikrokomputer Rasbery Pi. W projekcie wykorzystano Rasbery Pi 3. Przy projektowaniu systemu fakt ten miał niebagatelne znaczenie, ze względu na ograniczone pokłady mocy obliczeniowej. Architekutra systemu została zaprojektowana w taki sposób, aby system można było z łatwością przenosić na inne platformy. 
+System oryginalnie został zaprojektowany na mikrokomputer Raspberry Pi. W projekcie wykorzystano Raspberry Pi 3. Przy projektowaniu systemu fakt ten miał niebagatelne znaczenie, ze względu na ograniczone pokłady mocy obliczeniowej. Architekutra systemu została zaprojektowana w taki sposób, aby system można było z łatwością przenosić na inne platformy. 
 
 
 \section{Omówienie zagadnienia}
+
+Biometria to nauka zajmująca się mierzeniem cech osobniczych. Jest wykorzystywana w systemach kontroli dostępu w celu zwiększenia komfortu. Użytkownik systemu korzystającego z takiego systemu nie musi pamiętać haseł, nosić przy sobie kart identyfikacyjnych, czy kluczy. Cechy osobnicze dzielmy na fizyczne i behawioralne. Najczęściej przedstawianymi cechami są:
+
+\begin{enumerate}
+
+\item Cechy fizyczne:
+	\begin{itemize}
+		\item Siatkówka
+		\item Tęczówka
+		\item Odcisk palca
+		\item Twarz
+		\item Geometria dłoni
+	\end{itemize}
+
+\item Cechy behawioralne:
+	\begin{itemize}
+		\item Głos
+		\item Podpis
+		\item Sposób chodzenia
+	\end{itemize}
+
+\end{enumerate} 
+
+Cechy najczęściej są unikatowe dla poszczególnych osobników, co zapewnia ich wiarygodność. Biometryka cieszy się rosnącą popularnością, ze względu na wiele możliwych zastosowań. Dodatkowo wzrost możliwości sprzętowych oraz rozwój technik Machine Learning i Pattern Recognition przyczyniają się do znaczących postępów w omawianej dziedzinie. Metody statystyczne umozliwiają ilościową analizę pomiarów wybranych cech osobniczych. Zastosowanie tanich czujników w urządzeniach produkcji masowej powoduje przenikanie tej dziedziny do życia codziennego. Niektóre smartfony zawierają biometryczne systemy kontroli dostępu. 
+
+Przetworzenie zebranych pomiarów i ich ilościowa analiza, umożliwiająca identyfikację osobnika jest trudnym zadaniem. Wymaga przeniesienia fizycznych pomiarów na bardziej abstrakcyjne poziomy i znalezienie ukrytych zależności. Często bardzo pomocna jest inna reprezentacja danych. 
+
+W realizowanym systemie zdecydowano się na analizowanie twarzy ze względu na łatwą akwizycję cech osobniczych. Przyjęto następujące kroki przetwarzania danych:
+
+\begin{enumerate}
+
+\item Akwizycja obrazu
+	
+Jako czujnik wykorzystano kamerę mikrokomputera Raspberry Pi. Zawiera ona matrycę OV5647 i umożliwia wykonywanie zdjęć w rozdzielczości 5 MPx. Komunikacja z mikrokomputerem odbywa się przez port CSI. Jest to wygodne rozwiązanie i daje wiele możliwości rozwoju projektu. 
+	
+\item Przetwarzanie obrazu
+
+Przed operacją wykrywania twarzy z wykorzystaniem kaskad Haara obraz jest konwertowany do skali szarości. W przypadku ekstrakcji głębi na podstawie obrazów z dwóch kamer, z obrazu są usuwane zakłócenia.
+
+\item Wykrycie twarzy
+
+Następnym krokiem jest określenie, czy przetworzone zdjęcie zawiera twarz i oszacowanie jej współrzędnych. Jeśli zdjęcie nie zawiera twarzy system informuje o tym i proces przyznawania dostępu kończy się negatywnie.
+
+\item Ekstrakcja cech
+
+Na podstawie obszaru zawierającego twarz przeprowadzana jest ekstrakcja cech. Cechy te stanowią wektor podawany na wejście sieci neuronowej.
+
+\item Rozpoznawanie osobnika
+
+Wektor cech jest wykorzystywany przez sieć neuronową do klasyfikacji i podjęcia decyzji czy dostęp został przyznany czy nie.
+
+\end{enumerate} 
+
+W zakresie tej pracy szczegółowo zostaną omówione rozwiązane przyjęte w zakresie realizacji punktu 3 i 4. 
+
+
 
 \section{Omawiany komponent jako część większego systemu} 
 
@@ -47,28 +103,72 @@ Jak wspomniano we wstępie komponent opisany w niniejszej pracy jest częścią 
 \subsection{Wykorzystane wzorce projektowe}
 
 W celu ułatwienia pracy współpracownikom w projekcie został utworzony wydzielony łatwo wymienialny komponent. W celu ułatwienia pracy badawczej komponent został podzielony na mniejsze elementy z wykorzystaniem obiektowych wzorców projektowych.
-Do reprezentacji całego komponentu wybrano wzorzec fabryka. Zapewniono w ten sposób elastyczność użytkownikom klasy, ponieważ mogą oni zdecydować w jaki sposób współrzędne będące wynikiem działania algorytmów mają być przechowywane. Zapewniono klasę bazową do przechowywania współrzędnych, po której dziedziczą poszczególne reprezentacje, takie jak bezpośrednie przechowywanie danych w pamięci programu, czy zapis w pamięci nieulotnej w postaci pliku z rozszerzeniem .npy z biblioteki numpy.
-W celu zwiększenia elastyczności w obrębie komponentu do wyboru algorytmów dwukrotnie wykorzystano wzorzec strategia. Stworzono klasy bazowe do reprezentacji podstawowych własności algorytmu, które następnie implementowano w klasach pochodnych. Modyfikacja ta ułatwiła pracę badawczą i usystematyzowała strukturę projektu.
+Do reprezentacji całego komponentu wybrano wzorzec "Fabryka". Zapewniono w ten sposób elastyczność użytkownikom klasy, ponieważ mogą oni zdecydować w jaki sposób współrzędne będące wynikiem działania algorytmów mają być przechowywane. Zapewniono klasę bazową do przechowywania wektora uczącego dla sieci, po której dziedziczą poszczególne reprezentacje, takie jak bezpośrednie przechowywanie danych w pamięci programu, czy zapis w pamięci nieulotnej w postaci pliku z rozszerzeniem .npy z biblioteki numpy.
+W celu zwiększenia elastyczności w obrębie komponentu do wyboru algorytmów dwukrotnie wykorzystano wzorzec "Strategia". Stworzono klasy bazowe do reprezentacji podstawowych własności algorytmu, które następnie implementowano w klasach pochodnych. Modyfikacja ta ułatwiła pracę badawczą i usystematyzowała strukturę projektu.
 
 \subsection{Wykorzystane zasady i dobre praktyki programowania}
 
-W trakcie realizacji projektu oprócz wykorzystania wzorców projektowych posługiwano się także dobrymi zasadami SOLID oraz clean code. Pozwalają one na zachowanie większego porządku oraz czytelności kodu. Dobra organizacja kodu oraz porządek ułatwiają rozwijanie projektu oraz systematyzują pracę. Nie zdecydowano się na wykorzystanie testów jednostkowych ze względu na dynamiczny charakter projektu. Definiowanie zachowań w testach jednostkowych jest kosztowne, a częste zmiany w systemie powodują że poświęcony czas często byłby zmarnowany.
+W trakcie realizacji projektu oprócz wykorzystania wzorców projektowych posługiwano się także dobrymi zasadami SOLID oraz Clean Code. Pozwalają one na zachowanie większego porządku oraz czytelności kodu. SOLID opisuje dobre praktyki programowania obiektowego i składa się z pięciu zasad:
+
+\begin{enumerate}
+\item Pojedyncza odpowiedzialność (Single resposibility)
+
+Zasada ta zawiera się w sformuowaniu: powinien istnieć jeden i tylko jeden powód do modyfikacji klasy. Każda z klas powinna mieć tylko jedną odpowiedzialność. Jednoznaczne zdefiniowanie odpowiedzialności klas umożliwia łatwiejszą modyfikację kodu i definiowanie nowych zachowań. Zasada ta prowadzi do powstania wielu klas w projekcie, jednakże rozsądne zaprojektowanie struktury klas pozwala na uniknięcie bałaganu w projekcie.
+
+\item Otwarte/Zamknięte (Open/Closed)
+
+Zasada ta oznacza że należy projektować i tworzyć klasy w taki sposób, aby ich rozszerzanie było łatwe, jednocześnie nie wymagało modyfikacji już istniejącego kodu. W zachowaniu tej zasady mogą pomóc takie narzędzia jak polimorfizm, czy wzorzec projektowy constructor chaining.
+
+\item Zasada podstawienia Liskov (Liskov substitution)
+
+"Jeżeli q(x) jest udowadnialną własnością obiektu x typu T, to q(y) powinno być prawdziwe dla obiektu y typu S, gdzie S jest podtypem T." Zasada ta mówi że w dowolnym momencie klasa Bazowa może się zamienić z klasą pochodną. Przestrzeganie tej zasady umożliwia stosowanie wskaźników na klasę bazową wskazujące na klasy pochodne bez jakichkolwiek obaw. Klasa pochodna zachowa się w podobny sposób do klasy bazowej, bez niepożądanych bądź ukrytych efektów ubocznych wykonania funkcji. Najczęściej podawanym przykładem nieprzestrzegania tej zasady jest klasa Kwadrat dziedzicząca po klasie Prostokąt. Zmiana wysokości lub długości podstawy w klasie bazowej odpowiada jednej operacji zmiany długości boku w klasie pochodnej, przez co jedna z operacji z klasy bazowej przestaje mieć sens, a użycie klasy pochodnej w miejsce bazowej może mieć niepożądane skutki.
+
+\item Zasada niezależności interfejsów (Interface segregation principle)
+
+Segregacja interfejsów polega na ograniczeniu rozmiarów interfejsów. Klasy powinny implementować tylko te metody z interfejsów które są im potrzebne. Jeśli tak nie jest, należy podzielić interfejsy na mniejsze i dać użytkownikowi interfejsu opcję dziedziczenia tylko po potrzebnych interfejsach. Przestrzeganie tej zasady pozwala na tworzenie minimalistycznego kodu, który ma wykonywać to co zakładano, a dodatkowo jest łatwy w refaktoryzacji.
+
+\item Odwrócenie zależności (Dependency inversion)
+
+"Wszystkie zależności powinny w zależeć od abstrakcji a nie od konkretnego typu. Wysokopoziomowe moduły nie mogą polegać na niskopoziomowych modułach. Zamiast tego oba powinny polegać na abstrakcjach". Zasada ta jest mocno powiązana z pierwszą zasadą. Jeśli każda klasa posiada tylko jedną odpowiedzialność zdefiniowanie jasnych interfejsów między nimi jest łatwiejsze. Definiowanie abstrakcyjnych interfesjsów pozwala na jasne oddzielenie od siebie różnych komponentów i delegowanie zadań. W przestrzeganiu tej zasady pomaga taka technika jak wstrzykiwanie zależności.
+
+\end{enumerate}
+
+Clean Code to zbiór zasad dotyczących tworzenia nazewnictwa i pisania oprogramowania w taki sposób, aby był on jak najbardziej czytelny dla innych programistów. Według założeń Clean Code wszystkie elementy oprogramowania takie jak klasy, struktury, funkcje, metody, obiekty miały nazwę adekwatną do realizowanej czynności lub przeznaczenia. Dodatkowo nazwy obiektów o lokalnym zakresie i krótkim czasie życia powinny być jak najkrótsze. Nazwy obiektów o dużym zasięgu powinny być jak najdłuższe. W przypadku funkcji zasda ta jest odwrócona: projektując interfejs klasy powinniśmy udostępniać użytkownikowi jak najkrótsze nazwy. Nazwy metod prywatnych powinny być jak najdłuższe i dokładnie opisywać za co odpowiada dana metoda. Metody powinny być krótkie. Robert C. Martin zaleca aby metody miały maksymalnie 6 linijek kodu. Jedną z podstawowych zasad tej ideologi jest unikanie komentowania kodu. W założeniach Clean Code kod powinien być napisany w taki sposób, aby było to zbędne. Mówi się wręcz że "Dobrze napisany kod czyta się jak prozę". Jednym z podstawowych założeń omawianej metodologii jest duże pokrycie kodu testami jednostkowymi. Nie zdecydowano się na wykorzystanie testów jednostkowych przy pracy nad omaiwanym komponentem ze względu na dynamiczny charakter projektu. Definiowanie zachowań w testach jednostkowych kosztuje czasami dużo czasu, a częste zmiany w systemie powodują że poświęcony czas często byłby marnowany.  Ideologia Clean Code zawiera także wiele innych zasad, których stosowanie prowadzi do zwiększenia porządku i czytelności kodu. Metodyka ta cieszy się dużą popularnością wśród wielu programistów, dodatkowo niektóre firmy wymagają od swoich programistów przestrzegania zasad tej metodyki.
+
+Dobra organizacja kodu oraz porządek ułatwiają rozwijanie projektu oraz systematyzują pracę. 
 
 \subsection{Wykorzystane biblioteki, narzędzia i zasoby}
-Projekt systemu biometrycznej kontroli dostępu został zrealizowany całkowicie w języku programowania Python. Decyzja ta była podyktowana głównie znaczącą ilością gotowych bibliotek, które znacząco ułatwiają pracę. Wykorzystana została wersja języka 2.7.9, ponieważ biblioteki języka Python często wymagają wersji 2.7 lub wyższej. W omawianym komponencie wykorzystano biblioteki NumPy, SciPy, scikit-learn, openCV oraz Dlib. 
-NumPy to biblioteka zawierająca wiele algorytmów do realizacji obliczeń numerycznych oraz implementację wielu matematycznych narzędzi związanych z algebrą liniową. Implementacja algorytmów macierzowych z NumPy cieszy się dużą popularnością, dlatego warto poświęcić czas na poznanie tej biblioteki, ponieważ stanowi ona fundament wielu innych projektów i bibliotek.
-SciPy jest biblioteką wykorzystywaną do obliczeń naukowych i inżynierskich. Zawiera algorytmy umożliwiające przeprowadzane obliczeń w wielu dziedzinach, dlatego również jest wykorzystywana jako baza innych projektów.
-Instalacja SciPy jest prerekwizytem do instlacji scikit-learn. Scikit-learn to biblioteka zawierająca wiele algorytmów z dziedziny machine learning oraz pattern recognition. Jest to kluczowa biblioteka w omawianym projekcie, ponieważ dostarcza najistatniejszych narzędzi. Jej zastosowanie znacznie ułatwiło pracę.
-OpenCv stanowi poteżny zbiór narzędzi do analizy oraz przetwarzania obrazów. Twórcy biblioteki skupiają się na działaniu w czasie rzeczywistym i zapewniają wielordzeniowe przetwarzanie. Jest to znaczące ułatwienie biorąc pod uwagę podstawową platformę sprzętową, na której był realizowany projekt. 
-Dlib jest biblioteką przewidzianą głównie dla języka C++, jednakże możliwe jest także wykorzystanie jest w Pythonie. Zawiera głównie algorytmy z dziedziny ML. W omawianym projekcie została wykorzystana do zbadania możliwości alternatywnych metod detekcji twarzy.
+Projekt systemu biometrycznej kontroli dostępu został zrealizowany całkowicie w języku programowania Python. Decyzja ta była podyktowana głównie znaczącą liczbą gotowych bibliotek, które znacząco ułatwiają pracę. Wykorzystana została wersja języka 2.7.9, ponieważ biblioteki języka Python często wymagają wersji 2.7 lub wyższej. W omawianym komponencie wykorzystano biblioteki NumPy, SciPy, scikit-learn, openCV oraz Dlib.
+\begin{enumerate}
+\item NumPy
 
-Wszystkie wymienione biblioteki są rozpowszechniane w ramach licencji new-BSD lub 3-clause BSD, co oznacza że wolno je wykorzystywać w celach akademickich lub komercyjnych. Zastosowanie bibliotek dostarczających zoptymalizowanych algorytmów znacznie ułatwiło i usystematyzowało pracę nad projektem.
+Jest to biblioteka zawierająca wiele algorytmów do realizacji obliczeń numerycznych oraz implementację wielu matematycznych narzędzi związanych z algebrą liniową. Implementacja algorytmów macierzowych z NumPy cieszy się dużą popularnością, dlatego warto poświęcić czas na poznanie tej biblioteki, ponieważ stanowi ona fundament wielu innych projektów i bibliotek. Operacje macierzowe z wykorzystaniem tej biblioteki są bardzo dobrze zoptymalizowane, dlatego zaleca się korzystanie z niej.
+
+\item SciPy
+
+SciPy jest biblioteką wykorzystywaną do obliczeń naukowych i inżynierskich. Zawiera algorytmy umożliwiające przeprowadzane obliczeń w wielu dziedzinach, dlatego również jest wykorzystywana jako baza innych projektów. Instalacja SciPy jest prerekwizytem do instlacji scikit-learn. 
+
+\item Scikit-learn 
+
+Jest to biblioteka zawierająca wiele algorytmów z dziedziny machine learning oraz pattern recognition. Jest to kluczowa biblioteka w omawianym projekcie, ponieważ dostarcza najistatniejszych narzędzi. Jej zastosowanie znacznie ułatwiło pracę.
+
+\item OpenCv
+
+Biblioteka ta stanowi poteżny zbiór narzędzi do analizy oraz przetwarzania obrazów. Twórcy biblioteki skupiają się na działaniu w czasie rzeczywistym i zapewniają narzędzia do zrównoleglania obliczeń. Jest to znaczące ułatwienie biorąc pod uwagę podstawową platformę sprzętową, na której był realizowany projekt. 
+
+\item Dlib 
+
+Dlib jest biblioteką przewidzianą głównie dla języka C++, jednakże możliwe jest także wykorzystanie jest w Pythonie. Zawiera głównie algorytmy z dziedziny Machine Learning (ML). W omawianym projekcie została wykorzystana do zbadania możliwości alternatywnych metod detekcji twarzy.
+
+\end{enumerate}
+
+Wszystkie wyżej wymienione biblioteki są rozpowszechniane w ramach licencji new-BSD lub 3-clause BSD, co oznacza że wolno je wykorzystywać w celach akademickich lub komercyjnych. Zastosowanie bibliotek dostarczających zoptymalizowanych algorytmów znacznie ułatwiło i usystematyzowało pracę nad projektem.
 
 Na początku pracy nad projektem podjęto próbę implementacji własnej wersji algorytmu PCA, aby lepiej zrozumieć i dokładnie prześledzić jego działanie. Algorytm ten działał poprawnie, ale względu na dużą kosztowność obliczeniową zdecydowano się na korzystanie z wersji udostępnionej w bibliotece scikit-learn. W trakcie późniejszych prac nad systemem znaleziono informację na temat tego co powodowało tak wysoką złożoność obliczeniową oraz sposób na jej uniknięcie. Zagadnienie to zostało opisane w rozdziale \ref{Realizacja algorytmu} Realizacja algorytmu.
 
 Diagramy i rysunki wykonano z wykorzystaniem strony draw.io. Do wszystkich zapożyczonych obrazów zostały podane źródła.
 
-Do przeprowadzenia badań jako bazy twarzy wykorzystano zbiór zdjęć dostępny w ramach biblioteki scikit-learn The Olivetti faces dataset. Posłużył on jako baza do wyznaczenia wartości własnych przestrzeni zdjęć twarzy.
+Do przeprowadzenia badań jako bazy twarzy wykorzystano zbiór zdjęć dostępny w ramach biblioteki scikit-learn The Olivetti faces dataset. Posłużył on jako baza do wyznaczenia wartości własnych przestrzeni zdjęć twarzy. Informacje na temat bazy zdjęć, oraz link do strony bazy zostały podane w \cite{Olivetti faces}.
 
 \newpage
 
@@ -141,7 +241,7 @@ Principle Components Analysis (PCA) jest algorytmem redukcji wymiarowości danyc
 
 \subsection{Wstęp matematyczny}
 
-Przedstawione tutaj wyprowadzenie jest podawane za Pattern recognition and machine learning.
+Przedstawione tutaj wyprowadzenie jest podawane za Pattern recognition and machine learning \cite{Pattern recognition}.
 
 Zakładamy że dany jest zbiór $D$-wymiarowych wektorów obserwacji: $\bb{x}_n , n \in 1,...,N $. Celem jest znalezienie nowej $M$-wymiarowej bazy ($M < D$), takiej że wariancja zbioru wektorów $\bb{x}_n$ po zrzutowaniu na nową bazę jest największa. W celu pokazania procesu i rozumowania przyjmijmy że szukamy jednego wektora $\bb{u}_1$. Wektor ten, ponieważ ma stanowić bazę musi być D-wymiarowy. Dodatkowo przyjmiemy że wektor $\bb{u}_1$ jest jednostkowy, co zapiszemy w postaci warunku:
 \begin{equation} \label{eq:wektor_jednostkowy}
@@ -348,12 +448,12 @@ Gdzie $\bb{v}_n$ oznacza $n$-ty element wektora $v$, a $\bb{u}_n$ oznacza $n$-ty
 		\begin{minipage}{2cm}
 			\includegraphics[width=2cm]{400.jpg}
 		\end{minipage}
-	\caption{Porównanie rekonstrukcji twarzy na postawie różnej liczby wykorzystanych składowych.} 
+	\caption{Porównanie rekonstrukcji zdjęcia twarzy autora pracy na postawie różnej liczby wykorzystanych składowych.} 
 	Po lewej oryginalne zdjęcie, potem kolejno rekonstrukcja z wykorzystaniem 100, 200, 300 i 400 składowych.
 	\label{fig:rekonstrukcja}
 \end{figure}
 
-Jak widać na rys. \ref{fig:rekonstrukcja} wraz ze zwiększeniem się ilości składowych jakość rekonstrukcji zdjęcia się polepsza. Użycie większej ilości składowych nie przynosi znaczącej poprawy rekonstrukcji, co można zaobserwować dla rekonstrukcji z wykorzystaniem 300 i 400 składowych. PCA jest bardzo lubianą metodą, ponieważ jest bardzo intuicyjna oraz pozwala na wizualne sprawdzenie rezultatów.
+Efekt rekonstrukcji przedstawiono na rys. \ref{fig:rekonstrukcja}. Dokonano redukcji wymiarowości zdjęcia twarzy autora systemu, oraz na podstawie uzyskanego wektora zrekonstruowano oryginalny obraz. Wraz ze zwiększeniem się ilości składowych jakość rekonstrukcji zdjęcia się polepsza. Użycie większej ilości składowych nie przynosi znaczącej poprawy jakości obrazu, co można zaobserwować dla rekonstrukcji z wykorzystaniem 300 i 400 składowych. PCA jest bardzo lubianą metodą, ponieważ jest bardzo intuicyjna oraz pozwala na wizualne sprawdzenie rezultatów.
 
 \begin{figure}
 \centering
@@ -396,7 +496,7 @@ Górny wiersz - wektory 0-4, dolny wiersz - wektory 392-396.
 
 W omawianym zagadnieniu wektory własne zyskały specjalną nazwę eigenfaces (twarze własne). Można zobaczyć jak wyglądają aplikując technikę odtwarzania zdjęcia na podstawie współrzędnych z przestrzeni o zredukowanej wymiarowości. Efekty zostały zaprezentowane na rys. \ref{fig:eigenfaces}. 
 
-Jak można łatwo zaobserwować wektory 0-4 zawierają najbardziej istotne zmiany pomiędzy poszczególnymi obrazami ze zbioru obserwacji. Wektora 392-396 przypominają losowy szum i niosą informację o szczegółach twarzy. Można zauważyć że pominięcie składowych z niższą wartością własną powoduje mniejszą utratę informacji.
+Jak można łatwo zaobserwować wektory 0-4 zawierają najbardziej istotne zmiany pomiędzy poszczególnymi obrazami ze zbioru obserwacji - odpowiadają one wartościom własnym o największej wariancji. Wektory 392-396 odpowiadają niższym wartościom własnym. Wektory te przypominają losowy szum i niosą informację o szczegółach twarzy. Można zauważyć że pominięcie składowych z niższą wartością własną powoduje mniejszą utratę informacji - dane w kierunkach wyznaczanych przez te wektory nie różnią się znacząco od siebie.
 
 \subsection{PCA jako samodzielny system rozpoznawania twarzy}
 Principle components analysis powoduje przeniesienie zdjęcia mającego wizualną reprezentację na abstrakcyjny wektor liczb. Umożliwia to skonstruowanie klasyfikatora z wykorzystaniem algorytmów umożliwiających klasyfikację. Jest to zagadnienie dobrze znane w dziedzinie Pattern Recognition (rozpoznawania wzorców) i opracowano wiele rozwiązań tego problemu. Zastosowanie algorytmów typu k-NN (k Nearest Neighbour - k najbliższych sąsiadów) lub NM (Nearest Mean - najbliższy średnia) umożliwia zaklasyfikowanie danego algorytmu do jednej z grup. Jest to możliwie dzięki wykorzystaniu reprezentacji zdjęcia jako wektora liczb. Oba algorytmy dysponują zbiorem uczącym, który opisuje dane grupy do których może zostać klasyfikowany dany wzorzec. 
@@ -498,9 +598,59 @@ Oprócz zastosowania w analizie mowy, często podowaną aplikacją ICA jest ocen
 
 \newpage
 
+
+\chapter{Zaimplementowany komponent}
+
+
+W projekcie przyjęto rozwiązanie polegające na detekcji twarzy i wykorzystaniu algorytmów redukcji wymiarowości do przygotowania wektora uczącego dla sieci o wielkości 400 elementów.
+
+
+Na potrzeby komponentu nie zaprojektowano interfesju graficznego (GUI), ze względu na brak takiej konieczności. Wszystkie rezultaty działania programu mogą być łatwo przechowywane w plikach na dysku, bądź wyświetlane na wyjście terminala. 
+
+
+\section{Protokoły komunikacyjne}
+Rozdział ten ma na celu opisanie wszystkich możliwych interfejsów z~których korzysta
+program. Opisany zostanie sposób komunikacji z~zewnętrznymi komponentami, takimi jak
+klasa do przetwarzania obrazów i~klasa do zarządzania siecią neuronową.
+Ponadto, zawarte będą w~nim informacje na temat komunikacji z~systemem przez
+użytkownika (panel użytkownika) i~administratora (aplikacja do zarządzania systemem).
+
+\section{Opis komponentów zewnętrznych}
+Cały projekt opiera się na istnieniu dwóch niezależnych od siebie komponentów:
+\begin{itemize}
+\item PCA Factory (autorstwo - Jędrzej Kozal). Komponent odpowiedzialny za przetwarzanie obrazów.
+Głównym celem istnienia tego komponentu jest szybka redukcja wymiarowości zdjęcia które poddawane jest analizie.
+Zrobione zdjęcie jest za pomocą mechanizmów zawartych w~bibliotece OpenCV przetwarzane przez kaskadę Haara (wykrywanie twarzy)
+a następnie za pomocą metody PCA (Principal Component Analysis - Analiza Składowych Głównych)
+dokonuje się redukcja wymiarowości konkretnej twarzy.
+Ważnym elementem tego komponentu jest fakt, że redukcja wymiarowości
+przeprowadzona tą metodą powoduje mało strat (proces ten jest odwracalny).
+Oznacza to, że jesteśmy w~stanie na podstawie twarzy otrzymać konkretny wektor
+cech powiązany bezpośrednio z~wyglądem. Wadą takiego rozwiązania jest,
+że warunki związane z~otoczeniem lub pomiarem (takie jak ustawienie twarzy do zdjęcia) mogą mieć
+duży wpływ na badany przez nas wektor.
+\item Network Manager (autorstwo - Filip Guzy). Jest to uniwersalny zarządca siecią neuronową.
+Głównym wejściem tego komponentu jest specjalnie przygotowany obiekt zawierający dane uczące do sieci neuronowej (pybrain.Dataset).
+Po przyjęciu takiego zbioru obiekt ten jest w~stanie nauczyć sieć neuronową, którą akurat reprezentuje
+(w ramach tego projektu był to perceptron wielowarstwowy) a następnie symulować działanie na tej sieci (aktywacja neuronów).
+\end{itemize}
+
+W celu umożliwienia pracy z~zewnętrznymi komponentami
+należało ustalić wspólny sposób komunikacji między różnymi częściami programu.
+Zdecydowano się komunikować pomiędzy komponentami za pomocą wewnętrznych interfejsów języka Python.
+Ponieważ Python jest językiem w~pełni wspierającym obiektowość można było użyć
+mechanizmów języka do łatwej komunikacji w~obszarze aplikacji.
+W dalszej części pracy komponenty zewnętrzne traktowane są jako "czarne skrzynki".
+
+Głównym zadaniem aplikacji zarządzającej systemem kontroli dostępu jest
+uporządkowanie przepływu danych i~zabezpieczenie bezpiecznego funkcjonowania
+aplikacji.
+
+\newpage
+
 \chapter{Zabezpieczenie przed możliwością oszukania systemu}
 
-W trakcie realizacji projektu specjalnościowego podjęto próbę zaadresowania kwestii oszukania całego systemu poprzez przedstawianie systemowi zdjęć ludzi, którym wcześniej przyznano prawo dostępu. Jest to realne zagrożenie, z którym twórcy systemów biometrycznych muszą się mierzyć. Dobrym przykładem może być tutaj system FaceID w IphoneX firmy Apple. Twórcy systemu zapewniali że nie da go się oszukać poprzez wykonanie masek 3d imitujących twarz człowieka. 9 listopada 2017 roku eksperci z firmy Bkav oświadczyli że udało im się złamać zabezpieczenia poprzez wykonanie specjalnej maski, wykorzystując drukarkę 3D, silikonowe elementy, wydruki 2D, oraz materiał imitujący skórę \cite{FaceID hacked}. Dodatkowo system FaceID okazał się nie być odporny na podobieństwo występujące między bliźniakami jednojajowymi. Bezpieczeństwo systemów biometrycznych jest więc bardzo ważną kwestią i podjęto próbę zbadania zagadnień z nim związanych.
+W trakcie realizacji projektu specjalnościowego, jako zdanie dodatkowe zbadano jakie mozliwości może dać dołączenie do systemu ekstrakcji głębi. Był to dodatek mający wskazać możliwe strony rozwoju całego projektu, przy jednoczesnej próbie zaadresowania kwestii bezpieczeństwa. W trakcie testów systemu odkryto że istnieje możliwość oszukania całego systemu poprzez przedstawianie systemowi zdjęć ludzi, którym wcześniej przyznano prawo dostępu. Jest to realne zagrożenie, z którym twórcy systemów biometrycznych muszą się mierzyć. Dobrym przykładem może być tutaj system FaceID w IphoneX firmy Apple. Twórcy systemu zapewniali że nie da go się oszukać poprzez wykonanie masek 3d imitujących twarz człowieka. 9 listopada 2017 roku eksperci z firmy Bkav oświadczyli że udało im się złamać zabezpieczenia poprzez wykonanie specjalnej maski, wykorzystując drukarkę 3D, silikonowe elementy, wydruki 2D, oraz materiał imitujący skórę \cite{FaceID hacked}. Dodatkowo system FaceID okazał się nie być odporny na podobieństwo występujące między bliźniakami jednojajowymi. Bezpieczeństwo systemów biometrycznych jest więc bardzo ważną kwestią i podjęto próbę zbadania zagadnień z nim związanych.
 
 \section{Przyjęta metodyka}
 Zbadano możliwości jakie daje ekstrakcja głębi z wykorzystaniem dwóch kamer. W obecnym projekcie systemu zintegrowanie systemu ekstrakcji głębi byłoby trudne, ponieważ w projekcie wykorzystywana jest kamera Rasbery Pi, podłączona przez port CSI, a mikrokomputery Rasbery Pi posiadają tylko jeden port CSI. Do badań wykorzystano dwie kamerki internetowo Creative VF0770. Do ekstrakcji głębi wykorzystano funkcje biblioteki OpenCV. Celem było uzyskanie mapy punktów w 3D, które następnie miały być aproksymowane płaszczyzną. Następnie należało wyznaczyć błąd aproksymacji, oraz próg, od którego mapa punktów miała być uznawana za płaską.
@@ -605,9 +755,11 @@ $\frac{x_0}{f} = \frac{x}{z}$. Wartość $u$ możemy uzyskać poprzez dodanie do
 	\label{fig:distortion}
 \end{figure}
 
-Zaprezentowany wcześniej model zakłada brak zakłóceń przy procesie przetwarzania obrazu. W rzeczywostych kamerach występują różne rodzaje zniekształceń. W dystorsji linie proste zostają zniekształcone. Wynika to z fizycznej niedoskonałości układów optycznych. Im dalej od osi optycznej tym większe zniekształcenie.
+Zaprezentowany wcześniej model zakłada brak zakłóceń przy procesie przetwarzania obrazu. W rzeczywostych kamerach występują różne rodzaje zniekształceń. W dystorsji linie proste z oryginalnej przestrzeni nie są proste na obrazie. Wynika to z fizycznej niedoskonałości układów optycznych. Im dalej od osi optycznej tym większe zniekształcenie.
 
-W bibliotece OpenCV przewiduje się współczynniki radialne $k_1, ..., k_6$ oraz styczne $p_1$ i $p_2$. Współczynniki te są wykorzystywane w poprzednim modelu w następujący sposób (podawane za dokumentacją OpenCV \cite{Dokumentacja OpenCV}):
+W bibliotece OpenCV przewiduje się współczynniki radialne $k_1, ..., k_6$ oraz styczne $p_1$ i $p_2$:
+(podawane za dokumentacją OpenCV \cite{Dokumentacja OpenCV})
+
 \begin{gather*}
 	x' = \frac{x}{z} \\
 	y' = \frac{y}{z} \\
@@ -617,6 +769,14 @@ W bibliotece OpenCV przewiduje się współczynniki radialne $k_1, ..., k_6$ ora
 	p_1(r^2 + 2 y'^2) + 2 p_2 x' y'
 \end{gather*}
 
+Współczynniki te następnie są wykorzystywane we wcześniejszym modelu w następujący sposób:
+
+\begin{gather*}
+	u = f_x x'' + c_x \\
+	v = f_y y'' + c_y
+\end{gather*}
+
+Widać że uzwględnienie współczynników dystorcji znacznie komplikuje przyjęty model, jednakże jest koniecznym krokiem przed przystąpieniem do dalszych operacji.
 
 \subsection{Kalibracja kamery}
 
@@ -690,10 +850,10 @@ Zakładając wcześniej przyjęty model rzeczywistej kamery oraz stosując upros
 \centering
 	\includegraphics[width=0.70\textwidth]{epipolar.jpg}\par\vspace{1cm}
 \caption{Podstawowa koncepcja geometrii epipolarnej.}
-	\label{fig:gradient}
+	\label{fig:epipolar_scene}
 \end{figure}
 
-Pierwszym spostrzeżeniem jest fakt że ogniska obu kamer, punkt P oraz jego projekcje na płaszczyznę obrazu leżą na jednej płaszczyźnie. Linia poprowadzona pomiędzy ogniskami kamer jest nazywana linią główną (ang. baseline). 
+Analizując scenę przedstawioną na rys. \ref{fig:epipolar_scene} można zauważyć, że ogniska obu kamer, punkt P oraz jego projekcje na płaszczyznę obrazu leżą na jednej płaszczyźnie. Linia poprowadzona pomiędzy ogniskami kamer jest nazywana linią główną (ang. baseline). 
 Punkty przecięcia linii głównej z płaszczyzną główną ($e$) nazywane są epipolami (ang. epipoles). Jeśli obie kamery się widzą to epipole są widoczne jako środek drugiej kamery na obrazie.
 Płaszczyzna przechodząca przez dowolny punkt P widziany w obu kamerach, oraz przez linię główną jest nazywana płaszczyzną epipolarną.
 Linia epipolarną nazywamy linię będącą na przecięciu płaszczyzny obrazu z płaszczyzną epipolarną. Wszystkie linie epipolarne przecinają się w epipolach.
@@ -748,7 +908,7 @@ Warto zwrócić uwagę że wzór \ref{eq:disp} nie traci na ogólności, gdy pun
 
 
 \section{Wyniki}
-Dokonano kalibracji kamery, wyznaczono współczynniki wewnętrzne i zewnętrzne kamery. Jednakże nie udało się uzyskać zadowalających rezultatów. Po przedstawieniu systemowi zdjęcia osoby wyświetlonego na laptopie uzyskano mapę głębi przedstawioną na rys. \ref{fig:extraction_fail}. Jak można z łatwością zauważyć zauważyć na mapie głębokości otrzymano punkty o różnej wartości współrzędnej z.
+Dokonano kalibracji kamery, wyznaczono współczynniki wewnętrzne i zewnętrzne kamery. Jednakże nie udało się uzyskać zadowalających rezultatów. Po przedstawieniu systemowi zdjęcia osoby wyświetlonego na laptopie uzyskano mapę głębi przedstawioną na rys. \ref{fig:extraction_fail}. Jak można z łatwością zauważyć zauważyć na mapie głębokości otrzymano punkty o różnej wartości współrzędnej z, czyli systemowi nie udało się poprawnie zidentyfikować płaskiej powierzchni. Gdyby uzyskana mapa głębi była z dopuszczalnym błędem aproskymowalna płaszczyną, kolejnym krokiem byłoby zobserwowanie jak system zachowuje się dla normalnej twarzy. Na podstawie obserwacji, oraz błędów aproksymacji płaszczyzną planowano ustalić próg błędu aproksymacji. Po przekroczeniu takiego progu system mógłby uznać, że podejmowana jest próba oszustwa.
 
 Trudno jest określić jedną przyczynę niepowodzenia. Na pewno ważną rolę odgrywa kalibracja kamer. Wielokrotnie podejmowano próbę poprawiania uzyskiwanych wyników poprzez ponowną kalibrację, ale nie wpłynęło to w znaczący sposób na rezultaty. W związku z ograniczoną ilością czasu projekt nie mógł zostać ukończony, pomimo wielu godzin poświęconych na analizę problemu.
 
@@ -758,13 +918,32 @@ Trudno jest określić jedną przyczynę niepowodzenia. Na pewno ważną rolę o
 
 \section{Podsumowanie projektu}
 
-W trakcie realizacji projektu przeanalizowano dostępne metody detekcji twarzy i ekstrakcji cech. Następnie wybrano algorytmy adekwatne dla realizowanego projektu i wykorzystano je. Bardzo pomocne były biblioteki, które pozwoliły skupić się na tworzeniu systemu, a nie implementacji alogrytmów. Oszczędziło to czas potrzebny na implementację rozwiązań. W projekcie przyjęto rozwiązanie polegające na detekcji twarzy i wykorzystaniu algorytmów redukcji wymiarowości do przygotowania wektora uczącego dla sieci o wielkości 400 elementów. Jest to dość popularne rozwiązanie tego problemu i daje dość dobre rezultaty. Nie przeprowadzono testów modułowych, system był testowany jako całość. Powodem takiego stanu rzeczy jest trudność w testowaniu omawianego komponentu, ze względu na dość abstrakcyjny charakter, w porównanianu do reszy systemu. Testowanie rezultatów działania całego systemu jest kosztowne, ponieważ dowolna zmiana w systemie ekstrakcji cech, powoduje konieczność zaczynania procesu uczenia sieci neuronowej od nowa, co jest kosztowne i czasochłonne. W dalszej części tego rozdziału przedstawiono koncepcję testów modułowych dla komponentu realizującego ekstrakcję cech.
+W trakcie pracy nad projektem udało się zrealizować następujące zadania:
+\begin{itemize}
 
-Realizowany projekt umożliwił także opracowanie i wykorzystanie wydajnych sposobów na pracę w grupie. Komponentowe podejście do systemu było bardzo dobrym rozwiązaniem, umożliwiającym zrównoleglenie pracy. Dodatkowo ustalenie interfejsów między komponentami pozwala na przeprowadzanie daleko idących zmian w obrębie komponentu, bez konieczności zmiany innych części systemu. Przeprowadzenie refaktoryzacji kodu po spełnieniu podstawowych założeń systemu było bardzo pomocne i ułatwiło rozwój aplikacji.
+\item Ustalono protokoły komunikacji z innymi komponentami.
+
+\item Wykorzystano implementację alogrytmu kaskad Haara do wykrycia czy na zdjęciu jest twarz ludzka oraz do wyznaczenia współrzędnych twarzy.
+
+\item Przeanalizowano działanie algorytmu PCA pozwalającego na redukcję wymiarowości i wykorzystano go do przygotowania wektora uczącego dla sieci neuronowej.
+
+\item Przetestowano poprawność działania całego systemu.
+
+\item Zaproponowano alternatywne metody rozwiązania postawionego problemu.
+
+\item Zbadano jakie możliwości w projekcie może oferować ekstrakcja głębi na podstawie obrazów z dwóch kamer.
+
+\end{itemize}
+
+Rozwiązanie zaproponowane w projekcie cieszy się dużą popularnością i daje wystarczająco dobre rezultaty. Praca z wykorzystaniem algorytmu PCA jest wygodna, ponieważ dane na których operujemy mają geometryczną interpretację. Dodatkowym atutem w analizowanym zastosowaniu PCA jest możliwość wizualizacji rezultatów, co ułatwia weryfikację otrzymanych wyników. Ze względu na dużą dostępność bibliotek, w trakcie realizacji projektu przywiązano większą wagę do zrozumienia podstaw działania algorytmów. W pracy starano się unikać bezpośrednich odwołań do sposobu działania bibliotek, raczej skupiano się na fundamentach teoretycznych analizowanych algorytmów. Owocem takiego podejścia jest prostota zrealizowanego komponentu pod kątem programistycznym, przy jednoczesnym spełnieniu głównego celu postawionego przed rozpoczęciem realizacji projektu: zwiększenie wiedzy na temat stosowanych rozwiązań w dziedzinie Pattern Recognition. 
+
+W projekcie nie przeprowadzono testów modułowych komponentu, system był testowany jako całość. Powodem takiego stanu rzeczy jest trudność w testowaniu omawianego komponentu, ze względu na jego dość abstrakcyjny charakter, w porównanianu do reszty systemu. Testowanie rezultatów działania całego systemu jest czasochłonne. Dowolna zmiana w systemie ekstrakcji cech powoduje konieczność zaczynania procesu uczenia sieci neuronowej od nowa. W dalszej części tego rozdziału przedstawiono pomysł na zaimplementowanie testów modułowych dla komponentu realizującego ekstrakcję cech.
+
+Realizowany projekt umożliwił opracowanie i wykorzystanie wydajnych sposobów na pracę w grupie. Komponentowe podejście do systemu umożliwiło prowadzenie równoległych prac nad rozwojem całego systemu. Ustalenie interfejsów między komponentami pozwala na przeprowadzanie daleko idących zmian w obrębie komponentu, bez konieczności wprowadzania zmian w innych częściach systemu.
 
 \section{Możliwe usprawnienia}
 
-System w obecnym stanie spełnia podstawowe założenia jakie zostały przed nim postawione, t.j. rozpoznawanie twarzy niewielkiej grupy osób oraz ich identyfikacja. Jednakże jest wiele aspektów które można poprawić i rozwinąć. W niniejszej sekcji przeprowadzono dyskusję najważniejszych problemów, które należy zaadresować przy dalszej pracy nad projektem.
+System jako całość w obecnym stanie spełnia podstawowe założenia jakie zostały przed nim postawione, t.j. rozpoznawanie twarzy niewielkiej grupy osób oraz ich identyfikacja. Jednakże jest wiele aspektów które można poprawić i rozwinąć. W niniejszej sekcji przeprowadzono dyskusję najważniejszych problemów, które należy zaadresować przy dalszej pracy nad projektem.
 
 \subsubsection{Testy modułowe}
 
@@ -798,6 +977,17 @@ Wydawnictwo Komunikacji i Łączności, Warszawa 2000
 Stanisław Osowski.
 \textit{Sieci Neuronowe w ujęciu algorytmicznym}
 Wydawnictwo Naukowo-Techniczne, Warszawa 1996
+
+\bibitem{Wzorce projektowe}
+Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides
+\textit{Wzorce projektowe. Elementy oprogramowania obiektowego wielokrotnego użytku}
+Wydawnictwo Helion, Gliwice 2017
+
+\bibitem{Clean Code}
+Martin, Robert C.
+\textit{Czysty Kod}
+Wydawnictwo Helion, Gliwice 2014
+
 
 \bibitem{AdaBoost}
 Yoav Freund, Robert E. Schapire.
@@ -856,6 +1046,10 @@ Pedregosa, F. and Varoquaux, G. and Gramfort, A. and Michel, V.
          Cournapeau, D. and Brucher, M. and Perrot, M. and Duchesnay, E.
  \textit{Scikit-learn: Machine Learning in {P}ython}
  Journal of Machine Learning Research, volume 12, strony 2825-2830, 2011
+ 
+\bibitem{Olivetti faces}
+Informacje na temat zbioru zdjęć twarzy zawartym w bibliotece scikit-learn.
+\\\texttt{http://scikit-learn.org/stable/datasets/olivetti\_faces.html}
 
 \bibitem{FaceID hacked}
 News o pokonaniu zabezpieczeń systemu FaceID

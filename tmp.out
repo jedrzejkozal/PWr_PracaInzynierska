@@ -16,13 +16,16 @@
 \BOOKMARK [1][-]{section.3.2}{Inne podejscia do problemu redukcji wymiarowosci}{chapter.3}% 16
 \BOOKMARK [2][-]{subsection.3.2.1}{Nonnegative Matrix Factorization}{section.3.2}% 17
 \BOOKMARK [2][-]{subsection.3.2.2}{Independent Components Analysis}{section.3.2}% 18
-\BOOKMARK [0][-]{chapter.4}{Zabezpieczenie przed mozliwoscia oszukania systemu}{}% 19
-\BOOKMARK [1][-]{section.4.1}{Przyjeta metodyka}{chapter.4}% 20
-\BOOKMARK [1][-]{section.4.2}{Podstawy teoretyczne}{chapter.4}% 21
-\BOOKMARK [2][-]{subsection.4.2.1}{Kalibracja kamery}{section.4.2}% 22
-\BOOKMARK [2][-]{subsection.4.2.2}{Geometria epipolarna}{section.4.2}% 23
-\BOOKMARK [2][-]{subsection.4.2.3}{Szacowanie g\233ebokosci}{section.4.2}% 24
-\BOOKMARK [1][-]{section.4.3}{Wyniki}{chapter.4}% 25
-\BOOKMARK [0][-]{chapter.5}{Zakonczenie}{}% 26
-\BOOKMARK [1][-]{section.5.1}{Podsumowanie projektu}{chapter.5}% 27
-\BOOKMARK [1][-]{section.5.2}{Mozliwe usprawnienia}{chapter.5}% 28
+\BOOKMARK [0][-]{chapter.4}{Zaimplementowany komponent}{}% 19
+\BOOKMARK [1][-]{section.4.1}{Protoko\233y komunikacyjne}{chapter.4}% 20
+\BOOKMARK [1][-]{section.4.2}{Opis komponent\363w zewnetrznych}{chapter.4}% 21
+\BOOKMARK [0][-]{chapter.5}{Zabezpieczenie przed mozliwoscia oszukania systemu}{}% 22
+\BOOKMARK [1][-]{section.5.1}{Przyjeta metodyka}{chapter.5}% 23
+\BOOKMARK [1][-]{section.5.2}{Podstawy teoretyczne}{chapter.5}% 24
+\BOOKMARK [2][-]{subsection.5.2.1}{Kalibracja kamery}{section.5.2}% 25
+\BOOKMARK [2][-]{subsection.5.2.2}{Geometria epipolarna}{section.5.2}% 26
+\BOOKMARK [2][-]{subsection.5.2.3}{Szacowanie g\233ebokosci}{section.5.2}% 27
+\BOOKMARK [1][-]{section.5.3}{Wyniki}{chapter.5}% 28
+\BOOKMARK [0][-]{chapter.6}{Zakonczenie}{}% 29
+\BOOKMARK [1][-]{section.6.1}{Podsumowanie projektu}{chapter.6}% 30
+\BOOKMARK [1][-]{section.6.2}{Mozliwe usprawnienia}{chapter.6}% 31
