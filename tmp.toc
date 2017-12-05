@@ -16,7 +16,7 @@
 \contentsline {section}{\numberline {3.2}Inne podej\IeC {\'s}cia do problemu redukcji wymiarowo\IeC {\'s}ci}{17}{section.3.2}
 \contentsline {subsection}{\numberline {3.2.1}Nonnegative Matrix Factorization}{17}{subsection.3.2.1}
 \contentsline {subsection}{\numberline {3.2.2}Independent Components Analysis}{18}{subsection.3.2.2}
-\contentsline {chapter}{\numberline {4}Zaimplementowany komponent}{20}{chapter.4}
+\contentsline {chapter}{\numberline {4}Zarys oprogoramowania}{20}{chapter.4}
 \contentsline {section}{\numberline {4.1}Protoko\IeC {\l }y komunikacyjne}{20}{section.4.1}
 \contentsline {section}{\numberline {4.2}Opis komponent\IeC {\'o}w zewn\IeC {\k e}trznych}{20}{section.4.2}
 \contentsline {chapter}{\numberline {5}Zabezpieczenie przed mo\IeC {\.z}liwo\IeC {\'s}ci\IeC {\k a} oszukania systemu}{22}{chapter.5}
