@@ -638,7 +638,7 @@ Konstruktor pełni ważną rolę w klasie, ponieważ wykorzystano w nim technik�
         self.prouctType = CoordinatesProduct
 \end{lstlisting}
 
-Użytkownik klasy przy tworzeniu obiektu typu AbstractFactory podaje w argumentach konstruktora jakie warianty klas do detekcji twarzy, ekstrakcji cech oraz przechowywania informacji na temat produktu powinny zostać wykorzystywane. Dodatkowo w konstruktorze są inicjalizowane stałymi rozmiary wektora przed i po redukcją wymiarowości. Wartości te wynoszą odpowiedni 4096 i 400. Pierwsza z tych wartości odpowiada rozmiarowi obrazka 64$\times$64 piksele i została przyjęta w celu przyśpieszenia wykonywanych operacji. Druga wartość jest efektem eksperymentów z siecią neuronową -- dla 400-elementowych wektorów uzyskiwano najlepsze rezultaty. Wartości te nie powinny być przyjęte jako stałe i użytkownik powinien mieć możliwość zmiany ich wartości, nie jest to jednakże rażące niedopatrzenie.
+Użytkownik klasy przy tworzeniu obiektu typu AbstractFactory podaje w argumentach konstruktora jakie warianty klas do detekcji twarzy, ekstrakcji cech oraz przechowywania informacji na temat produktu powinny zostać wykorzystywane. Dodatkowo w konstruktorze są inicjalizowane stałymi rozmiary wektora przed i po redukcją wymiarowości. Wartości te wynoszą odpowiedni 4096 i 400. Pierwsza z tych wartości odpowiada rozmiarowi obrazka 64$\times$64 piksele i została przyjęta w celu dopasowania rozmiarów przetwarzany wektorów do tych ze zbioru Olivetti faces dataset. Druga wartość jest efektem eksperymentów z siecią neuronową -- dla 400-elementowych wektorów uzyskiwano najlepsze rezultaty. Wartości te nie powinny być przyjęte jako stałe i użytkownik powinien mieć możliwość zmiany ich wartości, nie jest to jednakże rażące niedopatrzenie.
 
 \subsection{Pozostałe funkcje}
 
@@ -677,8 +677,8 @@ Klasa ta posiada metodę łączącą wszystkie operacje wykonywane w ramach dzia
         resized_face = self.crop_img(grayscale_image, x, y, w, h)
         if output_img_filename != None:
         	self.debug_show(resized_face)
-            cv2.imwrite(output_img_filename, face)
-        return face
+            cv2.imwrite(output_img_filename, resized_face)
+        return resized_face
 \end{lstlisting}
 
 Jak łatwo można zauważyć podanie do metody dodatkowego parametru w postaci ścieżki i nazywy pliku do zapisania, umożliwia łatwe debugowanie aplikacji. Metoda ta jest wywoływana w detect\_face w AbstractFactory.
@@ -736,6 +736,14 @@ W klasie PCA wykorzystano klasę ScaleVector odpowiedzialną za skalowanie wekto
 
 \section{Pozostała część oprogramowania}
 Przedstawione wcześniej klasy stanowią całośc komponentu działającego w systemie. Nie jest to jednakże cały kod, jaki został sporządzony w trakcie realizacji projektu. Wyznacznie wektorów własnych, oraz skrypty umożliwiające rekonstrukcję zdjęć na podstawie uzyskanych współrzędnych odgrywały bardzo ważną rolę przy powstawaniu systemu. Nie zostały one włączone bezpośrednio do kodu komponentu, ponieważ są one tam zbędne. Po obliczeniu wektrów własnych dla PCA są one zapisywane w pliku z rozszerzeniem .npy, z którego następnie korzysta klasa PCA w trakcie działania systemu. Obecny wygląd komponentu jest efektem wielu prób i błędów, próbowania możliwości jakie oferują wykorzystane biblioteki oraz wieloma poprawkami na przestrzeni życia całego projektu.
+
+\begin{figure}
+\centering
+	\includegraphics[width=0.90\textwidth]{Diagram.jpg}\par\vspace{1cm}
+\caption{Diagram klas wkorzystywanych w komponencie.}
+	\label{fig:diagram_klas}
+\end{figure}
+
 
 \newpage
 
