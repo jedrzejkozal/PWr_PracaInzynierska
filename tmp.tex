@@ -10,6 +10,7 @@
 \usepackage{tabstackengine}
 \usepackage{caption}
 \usepackage{subfig}
+\usepackage{listings}
 
 \newcommand{\bb}{\textbf}
 
@@ -133,7 +134,7 @@ Segregacja interfejsów polega na ograniczeniu rozmiarów interfejsów. Klasy po
 
 \end{enumerate}
 
-Clean Code to zbiór zasad dotyczących tworzenia nazewnictwa i pisania oprogramowania w taki sposób, aby był on jak najbardziej czytelny dla innych programistów. Według założeń Clean Code wszystkie elementy oprogramowania takie jak klasy, struktury, funkcje, metody, obiekty miały nazwę adekwatną do realizowanej czynności lub przeznaczenia. Dodatkowo nazwy obiektów o lokalnym zakresie i krótkim czasie życia powinny być jak najkrótsze. Nazwy obiektów o dużym zasięgu powinny być jak najdłuższe. W przypadku funkcji zasda ta jest odwrócona: projektując interfejs klasy powinniśmy udostępniać użytkownikowi jak najkrótsze nazwy. Nazwy metod prywatnych powinny być jak najdłuższe i dokładnie opisywać za co odpowiada dana metoda. Metody powinny być krótkie. Robert C. Martin zaleca aby metody miały maksymalnie 6 linijek kodu. Jedną z podstawowych zasad tej ideologi jest unikanie komentowania kodu. W założeniach Clean Code, kod powinien być napisany w taki sposób, aby używanie komentarzy było zbędne. Mówi się wręcz, że "Dobrze napisany kod czyta się jak prozę". Jednym z podstawowych założeń omawianej metodologii jest duże pokrycie kodu testami jednostkowymi. Nie zdecydowano się na wykorzystanie testów jednostkowych przy pracy nad omawianym komponentem ze względu na dynamiczny charakter projektu. Definiowanie zachowań w testach jednostkowych jest czasochłonne, a częste zmiany w systemie powodują, że poświęcony czas często byłby COŚ WYMYŚŁ.  Ideologia Clean Code zawiera także wiele innych zasad, których stosowanie prowadzi do zwiększenia porządku i czytelności kodu. Metodyka ta cieszy się dużą popularnością wśród wielu programistów, dodatkowo niektóre firmy wymagają od swoich programistów przestrzegania zasad tej metodyki.
+Clean Code to zbiór zasad dotyczących tworzenia nazewnictwa i pisania oprogramowania w taki sposób, aby był on jak najbardziej czytelny dla innych programistów. Według założeń Clean Code wszystkie elementy oprogramowania takie jak klasy, struktury, funkcje, metody, obiekty miały nazwę adekwatną do realizowanej czynności lub przeznaczenia. Dodatkowo nazwy obiektów o lokalnym zakresie i krótkim czasie życia powinny być jak najkrótsze. Nazwy obiektów o dużym zasięgu powinny być jak najdłuższe. W przypadku funkcji zasda ta jest odwrócona: projektując interfejs klasy powinniśmy udostępniać użytkownikowi jak najkrótsze nazwy. Nazwy metod prywatnych powinny być jak najdłuższe i dokładnie opisywać za co odpowiada dana metoda. Metody powinny być krótkie. Robert C. Martin zaleca aby metody miały maksymalnie 6 linijek kodu. Jedną z podstawowych zasad tej ideologi jest unikanie komentowania kodu. W założeniach Clean Code, kod powinien być napisany w taki sposób, aby używanie komentarzy było zbędne. Mówi się wręcz, że "Dobrze napisany kod czyta się jak prozę". Jednym z podstawowych założeń omawianej metodologii jest duże pokrycie kodu testami jednostkowymi. Nie zdecydowano się na wykorzystanie testów jednostkowych przy pracy nad omawianym komponentem ze względu na dynamiczny charakter projektu. Definiowanie zachowań kodu w testach jednostkowych jest czasochłonne, a częste zmiany w systemie powodują, że należałby usuwać część testów.  Ideologia Clean Code zawiera także wiele innych zasad, których stosowanie prowadzi do zwiększenia porządku i czytelności kodu. Metodyka ta cieszy się dużą popularnością wśród wielu programistów, dodatkowo niektóre firmy wymagają od swoich programistów przestrzegania zasad tej metodyki.
 
 Dobra organizacja kodu oraz porządek ułatwiają rozwijanie projektu oraz systematyzują pracę. 
 
@@ -401,7 +402,7 @@ Należy zwrócić uwagę na wymiar macierzy S. Przypomnijmy, że D to wymiar wek
 	u_i = A v_i
 \end{equation}
 
-gdzie $v_i$ oznacza wartość własną macierzy $A^T A$. Poprzez zamianę miejscami macierzy $A$ i $A^T$ zyskujemy inny wymiar macierzy. Iloczyn ma teraz rozmiar NxN. Przypomnijmy, że N to liczność zbioru obserwacji. Zazwyczaj N jest znacznie niższe od D, co może przyśpieszyć obliczenia. Korzystając z tego uproszczenia należy pamiętać, że zostaje nałożone ograniczenie co do wielkości M. Jako, że zostają obliczone wektory własne macierzy o rozmiarze NxN, może ich być maksymalnie N. Oznacza to, że ilość wymiarów danych po redukcji nie może przekraczać ilości danych ze zbioru obserwacji ($M < N$). Ograniczenie to nie jest zbyt dotkliwe, gdy dysponujemy odpowiednio wielkim zbiorem testowym. W przypadku tej pracy, dostępność danych stanowiących podstawę CZEGO????????????????????????? nie była problemem.
+gdzie $v_i$ oznacza wartość własną macierzy $A^T A$. Poprzez zamianę miejscami macierzy $A$ i $A^T$ zyskujemy inny wymiar macierzy. Iloczyn ma teraz rozmiar NxN. Przypomnijmy, że N to liczność zbioru obserwacji. Zazwyczaj N jest znacznie niższe od D, co może przyśpieszyć obliczenia. Korzystając z tego uproszczenia należy pamiętać, że zostaje nałożone ograniczenie co do wielkości M. Jako, że zostają obliczone wektory własne macierzy o rozmiarze NxN, może ich być maksymalnie N. Oznacza to, że ilość wymiarów danych po redukcji nie może przekraczać ilości danych ze zbioru obserwacji ($M < N$). Ograniczenie to nie jest zbyt dotkliwe, gdy dysponujemy odpowiednio wielkim zbiorem obserwacji. W przypadku tej pracy, rozmiar bazy zdjęć nie był problemem.
 
 Po konwersji do oryginalnej wymiarowości dysponujemy bazą $M$ wektorów $D$-wymiarowych. Zbiór $M$ wektorów jest nazywany wartościami własnymi i zostanie wykorzystany w drugim etapie. Dla uproszczenia wektory własne zostaną włączone do jednej macierzy:
 \begin{equation}
@@ -503,7 +504,7 @@ Principle components analysis powoduje przeniesienie zdjęcia mającego wizualn�
 W przypadku NM, dla każdej z grup, obliczana jest średnia wektorów, następnie obliczana jest odległość między wektorem podlegającym klasyfikacji, a średnimi zbiorów. Wektor zostaje zaklasyfikowany do zbioru, którego średnia jest w najmniejszej odległości od wektora. 
 W przypadku algorytmu k-NN odległość jest obliczana pomiędzy wszystkimi wektorami ze zbioru uczącego. Następnie zostaje wybrane k najbliższych sąsiadów. Zbiór, którego najwięcej przedstawicieli zostało wybranych wygrywa. Dla przypadku dychotomii jeżeli k jest nieparzyste, to możliwa jest jednoznaczna klasyfikacja. Gdy ilość zbiorów, do których można zaklasyfikować obraz jest większa od dwóch, możliwe jest wystąpienie wypadku, w którym nie można jednoznacznie zaklasyfikować obiekt. 
 W przypadku systemu kontroli dostępu może być wskazane wprowadzenie maksymalnej odległości między średnią lub najbliższym sąsiadem, a klasyfikowanym wektorem, przy której może nastąpić klasyfikacja. Powyżej tej odległości obraz nie powinien być zaklasyfikowany do którejkolwiek z grup. 
-Dodatkowo warto zwrócić uwagę na brak kontroli PCA nad przetwarzanymi danymi. Jest to metoda statystyczna, na jej ZMIEŃ TO WEJŚCIE wejście można podać zdjęcie myszy lub samochodu, które zostanie przetworzone. Nie wiadomo jakie współrzędne można uzyskać, dzięki takiej operacji. System rozpoznawania twarzy powinien więc odrzucić takie zdjęcie na etapie wykrywania pozycji twarzy.
+Dodatkowo warto zwrócić uwagę na brak kontroli PCA nad przetwarzanymi danymi. Zdjęcie przetwarzane przez metodę statystyczną może przedstawiać mysz lub samochód i zostanie podany wynik. Nie wiadomo jakie współrzędne można uzyskać, dzięki takiej operacji ani jak zostaną zinterpretowane wyniki przez system. Algorytm rozpoznawania twarzy powinien odrzucić takie zdjęcie na etapie wykrywania obecności twarzy.
 
 \section{Inne podejścia do problemu redukcji wymiarowości}
 Istnieje wiele algorytmów umożliwiających redukcję wymiarowości. Ze względu na rosnącą ilość danych do przetwarzania, algorytmy te zyskały na znaczeniu. W niniejszym fragmencie pracy zostaną krótko omówione zasady działania trzech algorytmów umożliwiających redukcję wymiarowości.
@@ -599,52 +600,142 @@ Oprócz zastosowania w analizie mowy, często podawaną aplikacją ICA jest ocen
 \newpage
 
 
-\chapter{Zarys oprogoramowania}
+\chapter{Omówienie implementacji}
 
+W tym rozdziale przedstawiono szczegóły implementacji kodu realizującego omawiane funkcjonalności komponentu. Omówiono podstawowe koncepcje i założenia kryjące się za przyjętymi rozwiązaniami. Omówiono funkcjonalności oraz zakres odpowiedzialności poszczególnych klas. Warto nadmienić że wszystkie przedstawione tutaj rozwiązania dotyczą najnowszej wersji komponentu, która nie została jeszcze zintegrowana z resztą systemu.
 
-W projekcie przyjęto rozwiązanie polegające na detekcji twarzy i wykorzystaniu algorytmów redukcji wymiarowości do przygotowania wektora uczącego dla sieci o wielkości 400 elementów.
+\section{Klasa zarządzająca komponentem}
 
+W najnowszej wersji projektu najważniejszą klasą w omawianym komponencie jest AbstractFactory. Wzorzec projektowy Fabryki Abstrakcyjnej dobrze oddaje działanie komponentu z punktu widzenia reszty systemu, choć biorąc pod uwagę zakres odpowiedzialności klasy odpowiedni jest także wzorzec Budowniczy. Jest to klasa zawierająca wszystkie niezbędne algorytmy, które są wykorzystywane przy procesach wykrywania twarzy i ekstrakcji cech. Zadaniem tej klasy jest przykrycie wszystkich zależności i szczegółów związanych z operacją przekształcania zdjęcia w wektor liczb. Efektem tej operacji jest zwrócenie obiektu Product, omówionego w późniejszej części tego rozdziału.
 
-Na potrzeby komponentu nie zaprojektowano interfesju graficznego (GUI), ze względu na brak takiej konieczności. Wszystkie rezultaty działania programu mogą być łatwo przechowywane w plikach na dysku, bądź wyświetlane na wyjście terminala. 
+\subsection{Interfejs do komunikacji z resztą systemu}
 
+W obiektowych językach programowania często można się spotkać z podziałem metod na publiczne i prywatne. Podział ten wymusza dobre praktyki na programistach, ale ma jeden bardzo praktyczny aspekt. Wszystkie metody publiczne klasy to interfejs jaki zostaje udostępniony użytkownikowi. Jest to dość naturalny podział - do interfejsu klasy zaliczają się wszystkie metody z jakich może skorzystać użytkownik. W języku Python nie przewidziano podziału na metody prywatne i publiczne. Wszystkie metody klasy są publiczne z założenia. Powoduje to brak jasno określonego interfejsu klasy. W najnowszej wersji komponentu klasa AbstractFactory jako interfejs udostępnia metodę:
 
-\section{Protokoły komunikacyjne}
-Rozdział ten ma na celu opisanie wszystkich możliwych interfejsów z~których korzysta
-program. Opisany zostanie sposób komunikacji z~zewnętrznymi komponentami, takimi jak
-klasa do przetwarzania obrazów i~klasa do zarządzania siecią neuronową.
-Ponadto, zawarte będą w~nim informacje na temat komunikacji z~systemem przez
-użytkownika (panel użytkownika) i~administratora (aplikacja do zarządzania systemem).
+\begin{lstlisting}[language=Python]
+    def fabricate(self, img_filename):
+        prod = self.prouctType(self.n_dim)
+        prod.set(self.compute_coor(self.detect_face(img_filename)))
+        return prod
+\end{lstlisting}
 
-\section{Opis komponentów zewnętrznych}
-Cały projekt opiera się na istnieniu dwóch niezależnych od siebie komponentów:
-\begin{itemize}
-\item PCA Factory (autorstwo - Jędrzej Kozal). Komponent odpowiedzialny za przetwarzanie obrazów.
-Głównym celem istnienia tego komponentu jest szybka redukcja wymiarowości zdjęcia które poddawane jest analizie.
-Zrobione zdjęcie jest za pomocą mechanizmów zawartych w~bibliotece OpenCV przetwarzane przez kaskadę Haara (wykrywanie twarzy)
-a następnie za pomocą metody PCA (Principal Component Analysis - Analiza Składowych Głównych)
-dokonuje się redukcja wymiarowości konkretnej twarzy.
-Ważnym elementem tego komponentu jest fakt, że redukcja wymiarowości
-przeprowadzona tą metodą powoduje mało strat (proces ten jest odwracalny).
-Oznacza to, że jesteśmy w~stanie na podstawie twarzy otrzymać konkretny wektor
-cech powiązany bezpośrednio z~wyglądem. Wadą takiego rozwiązania jest,
-że warunki związane z~otoczeniem lub pomiarem (takie jak ustawienie twarzy do zdjęcia) mogą mieć
-duży wpływ na badany przez nas wektor.
-\item Network Manager (autorstwo -- Filip Guzy). Jest to uniwersalny zarządca siecią neuronową.
-Głównym wejściem tego komponentu jest specjalnie przygotowany obiekt zawierający dane uczące do sieci neuronowej (pybrain.Dataset).
-Po przyjęciu takiego zbioru obiekt ten jest w~stanie nauczyć sieć neuronową, którą akurat reprezentuje
-(w ramach tego projektu był to perceptron wielowarstwowy) a następnie symulować działanie na tej sieci (aktywacja neuronów).
-\end{itemize}
+Jest to metoda pozwalająca na przeprowadzanie całego procesu detekcji twarzy i ekstrakcji cech. Jako arguemnt przyjmuje nazwę pliku ze zdjęciem, a zwraca produkt.
 
-W celu umożliwienia pracy z~zewnętrznymi komponentami
-należało ustalić wspólny sposób komunikacji między różnymi częściami programu.
-Zdecydowano się komunikować pomiędzy komponentami za pomocą wewnętrznych interfejsów języka Python.
-Ponieważ Python jest językiem w~pełni wspierającym obiektowość można było użyć
-mechanizmów języka do łatwej komunikacji w~obszarze aplikacji.
-W dalszej części pracy komponenty zewnętrzne traktowane są jako "czarne skrzynki".
+\subsection{Konstruktor}
 
-Głównym zadaniem aplikacji zarządzającej systemem kontroli dostępu jest
-uporządkowanie przepływu danych i~zabezpieczenie bezpiecznego funkcjonowania
-aplikacji.
+Dobór algorytmów wykorzystywanych w tej klasie, oraz typ zwracanego produktu jest wybierany przez użytkownika przez wstrzykiwanie zależności w argumentach konstruktora.
+
+Konstruktor pełni ważną rolę w klasie, ponieważ wykorzystano w nim technikę wstrzykiwania zależności.
+
+\begin{lstlisting}[language=Python]
+    def __init__(self, FeatureExtractionStrategy, \
+    FaceDetectionStrategy, CoordinatesProduct):
+        self.n_dim = 4096
+        self.n_components = 400
+        self.face_detection_strategy = FaceDetectionStrategy()
+        self.extraction_strategy = FeatureExtractionStrategy(self.n_dim, \
+        self.n_components)
+        self.prouctType = CoordinatesProduct
+\end{lstlisting}
+
+Użytkownik klasy przy tworzeniu obiektu typu AbstractFactory podaje w argumentach konstruktora jakie warianty klas do detekcji twarzy, ekstrakcji cech oraz przechowywania informacji na temat produktu powinny zostać wykorzystywane. Dodatkowo w konstruktorze są inicjalizowane stałymi rozmiary wektora przed i po redukcją wymiarowości. Wartości te wynoszą odpowiedni 4096 i 400. Pierwsza z tych wartości odpowiada rozmiarowi obrazka 64$\times$64 piksele i została przyjęta w celu przyśpieszenia wykonywanych operacji. Druga wartość jest efektem eksperymentów z siecią neuronową -- dla 400-elementowych wektorów uzyskiwano najlepsze rezultaty. Wartości te nie powinny być przyjęte jako stałe i użytkownik powinien mieć możliwość zmiany ich wartości, nie jest to jednakże rażące niedopatrzenie.
+
+\subsection{Pozostałe funkcje}
+
+\begin{lstlisting}[language=Python]
+    def detect_face(self, img_filename):
+        return self.face_detection_strategy.detect_face_proxy(img_filename)
+
+    def compute_coor(self, img):
+        return self.extraction_strategy.extract_features(img)
+\end{lstlisting}
+
+Pozostałe dwie funkcje klasy służą do wywoływania operacji detekcji twarzy i ekstracji cech z odpowiednich strategii.
+
+\section{Klasa przechowująca wyniki działania Fabryki}
+
+Zadaniem klasy CoordinatesProduct jest nałożenie abstrakcji na sposób przechowania wektora liczb zwracanego przez AbstractFactory. Posiada ona dwie metody: getter i setter. Po klasie tej dziedziczą: CoordinatesProductOnDisc i CoordinatesProductInClass. Każda z nich przechowuje wektor liczb w inny sposób: pierwsza na dysku, druga bezpośrednio w pamięci programu, jako wektor z biblioteki NumPy. Umożliwienie przechowywania wartości na dysku pozwala na łatwy sposób debugowania aplikacji i analizę uzyskanych danych. O wiele prostszym rozwiązaniem mogłoby być wykorzystanie struktury danych podawanej sieci neuronowej, ale jednym z celów takiego rozwiązania jest uniezależnienie wyników zwracanych przez AbstractFactory od frameworku używanego do uczenia sieci neurowej.
+
+\section{Strategia detekcji twarzy}
+
+FaceDetectionStrategy jest klasa abstrakcyjną po której mają dziedziczyć wszystkie implementacje algorytmów detekcji twarzy. Zawiera metody ogólnego przeznacznia, które mogą być wykorzystywane przez klasy potomne. Do metod tych zaliczają się:
+
+\begin{lstlisting}[language=Python]
+	read_image_and_convert_to_greyscale(self, filename),
+	crop_img(self, image, x, y, w, h),
+	debug_show(self, img)
+\end{lstlisting}
+
+Klasa ta posiada metodę łączącą wszystkie operacje wykonywane w ramach działania algorytmu wykrywania twarzy:
+
+\begin{lstlisting}[language=Python]
+    def detect_face_proxy(self, input_img_filename, \
+    output_img_filename=None):
+        grayscale_image = \
+        self.read_image_and_convert_to_greyscale(input_img_filename)
+        (x, y, w, h) = self.detect_face(grayscale_image)
+        resized_face = self.crop_img(grayscale_image, x, y, w, h)
+        if output_img_filename != None:
+        	self.debug_show(resized_face)
+            cv2.imwrite(output_img_filename, face)
+        return face
+\end{lstlisting}
+
+Jak łatwo można zauważyć podanie do metody dodatkowego parametru w postaci ścieżki i nazywy pliku do zapisania, umożliwia łatwe debugowanie aplikacji. Metoda ta jest wywoływana w detect\_face w AbstractFactory.
+
+Klasa HaarCascadesStrategy dziedziczy po FaceDetectionStrategy i implementuje detekcje twarzy z wykorzystaniem implementacji z biblioteki OpenCv. Kiedy na zdjęciu nie zostanie znaleziona twarz zostanie zgłoszony wyjątek: Found 0 faces!
+
+\section{Strategia ekstrakcji cech}
+
+Zasada działania FeatureExtractionStrategy jest bardzo podobna do poprzedniej klasy. Stanowi ona klasę bezową dla wszystkich implementacji redukcji cech. W jej skład wchodzą metody pomocnicze, takie jak:
+
+\begin{lstlisting}[language=Python]
+	load_img(self, name)
+	convert_image_to_vector(self, img)
+	load_matrix(self, name)
+\end{lstlisting}
+
+Klasa ta udostępnia jako interfejs metodę:
+
+\begin{lstlisting}[language=Python]
+    extract_features(self, img)
+\end{lstlisting}
+
+Klasa PCA dziedziczy po FeatureExtractionStrategy. PCA przeprowadza redukcję wymiarowości z wykorzystaniem pliku eig.npy. Plik ten zawiera wszystkie wektory własne potrzebne do redukcji wymiarowości. Dodatkowo PCA wczytuje średni wektor ze zbioru i konwertuje go do wektora. Operacja ekstrakcji cech przebiega w następujący sposób:
+
+\begin{lstlisting}[language=Python]
+    def scale_vector(self, vec):
+        scaleVec = ScaleVector()
+        return scaleVec.scale_vector(vec)
+
+    def extract_features(self, img):
+        vec = self.image_to_vector(img)
+        scaled_vec = self.scale_vector(vec)
+        mean_substracted_vec = scaled_vec - self.mean
+        coordinates = np.zeros((self.n_components))
+        for i in range(0,self.n_components):
+            coordinates[i] = np.dot(self.components[i,:],\
+            mean_substracted_vec)
+        return coordinates
+\end{lstlisting}
+
+W klasie PCA wykorzystano klasę ScaleVector odpowiedzialną za skalowanie wektora, tak aby przyjmował wartości od zera do 255:
+
+\begin{lstlisting}[language=Python]
+    def move_values(self, x, xmin, xmax, max):
+        return max*(x-xmin)/(xmax-xmin)
+
+    def scale_vector(self, vec):
+        min_ = self.find_min(vec)
+        max_ = self.find_max(vec)
+        for i in range(len(vec)):
+            vec[i] = self.move_values(vec[i], min_, max_,255.0)
+        return vec
+
+\end{lstlisting}
+
+\section{Pozostała część oprogramowania}
+Przedstawione wcześniej klasy stanowią całośc komponentu działającego w systemie. Nie jest to jednakże cały kod, jaki został sporządzony w trakcie realizacji projektu. Wyznacznie wektorów własnych, oraz skrypty umożliwiające rekonstrukcję zdjęć na podstawie uzyskanych współrzędnych odgrywały bardzo ważną rolę przy powstawaniu systemu. Nie zostały one włączone bezpośrednio do kodu komponentu, ponieważ są one tam zbędne. Po obliczeniu wektrów własnych dla PCA są one zapisywane w pliku z rozszerzeniem .npy, z którego następnie korzysta klasa PCA w trakcie działania systemu. Obecny wygląd komponentu jest efektem wielu prób i błędów, próbowania możliwości jakie oferują wykorzystane biblioteki oraz wieloma poprawkami na przestrzeni życia całego projektu.
 
 \newpage
 
@@ -939,7 +1030,7 @@ Rozwiązanie zaproponowane w projekcie cieszy się dużą popularnością i daje
 
 W projekcie nie przeprowadzono testów modułowych komponentu, system był testowany jako całość. Powodem takiego stanu rzeczy jest trudność w testowaniu omawianego komponentu, ze względu na jego dość abstrakcyjny charakter, w porównanianu do reszty systemu. Testowanie rezultatów działania całego systemu jest czasochłonne. Dowolna zmiana w systemie ekstrakcji cech powoduje konieczność rozpoczynania procesu uczenia sieci neuronowej od nowa. W dalszej części tego rozdziału przedstawiono pomysł na zaimplementowanie testów modułowych dla komponentu realizującego ekstrakcję cech.
 
-Realizowany projekt umożliwił opracowanie i wykorzystanie wydajnych sposobów na pracę w grupie. Komponentowe podejście do systemu umożliwiło prowadzenie równoległych prac nad rozwojem całego systemu. Ustalenie interfejsów między komponentami pozwala na przeprowadzanie daleko idących zmian w obrębie komponentu, bez konieczności wprowadzania zmian w innych częściach systemu.
+Realizowany projekt umożliwił opracowanie i wykorzystanie wydajnych sposobów na pracę w grupie. Komponentowe podejście do systemu umożliwiło prowadzenie równoległych prac nad rozwojem całego systemu. Ustalenie abstrakcyjnych interfejsów między komponentami pozwoliłoby na przeprowadzanie daleko idących zmian w obrębie komponentu, bez konieczności wprowadzania zmian w innych częściach systemu.
 
 \section{Możliwe usprawnienia}
 

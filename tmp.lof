@@ -1,6 +1,6 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces R\IeC {\'o}\IeC {\.z}ne rodzaje cech. Od sumy warto\IeC {\'s}ci pikseli po czarnym obszarem jest odejmowana warto\IeC {\'s}\IeC {\'c} sumy pikseli pod bia\IeC {\l }ym polem.\relax }}{8}{figure.caption.1}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces R\IeC {\'o}\IeC {\.z}ne rodzaje cech. Od sumy warto\IeC {\'s}ci pikseli pod czarnym obszarem, jest odejmowana warto\IeC {\'s}\IeC {\'c} sumy pikseli pod bia\IeC {\l }ym polem.\relax }}{8}{figure.caption.1}
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Dwie cechy generuj\IeC {\k a}ce najmniejszy b\IeC {\l }\IeC {\k a}d z wykorzystaniem AdaBoost.\relax }}{8}{figure.caption.2}
 \contentsline {figure}{\numberline {2.3}{\ignorespaces Wykrywanie punkt\IeC {\'o}w charakterystycznych twarzy.\relax }}{9}{figure.caption.3}
 \addvspace {10\p@ }
@@ -8,14 +8,14 @@
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Por\IeC {\'o}wnanie eigenfaces.\relax }}{16}{figure.caption.5}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Scena przy przyj\IeC {\k e}tym modelu kamery.\relax }}{23}{figure.caption.7}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Ilustracja zale\IeC {\.z}no\IeC {\'s}ci mi\IeC {\k e}dzy uk\IeC {\l }adami wsp\IeC {\'o}\IeC {\l }rz\IeC {\k e}dnymi a punktem.\relax }}{24}{figure.caption.8}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Rzut z g\IeC {\'o}ry na scen\IeC {\k e}.\relax }}{25}{figure.caption.9}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces R\IeC {\'o}\IeC {\.z}ne rodzaje dystorcji (od lewej): beczkowa, poduszkowa oraz falista.\relax }}{26}{figure.caption.11}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Gradient szachownicy.\relax }}{27}{figure.caption.12}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Wykryte naro\IeC {\.z}niki szachownicy. \relax }}{27}{figure.caption.13}
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Estymacja orientacji szachownicy. \relax }}{27}{figure.caption.14}
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Podstawowa koncepcja geometrii epipolarnej.\relax }}{28}{figure.caption.15}
-\contentsline {figure}{\numberline {5.9}{\ignorespaces Ekstrakcja g\IeC {\l }\IeC {\k e}bi na podstawie dysparycji obraz\IeC {\'o}w z dw\IeC {\'o}ch kamer. \relax }}{29}{figure.caption.16}
-\contentsline {figure}{\numberline {5.10}{\ignorespaces Obraz p\IeC {\l }askiego zdj\IeC {\k e}ci\IeC {\k a} sfotografowany lew\IeC {\k a} i praw\IeC {\k a} kamer\IeC {\k a} oraz wynik ekstrakcji g\IeC {\l }eboko\IeC {\'s}ci. \relax }}{30}{figure.caption.17}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Scena przy przyj\IeC {\k e}tym modelu kamery.\relax }}{25}{figure.caption.7}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Ilustracja zale\IeC {\.z}no\IeC {\'s}ci mi\IeC {\k e}dzy uk\IeC {\l }adami wsp\IeC {\'o}\IeC {\l }rz\IeC {\k e}dnych a punktem.\relax }}{26}{figure.caption.8}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Rzut z g\IeC {\'o}ry na scen\IeC {\k e}.\relax }}{27}{figure.caption.9}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces R\IeC {\'o}\IeC {\.z}ne rodzaje dystorcji (od lewej): beczkowa, poduszkowa oraz falista.\relax }}{28}{figure.caption.11}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Gradient szachownicy.\relax }}{29}{figure.caption.12}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Wykryte naro\IeC {\.z}niki szachownicy. \relax }}{29}{figure.caption.13}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Estymacja orientacji szachownicy. \relax }}{29}{figure.caption.14}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Podstawowa koncepcja geometrii epipolarnej.\relax }}{30}{figure.caption.15}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Ekstrakcja g\IeC {\l }\IeC {\k e}bi na podstawie dysparycji obraz\IeC {\'o}w z dw\IeC {\'o}ch kamer. \relax }}{31}{figure.caption.16}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Obraz p\IeC {\l }askiego zdj\IeC {\k e}cia, sfotografowany lew\IeC {\k a} i praw\IeC {\k a} kamer\IeC {\k a} oraz wynik ekstrakcji g\IeC {\l }eboko\IeC {\'s}ci. \relax }}{32}{figure.caption.17}
 \addvspace {10\p@ }

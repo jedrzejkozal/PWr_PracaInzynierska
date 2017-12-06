@@ -16,16 +16,22 @@
 \BOOKMARK [1][-]{section.3.2}{Inne podejscia do problemu redukcji wymiarowosci}{chapter.3}% 16
 \BOOKMARK [2][-]{subsection.3.2.1}{Nonnegative Matrix Factorization}{section.3.2}% 17
 \BOOKMARK [2][-]{subsection.3.2.2}{Independent Components Analysis}{section.3.2}% 18
-\BOOKMARK [0][-]{chapter.4}{Zarys oprogoramowania}{}% 19
-\BOOKMARK [1][-]{section.4.1}{Protoko\233y komunikacyjne}{chapter.4}% 20
-\BOOKMARK [1][-]{section.4.2}{Opis komponent\363w zewnetrznych}{chapter.4}% 21
-\BOOKMARK [0][-]{chapter.5}{Zabezpieczenie przed mozliwoscia oszukania systemu}{}% 22
-\BOOKMARK [1][-]{section.5.1}{Przyjeta metodyka}{chapter.5}% 23
-\BOOKMARK [1][-]{section.5.2}{Podstawy teoretyczne}{chapter.5}% 24
-\BOOKMARK [2][-]{subsection.5.2.1}{Kalibracja kamery}{section.5.2}% 25
-\BOOKMARK [2][-]{subsection.5.2.2}{Geometria epipolarna}{section.5.2}% 26
-\BOOKMARK [2][-]{subsection.5.2.3}{Szacowanie g\233ebokosci}{section.5.2}% 27
-\BOOKMARK [1][-]{section.5.3}{Wyniki}{chapter.5}% 28
-\BOOKMARK [0][-]{chapter.6}{Zakonczenie}{}% 29
-\BOOKMARK [1][-]{section.6.1}{Podsumowanie projektu}{chapter.6}% 30
-\BOOKMARK [1][-]{section.6.2}{Mozliwe usprawnienia}{chapter.6}% 31
+\BOOKMARK [0][-]{chapter.4}{Om\363wienie implementacji}{}% 19
+\BOOKMARK [1][-]{section.4.1}{Klasa zarzadzajaca komponentem}{chapter.4}% 20
+\BOOKMARK [2][-]{subsection.4.1.1}{Interfejs do komunikacji z reszta systemu}{section.4.1}% 21
+\BOOKMARK [2][-]{subsection.4.1.2}{Konstruktor}{section.4.1}% 22
+\BOOKMARK [2][-]{subsection.4.1.3}{Pozosta\233e funkcje}{section.4.1}% 23
+\BOOKMARK [1][-]{section.4.2}{Klasa przechowujaca wyniki dzia\233ania Fabryki}{chapter.4}% 24
+\BOOKMARK [1][-]{section.4.3}{Strategia detekcji twarzy}{chapter.4}% 25
+\BOOKMARK [1][-]{section.4.4}{Strategia ekstrakcji cech}{chapter.4}% 26
+\BOOKMARK [1][-]{section.4.5}{Pozosta\233a czesc oprogramowania}{chapter.4}% 27
+\BOOKMARK [0][-]{chapter.5}{Zabezpieczenie przed mozliwoscia oszukania systemu}{}% 28
+\BOOKMARK [1][-]{section.5.1}{Przyjeta metodyka}{chapter.5}% 29
+\BOOKMARK [1][-]{section.5.2}{Podstawy teoretyczne}{chapter.5}% 30
+\BOOKMARK [2][-]{subsection.5.2.1}{Kalibracja kamery}{section.5.2}% 31
+\BOOKMARK [2][-]{subsection.5.2.2}{Geometria epipolarna}{section.5.2}% 32
+\BOOKMARK [2][-]{subsection.5.2.3}{Szacowanie g\233ebokosci}{section.5.2}% 33
+\BOOKMARK [1][-]{section.5.3}{Wyniki}{chapter.5}% 34
+\BOOKMARK [0][-]{chapter.6}{Zakonczenie}{}% 35
+\BOOKMARK [1][-]{section.6.1}{Podsumowanie projektu}{chapter.6}% 36
+\BOOKMARK [1][-]{section.6.2}{Mozliwe usprawnienia}{chapter.6}% 37

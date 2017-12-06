@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2017.9.11)  5 DEC 2017 21:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2017.9.11)  6 DEC 2017 03:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -590,39 +590,64 @@ Package: subfig 2005/06/28 ver: 1.3 subfig package
 \c@lotdepth=\count128
 \sf@top=\skip58
 \sf@bottom=\skip59
-) (./tmp.aux)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count129
+\lst@gtempboxa=\box32
+\lst@token=\toks22
+\lst@length=\count130
+\lst@currlwidth=\dimen128
+\lst@column=\count131
+\lst@pos=\count132
+\lst@lostspace=\dimen129
+\lst@width=\dimen130
+\lst@newlines=\count133
+\lst@lineno=\count134
+\lst@maxwidth=\dimen131
+
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2014/09/06 1.5e (Carsten Heinz)
+\c@lstnumber=\count135
+\lst@skipnumbers=\count136
+\lst@framebox=\box33
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2014/09/06 1.5e listings configuration
+))
+Package: listings 2014/09/06 1.5e (Carsten Heinz)
+ (./tmp.aux)
 \openout1 = `tmp.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OT4/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OT4/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count129
-\scratchdimen=\dimen128
-\scratchbox=\box32
-\nofMPsegments=\count130
-\nofMParguments=\count131
-\everyMPshowfont=\toks22
-\MPscratchCnt=\count132
-\MPscratchDim=\dimen129
-\MPnumerator=\count133
-\makeMPintoPDFobject=\count134
-\everyMPtoPDFconversion=\toks23
+\scratchcounter=\count137
+\scratchdimen=\dimen132
+\scratchbox=\box34
+\nofMPsegments=\count138
+\nofMParguments=\count139
+\everyMPshowfont=\toks23
+\MPscratchCnt=\count140
+\MPscratchDim=\dimen133
+\MPnumerator=\count141
+\makeMPintoPDFobject=\count142
+\everyMPtoPDFconversion=\toks24
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
@@ -638,8 +663,8 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\AtBeginShipoutBox=\box33
-Package hyperref Info: Link coloring OFF on input line 26.
+\AtBeginShipoutBox=\box35
+Package hyperref Info: Link coloring OFF on input line 27.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -647,11 +672,11 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count135
+\c@section@level=\count143
 )
-LaTeX Info: Redefining \ref on input line 26.
-LaTeX Info: Redefining \pageref on input line 26.
-LaTeX Info: Redefining \nameref on input line 26.
+LaTeX Info: Redefining \ref on input line 27.
+LaTeX Info: Redefining \pageref on input line 27.
+LaTeX Info: Redefining \nameref on input line 27.
 
 (./tmp.out) (./tmp.out)
 \@outlinefile=\write3
@@ -659,9 +684,11 @@ LaTeX Info: Redefining \nameref on input line 26.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
+Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\@temphbadness=\count136
-\@tempvbadness=\count137
+\c@lstlisting=\count144
+\@temphbadness=\count145
+\@tempvbadness=\count146
 \@temphfuzz=\skip60
 \@temptextwidth=\skip61
 \@temptextheight=\skip62
@@ -670,35 +697,35 @@ Package caption Info: End \AtBeginDocument code.
 \@tempheadsep=\skip65
 \@tempoddsidemargin=\skip66
 \@tempevensidemargin=\skip67
-LaTeX Font Info:    Try loading font information for OML+plm on input line 30.
+LaTeX Font Info:    Try loading font information for OML+plm on input line 31.
 
 (/usr/share/texlive/texmf-dist/tex/latex/polski/omlplm.fd
 File: omlplm.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
 )
-LaTeX Font Info:    Try loading font information for OMS+plsy on input line 30.
+LaTeX Font Info:    Try loading font information for OMS+plsy on input line 31.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/polski/omsplsy.fd
 File: omsplsy.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
 )
-LaTeX Font Info:    Try loading font information for OMX+plex on input line 30.
+LaTeX Font Info:    Try loading font information for OMX+plex on input line 31.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/polski/omxplex.fd
 File: omxplex.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
 )
 LaTeX Font Info:    External font `plex10' loaded for size
-(Font)              <12> on input line 30.
+(Font)              <12> on input line 31.
 LaTeX Font Info:    External font `plex10' loaded for size
-(Font)              <8> on input line 30.
+(Font)              <8> on input line 31.
 LaTeX Font Info:    External font `plex10' loaded for size
-(Font)              <6> on input line 30.
-LaTeX Font Info:    Try loading font information for U+msa on input line 30.
+(Font)              <6> on input line 31.
+LaTeX Font Info:    Try loading font information for U+msa on input line 31.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 30.
+LaTeX Font Info:    Try loading font information for U+msb on input line 31.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -713,48 +740,48 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 Rozdzia\PlPrIeC {\l } 1.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 49.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 50.
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 49.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 50.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.58 		\item G
+l.59 		\item G
               Å‚os [1
 
 
 ] [2] [3] [4] [5] [6]
 Rozdzia\PlPrIeC {\l } 2.
-<haar_features.jpg, id=185, 321.2pt x 272.01625pt>
+<haar_features.jpg, id=209, 321.2pt x 272.01625pt>
 File: haar_features.jpg Graphic file (type jpg)
  <use haar_features.jpg>
-Package pdftex.def Info: haar_features.jpg used on input line 190.
+Package pdftex.def Info: haar_features.jpg used on input line 191.
 (pdftex.def)             Requested size: 227.62204pt x 192.77177pt.
 
-<haar.png, id=187, 335.2525pt x 203.76125pt>
+<haar.png, id=211, 335.2525pt x 203.76125pt>
 File: haar.png Graphic file (type png)
  <use haar.png>
-Package pdftex.def Info: haar.png used on input line 201.
+Package pdftex.def Info: haar.png used on input line 202.
 (pdftex.def)             Requested size: 227.62204pt x 138.34438pt.
  [7
 
 
-] [8 <./haar_features.jpg> <./haar.png (PNG copy)>] <test.jpg, id=207, 642.4pt 
+] [8 <./haar_features.jpg> <./haar.png (PNG copy)>] <test.jpg, id=231, 642.4pt 
 x 481.8pt>
 File: test.jpg Graphic file (type jpg)
 
 <use test.jpg>
-Package pdftex.def Info: test.jpg used on input line 217.
+Package pdftex.def Info: test.jpg used on input line 218.
 (pdftex.def)             Requested size: 182.09485pt x 136.5719pt.
- <test_result.jpg, id=208, 642.4pt x 478.78876pt>
+ <test_result.jpg, id=232, 642.4pt x 478.78876pt>
 File: test_result.jpg Graphic file (type jpg)
 
 <use test_result.jpg>
-Package pdftex.def Info: test_result.jpg used on input line 218.
+Package pdftex.def Info: test_result.jpg used on input line 219.
 (pdftex.def)             Requested size: 182.09485pt x 135.71832pt.
  [9 <./test.jpg> <./test_result.jpg>] [10]
 Rozdzia\PlPrIeC {\l } 3.
@@ -766,296 +793,323 @@ Rozdzia\PlPrIeC {\l } 3.
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.308 \end{align*}
+l.309 \end{align*}
                   ] [13]
-Overfull \hbox (26.061pt too wide) in paragraph at lines 406--407
+Overfull \hbox (26.061pt too wide) in paragraph at lines 407--408
 []\OT4/cmr/m/n/12 Po kon-wer-sji do ory-gi-nal-nej wy-mia-ro-wo-±ci dys-po-nu-j
 e-my ba-z¡ $\OML/plm/m/it/12 M$ \OT4/cmr/m/n/12 wek-to-rów $\OML/plm/m/it/12 D$
 \OT4/cmr/m/n/12 -wymiarowych.
  []
 
-[14] <face_1.jpg, id=274, 64.24pt x 64.24pt>
+[14] <face_1.jpg, id=298, 64.24pt x 64.24pt>
 File: face_1.jpg Graphic file (type jpg)
  <use face_1.jpg>
-Package pdftex.def Info: face_1.jpg used on input line 437.
+Package pdftex.def Info: face_1.jpg used on input line 438.
 (pdftex.def)             Requested size: 56.9055pt x 56.90678pt.
 
-<100.jpg, id=275, 64.24pt x 64.24pt>
+<100.jpg, id=299, 64.24pt x 64.24pt>
 File: 100.jpg Graphic file (type jpg)
  <use 100.jpg>
-Package pdftex.def Info: 100.jpg used on input line 440.
+Package pdftex.def Info: 100.jpg used on input line 441.
 (pdftex.def)             Requested size: 56.9055pt x 56.90678pt.
 
-<200.jpg, id=276, 64.24pt x 64.24pt>
+<200.jpg, id=300, 64.24pt x 64.24pt>
 File: 200.jpg Graphic file (type jpg)
  <use 200.jpg>
-Package pdftex.def Info: 200.jpg used on input line 443.
+Package pdftex.def Info: 200.jpg used on input line 444.
 (pdftex.def)             Requested size: 56.9055pt x 56.90678pt.
 
-<300.jpg, id=277, 64.24pt x 64.24pt>
+<300.jpg, id=301, 64.24pt x 64.24pt>
 File: 300.jpg Graphic file (type jpg)
  <use 300.jpg>
-Package pdftex.def Info: 300.jpg used on input line 446.
+Package pdftex.def Info: 300.jpg used on input line 447.
 (pdftex.def)             Requested size: 56.9055pt x 56.90678pt.
 
-<400.jpg, id=278, 64.24pt x 64.24pt>
+<400.jpg, id=302, 64.24pt x 64.24pt>
 File: 400.jpg Graphic file (type jpg)
  <use 400.jpg>
-Package pdftex.def Info: 400.jpg used on input line 449.
+Package pdftex.def Info: 400.jpg used on input line 450.
 (pdftex.def)             Requested size: 56.9055pt x 56.90678pt.
  [15]
-<0.jpg, id=288, 64.24pt x 64.24pt>
+<0.jpg, id=312, 64.24pt x 64.24pt>
 File: 0.jpg Graphic file (type jpg)
  <use 0.jpg>
-Package pdftex.def Info: 0.jpg used on input line 462.
+Package pdftex.def Info: 0.jpg used on input line 463.
 (pdftex.def)             Requested size: 56.9055pt x 56.90678pt.
 
-<1.jpg, id=289, 64.24pt x 64.24pt>
+<1.jpg, id=313, 64.24pt x 64.24pt>
 File: 1.jpg Graphic file (type jpg)
  <use 1.jpg>
-Package pdftex.def Info: 1.jpg used on input line 464.
+Package pdftex.def Info: 1.jpg used on input line 465.
 (pdftex.def)             Requested size: 56.9055pt x 56.90678pt.
 
-<2.jpg, id=290, 64.24pt x 64.24pt>
+<2.jpg, id=314, 64.24pt x 64.24pt>
 File: 2.jpg Graphic file (type jpg)
  <use 2.jpg>
-Package pdftex.def Info: 2.jpg used on input line 467.
+Package pdftex.def Info: 2.jpg used on input line 468.
 (pdftex.def)             Requested size: 56.9055pt x 56.90678pt.
 
-<3.jpg, id=291, 64.24pt x 64.24pt>
+<3.jpg, id=315, 64.24pt x 64.24pt>
 File: 3.jpg Graphic file (type jpg)
  <use 3.jpg>
-Package pdftex.def Info: 3.jpg used on input line 470.
+Package pdftex.def Info: 3.jpg used on input line 471.
 (pdftex.def)             Requested size: 56.9055pt x 56.90678pt.
 
-<4.jpg, id=292, 64.24pt x 64.24pt>
+<4.jpg, id=316, 64.24pt x 64.24pt>
 File: 4.jpg Graphic file (type jpg)
  <use 4.jpg>
-Package pdftex.def Info: 4.jpg used on input line 473.
+Package pdftex.def Info: 4.jpg used on input line 474.
 (pdftex.def)             Requested size: 56.9055pt x 56.90678pt.
 
-<392.jpg, id=293, 64.24pt x 64.24pt>
+<392.jpg, id=317, 64.24pt x 64.24pt>
 File: 392.jpg Graphic file (type jpg)
  <use 392.jpg>
-Package pdftex.def Info: 392.jpg used on input line 477.
+Package pdftex.def Info: 392.jpg used on input line 478.
 (pdftex.def)             Requested size: 56.9055pt x 56.90678pt.
 
-<393.jpg, id=294, 64.24pt x 64.24pt>
+<393.jpg, id=318, 64.24pt x 64.24pt>
 File: 393.jpg Graphic file (type jpg)
  <use 393.jpg>
-Package pdftex.def Info: 393.jpg used on input line 480.
+Package pdftex.def Info: 393.jpg used on input line 481.
 (pdftex.def)             Requested size: 56.9055pt x 56.90678pt.
 
-<394.jpg, id=295, 64.24pt x 64.24pt>
+<394.jpg, id=319, 64.24pt x 64.24pt>
 File: 394.jpg Graphic file (type jpg)
  <use 394.jpg>
-Package pdftex.def Info: 394.jpg used on input line 483.
+Package pdftex.def Info: 394.jpg used on input line 484.
 (pdftex.def)             Requested size: 56.9055pt x 56.90678pt.
 
-<395.jpg, id=296, 64.24pt x 64.24pt>
+<395.jpg, id=320, 64.24pt x 64.24pt>
 File: 395.jpg Graphic file (type jpg)
  <use 395.jpg>
-Package pdftex.def Info: 395.jpg used on input line 486.
+Package pdftex.def Info: 395.jpg used on input line 487.
 (pdftex.def)             Requested size: 56.9055pt x 56.90678pt.
 
-<396.jpg, id=297, 64.24pt x 64.24pt>
+<396.jpg, id=321, 64.24pt x 64.24pt>
 File: 396.jpg Graphic file (type jpg)
  <use 396.jpg>
-Package pdftex.def Info: 396.jpg used on input line 489.
+Package pdftex.def Info: 396.jpg used on input line 490.
 (pdftex.def)             Requested size: 56.9055pt x 56.90678pt.
  [16 <./face_1.jpg> <./100.jpg> <./200.jpg> <./300.jpg> <./400.jpg> <./0.jpg> <
 ./1.jpg> <./2.jpg> <./3.jpg> <./4.jpg> <./392.jpg> <./393.jpg> <./394.jpg> <./3
 95.jpg> <./396.jpg>] [17]
 [18] [19]
 Rozdzia\PlPrIeC {\l } 4.
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2014/09/06 1.5e listings language file
+)
+Overfull \hbox (17.1051pt too wide) in paragraph at lines 618--619
+[][][][][][][][][][][][][][][][][][] 
+ []
+
 [20
 
 
-] [21]
+]
+Overfull \hbox (66.45502pt too wide) in paragraph at lines 636--637
+[][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (73.505pt too wide) in paragraph at lines 647--649
+[][][][][][][][][][][][][][] 
+ []
+
+[21]
+Overfull \hbox (24.15509pt too wide) in paragraph at lines 675--676
+[][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (3.00513pt too wide) in paragraph at lines 677--678
+[][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[22] [23]
 Rozdzia\PlPrIeC {\l } 5.
-[22
+[24
 
 
-] <pinhole_camera_model.png, id=351, 602.25pt x 424.58624pt>
+] <pinhole_camera_model.png, id=450, 602.25pt x 424.58624pt>
 File: pinhole_camera_model.png Graphic file (type png)
 
 <use pinhole_camera_model.png>
-Package pdftex.def Info: pinhole_camera_model.png used on input line 667.
+Package pdftex.def Info: pinhole_camera_model.png used on input line 760.
 (pdftex.def)             Requested size: 409.71689pt x 288.86383pt.
 
-Overfull \hbox (48.5776pt too wide) in paragraph at lines 669--671
+Overfull \hbox (48.5776pt too wide) in paragraph at lines 762--764
  \OT4/cmr/m/n/12 https://docs.opencv.org/2.4/modules/calib3d/doc/camera[]calibr
 ation[]and[]3d[]reconstruction.html 
  []
 
-[23 <./pinhole_camera_model.png>]
-<pinhole.jpg, id=361, 573.14125pt x 377.41pt>
+[25 <./pinhole_camera_model.png>]
+<pinhole.jpg, id=460, 573.14125pt x 377.41pt>
 File: pinhole.jpg Graphic file (type jpg)
  <use pinhole.jpg>
-Package pdftex.def Info: pinhole.jpg used on input line 704.
+Package pdftex.def Info: pinhole.jpg used on input line 797.
 (pdftex.def)             Requested size: 409.71689pt x 269.80003pt.
- [24 <./pinhole.jpg>] <rzutowanie.jpg, id=370, 389.455pt x 500.87125pt>
+ [26 <./pinhole.jpg>] <rzutowanie.jpg, id=468, 389.455pt x 500.87125pt>
 File: rzutowanie.jpg Graphic file (type jpg)
  <use rzutowanie.jpg>
-Package pdftex.def Info: rzutowanie.jpg used on input line 731.
+Package pdftex.def Info: rzutowanie.jpg used on input line 824.
 (pdftex.def)             Requested size: 227.62204pt x 292.73718pt.
 
-<600px-Barrel_distortion.png, id=372, 602.25pt x 602.25pt>
+<600px-Barrel_distortion.png, id=470, 602.25pt x 602.25pt>
 File: 600px-Barrel_distortion.png Graphic file (type png)
 
 <use 600px-Barrel_distortion.png>
-Package pdftex.def Info: 600px-Barrel_distortion.png used on input line 745.
+Package pdftex.def Info: 600px-Barrel_distortion.png used on input line 838.
 (pdftex.def)             Requested size: 85.35826pt x 85.35284pt.
 
-<600px-Pincushion_distortion.png, id=373, 602.25pt x 602.25pt>
+<600px-Pincushion_distortion.png, id=471, 602.25pt x 602.25pt>
 File: 600px-Pincushion_distortion.png Graphic file (type png)
 
 <use 600px-Pincushion_distortion.png>
-Package pdftex.def Info: 600px-Pincushion_distortion.png used on input line 748
+Package pdftex.def Info: 600px-Pincushion_distortion.png used on input line 841
 .
 (pdftex.def)             Requested size: 85.35826pt x 85.35284pt.
 
-<600px-Mustache_distortion.png, id=374, 602.25pt x 602.25pt>
+<600px-Mustache_distortion.png, id=472, 602.25pt x 602.25pt>
 File: 600px-Mustache_distortion.png Graphic file (type png)
 
 <use 600px-Mustache_distortion.png>
-Package pdftex.def Info: 600px-Mustache_distortion.png used on input line 751.
+Package pdftex.def Info: 600px-Mustache_distortion.png used on input line 844.
 (pdftex.def)             Requested size: 85.35826pt x 85.35284pt.
- [25 <./rzutowanie.jpg>]
-<cornersubpix.png, id=383, 520.94624pt x 221.82875pt>
+ [27 <./rzutowanie.jpg>]
+<cornersubpix.png, id=481, 520.94624pt x 221.82875pt>
 File: cornersubpix.png Graphic file (type png)
  <use cornersubpix.png>
-Package pdftex.def Info: cornersubpix.png used on input line 787.
+Package pdftex.def Info: cornersubpix.png used on input line 880.
 (pdftex.def)             Requested size: 318.66946pt x 135.69443pt.
 
-[26 <./600px-Barrel_distortion.png> <./600px-Pincushion_distortion.png> <./600p
-x-Mustache_distortion.png>] <left1.jpg, id=393, 642.4pt x 481.8pt>
+[28 <./600px-Barrel_distortion.png> <./600px-Pincushion_distortion.png> <./600p
+x-Mustache_distortion.png>] <left1.jpg, id=491, 642.4pt x 481.8pt>
 File: left1.jpg Graphic file (type jpg)
 
 <use left1.jpg>
-Package pdftex.def Info: left1.jpg used on input line 816.
+Package pdftex.def Info: left1.jpg used on input line 909.
 (pdftex.def)             Requested size: 99.58464pt x 74.68558pt.
- <left10.jpg, id=394, 642.4pt x 481.8pt>
+ <left10.jpg, id=492, 642.4pt x 481.8pt>
 File: left10.jpg Graphic file (type jpg)
  <use left10.jpg>
-Package pdftex.def Info: left10.jpg used on input line 819.
+Package pdftex.def Info: left10.jpg used on input line 912.
 (pdftex.def)             Requested size: 99.58464pt x 74.68558pt.
 
-<left27.jpg, id=395, 642.4pt x 481.8pt>
+<left27.jpg, id=493, 642.4pt x 481.8pt>
 File: left27.jpg Graphic file (type jpg)
  <use left27.jpg>
-Package pdftex.def Info: left27.jpg used on input line 822.
+Package pdftex.def Info: left27.jpg used on input line 915.
 (pdftex.def)             Requested size: 99.58464pt x 74.68558pt.
 
-<left8.jpg, id=396, 642.4pt x 481.8pt>
+<left8.jpg, id=494, 642.4pt x 481.8pt>
 File: left8.jpg Graphic file (type jpg)
  <use left8.jpg>
-Package pdftex.def Info: left8.jpg used on input line 831.
+Package pdftex.def Info: left8.jpg used on input line 924.
 (pdftex.def)             Requested size: 99.58464pt x 74.68558pt.
 
-<left17.jpg, id=397, 642.4pt x 481.8pt>
+<left17.jpg, id=495, 642.4pt x 481.8pt>
 File: left17.jpg Graphic file (type jpg)
  <use left17.jpg>
-Package pdftex.def Info: left17.jpg used on input line 834.
+Package pdftex.def Info: left17.jpg used on input line 927.
 (pdftex.def)             Requested size: 99.58464pt x 74.68558pt.
 
-<left24.jpg, id=398, 642.4pt x 481.8pt>
+<left24.jpg, id=496, 642.4pt x 481.8pt>
 File: left24.jpg Graphic file (type jpg)
  <use left24.jpg>
-Package pdftex.def Info: left24.jpg used on input line 837.
+Package pdftex.def Info: left24.jpg used on input line 930.
 (pdftex.def)             Requested size: 99.58464pt x 74.68558pt.
 
-<epipolar.jpg, id=400, 674.52pt x 413.545pt>
+<epipolar.jpg, id=498, 674.52pt x 413.545pt>
 File: epipolar.jpg Graphic file (type jpg)
  <use epipolar.jpg>
-Package pdftex.def Info: epipolar.jpg used on input line 851.
+Package pdftex.def Info: epipolar.jpg used on input line 944.
 (pdftex.def)             Requested size: 318.66946pt x 195.3758pt.
- [27 <./cornersubpix.png> <./left1.jpg> <./left10.jpg> <./left27.jpg> <./left8.
-jpg> <./left17.jpg> <./left24.jpg>] <ekstrakcja.jpg, id=411, 641.39626pt x 634.
+ [29 <./cornersubpix.png> <./left1.jpg> <./left10.jpg> <./left27.jpg> <./left8.
+jpg> <./left17.jpg> <./left24.jpg>] <ekstrakcja.jpg, id=509, 641.39626pt x 634.
 37pt>
 File: ekstrakcja.jpg Graphic file (type jpg)
 
 <use ekstrakcja.jpg>
-Package pdftex.def Info: ekstrakcja.jpg used on input line 869.
+Package pdftex.def Info: ekstrakcja.jpg used on input line 962.
 (pdftex.def)             Requested size: 270.30118pt x 267.34346pt.
- [28 <./epipolar.jpg>]
-<falt_test_face1L.jpg, id=423, 637.38126pt x 472.76625pt>
+ [30 <./epipolar.jpg>]
+<falt_test_face1L.jpg, id=522, 637.38126pt x 472.76625pt>
 File: falt_test_face1L.jpg Graphic file (type jpg)
 
 <use falt_test_face1L.jpg>
-Package pdftex.def Info: falt_test_face1L.jpg used on input line 895.
+Package pdftex.def Info: falt_test_face1L.jpg used on input line 988.
 (pdftex.def)             Requested size: 156.49014pt x 116.0704pt.
 
-<falt_test_face1R.jpg, id=424, 597.23125pt x 444.66125pt>
+<falt_test_face1R.jpg, id=523, 597.23125pt x 444.66125pt>
 File: falt_test_face1R.jpg Graphic file (type jpg)
 
 <use falt_test_face1R.jpg>
-Package pdftex.def Info: falt_test_face1R.jpg used on input line 898.
+Package pdftex.def Info: falt_test_face1R.jpg used on input line 991.
 (pdftex.def)             Requested size: 156.49014pt x 116.5116pt.
- <result_fail.png, id=425, 1919.17pt x 1073.00874pt>
+ <result_fail.png, id=524, 1919.17pt x 1073.00874pt>
 File: result_fail.png Graphic file (type png)
 
 <use result_fail.png>
-Package pdftex.def Info: result_fail.png used on input line 904.
+Package pdftex.def Info: result_fail.png used on input line 997.
 (pdftex.def)             Requested size: 298.75394pt x 167.01866pt.
- [29 <./ekstrakcja.jpg>] [30 <./falt_test_face1L.jpg> <./falt_test_face1R.jpg> 
+ [31 <./ekstrakcja.jpg>] [32 <./falt_test_face1L.jpg> <./falt_test_face1R.jpg> 
 <./result_fail.png (PNG copy)>]
 Rozdzia\PlPrIeC {\l } 6.
-[31
+[33
 
 
-] [32] [33]
-Underfull \hbox (badness 3354) in paragraph at lines 977--980
+] [34] [35]
+Underfull \hbox (badness 3354) in paragraph at lines 1070--1073
 []\OT4/cmr/m/n/12 Stanisªaw Osow-ski. \OT4/cmr/m/it/12 Sie-ci Neu-ro-no-we w uj
 ¦-ciu al-go-ryt-micz-nym \OT4/cmr/m/n/12 Wy-daw-nic-two
  []
 
-LaTeX Font Info:    Try loading font information for OT4+cmtt on input line 103
-2.
+LaTeX Font Info:    Try loading font information for OT4+cmtt on input line 112
+5.
 (/usr/share/texlive/texmf-dist/tex/latex/polski/ot4cmtt.fd
 File: ot4cmtt.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
-) [34
+) [36
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 1055--1057
+Underfull \hbox (badness 10000) in paragraph at lines 1148--1150
 \OT4/cmtt/m/n/12 http://www.bkav.com/d/top-news/-/view[]content/content/103968/
 face-id-
  []
 
-[35] (./tmp.toc)
+[37] (./tmp.toc [38
+
+
+])
 \tf@toc=\write4
 \openout4 = `tmp.toc'.
 
- [36
-
-
-] (./tmp.lof)
+ [39] (./tmp.lof)
 \tf@lof=\write5
 \openout5 = `tmp.lof'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1064.
- [37
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1157.
+ [40
 
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1064.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1157.
  (./tmp.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1064.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1064.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1157.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1157.
 
 Package rerunfilecheck Info: File `tmp.out' has not changed.
-(rerunfilecheck)             Checksum: 998A012B8D9CDEBBDE5C136283507750;2331.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1064.
+(rerunfilecheck)             Checksum: 2D9FFA2327904E05609AABD68FFD32E4;2813.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1157.
  ) 
 Here is how much of TeX's memory you used:
- 8523 strings out of 493105
- 125015 string characters out of 6137072
- 225139 words of memory out of 5000000
- 11657 multiletter control sequences out of 15000+600000
+ 10433 strings out of 493105
+ 149948 string characters out of 6137072
+ 263605 words of memory out of 5000000
+ 13477 multiletter control sequences out of 15000+600000
  16987 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,18n,38p,1828b,468s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,18n,42p,1838b,1209s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/pl/pltt.enc}{/usr/share/texliv
 e/texmf-dist/fonts/enc/dvips/pl/plit.enc}{/usr/share/texlive/texmf-dist/fonts/e
 nc/dvips/pl/plmi.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/pl/plrm.enc
@@ -1078,10 +1132,10 @@ e/texmf-dist/fonts/type1/public/pl/plsy10.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/public/pl/plsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
 /pl/plsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plti12.pfb><
 /usr/share/texlive/texmf-dist/fonts/type1/public/pl/pltt12.pfb>
-Output written on tmp.pdf (38 pages, 1479872 bytes).
+Output written on tmp.pdf (41 pages, 1493939 bytes).
 PDF statistics:
- 644 PDF objects out of 1000 (max. 8388607)
- 529 compressed objects within 6 object streams
- 164 named destinations out of 1000 (max. 500000)
- 434 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 768 PDF objects out of 1000 (max. 8388607)
+ 649 compressed objects within 7 object streams
+ 238 named destinations out of 1000 (max. 500000)
+ 482 words of extra memory for PDF output out of 10000 (max. 10000000)
 
