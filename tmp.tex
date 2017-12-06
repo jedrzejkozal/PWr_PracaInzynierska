@@ -34,14 +34,14 @@
 \chapter{Wstęp}
 	Celem pracy jest porównanie metod i algorytmów umożliwiających wykrycie twarzy na zdjęciu oraz wyznaczenie wektora uczącego dla sieci neuronowej na podstawie wykrytego obszaru zdjęcia zawierajacego twarz. Projekt ten jest częścią systemu biometrycznej kontroli dostępu. Za implementację sieci neuronowych oraz analizę algorytmów związanych z sieciami odpowiadał Filip Guzy. Za architekturę systemu, oraz komunikację pomiędzy komponentami odpowiadał Michał Leś. 
 
-Celem całego projektu było skonstruowanie prostego systemu kontroli dostępu opartego na rozpoznawaniu twarzy. System ma określać czy na wykonanym zdjęciu występuje twarz. Po wykryciu twarzy następuje ekstrakcja cech - wyznaczenie wektora cech i przygotowanie wektora uczącego dla sieci. Zadaniem sieci neuronowej jest klasyfikacja użytkownika i podjęcie decyzji czy danemu użytkownikowi powinien zostać przyznany dostęp, czy też nie.
+Celem całego projektu było skonstruowanie prostego systemu kontroli dostępu opartego na rozpoznawaniu twarzy. System ma określać, czy na wykonanym zdjęciu występuje twarz. Po wykryciu twarzy następuje ekstrakcja cech - wyznaczenie wektora cech i przygotowanie wektora uczącego dla sieci. Zadaniem sieci neuronowej jest klasyfikacja użytkownika i podjęcie decyzji czy danemu użytkownikowi powinien zostać przyznany dostęp, czy też nie.
 
 System oryginalnie został zaprojektowany na mikrokomputer Raspberry Pi. W projekcie wykorzystano Raspberry Pi 3. Przy projektowaniu systemu fakt ten miał niebagatelne znaczenie ze względu na ograniczone pokłady mocy obliczeniowej. Architekutra systemu została zaprojektowana w taki sposób, aby system można było z łatwością przenosić na inne platformy. 
 
 
 \section{Omówienie zagadnienia}
 
-Biometria to nauka zajmująca się mierzeniem cech osobniczych. Jest wykorzystywana w systemach kontroli dostępu w celu zwiększenia komfortu. Użytkownik systemu korzystającego z takiego systemu nie musi pamiętać haseł, nosić przy sobie kart identyfikacyjnych, czy kluczy. Cechy osobnicze dzielmy na fizyczne i behawioralne. Najczęściej przedstawianymi cechami są:
+Biometria to nauka zajmująca się mierzeniem cech osobniczych. Jest wykorzystywana w systemach kontroli dostępu w celu zwiększenia niezawodności i bezpieczeństwa. Użytkownik systemu korzystającego z takiego systemu nie musi pamiętać haseł, nosić przy sobie kart identyfikacyjnych, czy kluczy. Cechy osobnicze dzielmy na fizyczne i behawioralne. Najczęściej przedstawianymi cechami są:
 
 \begin{enumerate}
 
@@ -63,7 +63,7 @@ Biometria to nauka zajmująca się mierzeniem cech osobniczych. Jest wykorzystyw
 
 \end{enumerate} 
 
-Cechy najczęściej są unikatowe dla poszczególnych osobników, co zapewnia ich wiarygodność. Biometryka cieszy się rosnącą popularnością, ze względu na wiele możliwych zastosowań. Dodatkowo wzrost możliwości sprzętowych oraz rozwój technik Machine Learning i Pattern Recognition przyczyniają się do znaczących postępów w omawianej dziedzinie. Metody statystyczne umozliwiają ilościową analizę pomiarów wybranych cech osobniczych. Zastosowanie tanich czujników w urządzeniach produkcji masowej powoduje przenikanie tej dziedziny do życia codziennego. Niektóre smartfony zawierają biometryczne systemy kontroli dostępu. 
+Cechy najczęściej są unikatowe dla poszczególnych osobników, co zapewnia ich wiarygodność. Biometria cieszy się rosnącą popularnością, ze względu na wiele możliwych zastosowań. Dodatkowo wzrost możliwości sprzętowych, oraz rozwój technik Machine Learning i Pattern Recognition przyczyniają się do znaczących postępów w tej dziedzinie. Metody statystyczne umozliwiają ilościową analizę pomiarów wybranych cech osobniczych. Zastosowanie tanich czujników w urządzeniach produkcji masowej powoduje przenikanie tej dziedziny do życia codziennego. Niektóre smartfony zawierają biometryczne systemy kontroli dostępu. 
 
 Przetworzenie zebranych pomiarów i ich ilościowa analiza, umożliwiająca identyfikację osobnika jest trudnym zadaniem. Wymaga przeniesienia fizycznych pomiarów na bardziej abstrakcyjne poziomy i znalezienie ukrytych zależności. Często bardzo pomocna jest inna reprezentacja danych. 
 
@@ -77,7 +77,7 @@ Jako czujnik wykorzystano kamerę mikrokomputera Raspberry Pi. Zawiera ona matry
 	
 \item Przetwarzanie obrazu
 
-Przed operacją wykrywania twarzy z wykorzystaniem kaskad Haara obraz jest konwertowany do skali szarości. W przypadku ekstrakcji głębi na podstawie obrazów z dwóch kamer, z obrazu są usuwane zakłócenia.
+Przed operacją wykrywania twarzy z wykorzystaniem kaskad Haara, obraz jest konwertowany do skali szarości. W przypadku ekstrakcji głębi na podstawie obrazów, z dwóch kamer z obrazu są usuwane zakłócenia.
 
 \item Wykrycie twarzy
 
@@ -89,11 +89,11 @@ Na podstawie obszaru zawierającego twarz przeprowadzana jest ekstrakcja cech. C
 
 \item Rozpoznawanie osobnika
 
-Wektor cech jest wykorzystywany przez sieć neuronową do klasyfikacji i podjęcia decyzji czy dostęp został przyznany czy nie.
+Wektor cech jest wykorzystywany przez sieć neuronową do klasyfikacji i podjęcia decyzji, czy dostęp został przyznany czy nie.
 
 \end{enumerate} 
 
-W zakresie tej pracy szczegółowo zostaną omówione rozwiązane przyjęte w zakresie realizacji punktu 3 i 4. 
+W zakresie tej pracy szczegółowo zostaną omówione rozwiązania przyjęte w zakresie realizacji punktu 3 i 4. 
 
 
 
@@ -103,13 +103,13 @@ Jak wspomniano we wstępie, komponent opisany w niniejszej pracy jest częścią
 
 \subsection{Wykorzystane wzorce projektowe}
 
-W celu ułatwienia pracy współpracownikom w projekcie został utworzony wydzielony łatwo wymienialny komponent. W celu ułatwienia pracy badawczej komponent został podzielony na mniejsze elementy z wykorzystaniem obiektowych wzorców projektowych.
+W celu ułatwienia pracy współpracownikom w projekcie został wydzielony łatwo wymienialny komponent. W celu ułatwienia pracy badawczej komponent został podzielony na mniejsze elementy z wykorzystaniem obiektowych wzorców projektowych.
 Do reprezentacji całego komponentu wybrano wzorzec "Fabryka". Zapewniono w ten sposób elastyczność użytkownikom klasy, ponieważ mogą oni zdecydować w jaki sposób współrzędne będące wynikiem działania algorytmów mają być przechowywane. Zapewniono klasę bazową do przechowywania wektora uczącego dla sieci, po której dziedziczą poszczególne reprezentacje, takie jak bezpośrednie przechowywanie danych w pamięci programu, czy zapis w pamięci nieulotnej w postaci pliku z rozszerzeniem .npy z biblioteki numpy.
 W celu zwiększenia elastyczności w obrębie komponentu do wyboru algorytmów dwukrotnie wykorzystano wzorzec "Strategia". Stworzono klasy bazowe do reprezentacji podstawowych własności algorytmu, które następnie implementowano w klasach pochodnych. Modyfikacja ta ułatwiła pracę badawczą i usystematyzowała strukturę projektu.
 
 \subsection{Wykorzystane zasady i dobre praktyki programowania}
 
-W trakcie realizacji projektu oprócz wykorzystania wzorców projektowych posługiwano się także dobrymi zasadami SOLID oraz Clean Code. Pozwalają one na zachowanie większego porządku oraz czytelności kodu. SOLID opisuje dobre praktyki programowania obiektowego i składa się z pięciu zasad:
+W trakcie realizacji projektu, oprócz wykorzystania wzorców projektowych posługiwano się także dobrymi zasadami SOLID oraz Clean Code. Pozwalają one na zachowanie większego porządku oraz czytelności kodu. SOLID opisuje dobre praktyki programowania obiektowego i składa się z pięciu zasad:
 
 \begin{enumerate}
 \item Pojedyncza odpowiedzialność (Single resposibility)
@@ -189,7 +189,7 @@ Funkcja ta przypomina dyskretną dystrybuantę dwuwymiarowej zmiennej losowej. J
 \begin{figure}
 \centering
 	\includegraphics[width=0.50\textwidth,natwidth=610,natheight=642]{haar_features.jpg}\par\vspace{0.5cm}
-\caption{Różne rodzaje cech. Od sumy wartości pikseli pod czarnym obszarem, jest odejmowana wartość sumy pikseli pod białym polem.}
+\caption{Różne rodzaje cech. Od sumy wartości pikseli pod czarnym obszarem jest odejmowana wartość sumy pikseli pod białym obszarem.}
 Źródło: https://docs.opencv.org\/3.3.0\/d7\/d8b\/tutorial\_py\_face\_detection.html
 	\label{fig:features}
 \end{figure}
@@ -205,7 +205,7 @@ Nawet dla najmiejsznych obrazów można rozważać wiele cech. W celu ograniczen
 	\label{fig:best_features}
 \end{figure}
 
-Wykorzystanie AdaBoost pozwoliło na wybranie cech generujących najmniejszy błąd. Ilość użytych cech wpływa na jakość algorytmu, jednocześnie zwiększając czas potrzebny na obliczenia. Jak można zauważyć na rys. \ref{fig:best_features} najlepsze cechy mają dość intuicyjną interpretację: spodziewamy się, że obraz w okolicach oczu będzie ciemniejszy niż w okolicach policzków oraz, że środek nosa będzie jaśniejszy niż obszary po bokach.
+Wykorzystanie AdaBoost pozwoliło na wybranie cech generujących najmniejszy błąd. Ilość użytych cech wpływa na jakość algorytmu, jednocześnie zwiększając czas potrzebny na obliczenia. Jak można zauważyć na Rys. \ref{fig:best_features} najlepsze cechy mają dość intuicyjną interpretację: spodziewamy się, że obraz w okolicach oczu będzie ciemniejszy niż w okolicach policzków oraz, że środek nosa będzie jaśniejszy niż obszary po bokach.
 
 Dysponując zbiorem cech można przystąpić do klasyfikacji obrazu. Odbywa się to kaskadowo. W pierwszym etapie wykorzystuje się klasyfikator złożony najczęściej z jednej lub dwóch cech. Klasyfikacja jest przeprowadzana na całym obrazie, aby wykryć gdzie może znajdować się twarz. W kolejnych etapach ilość cech jest zwiększana (najczęściej wykładniczo). Jeśli w danym obszarze nie została wykryta twarz, zostaje on pominięty w dalszych etapach. Pozwala to znacząco ograniczyć ilość wykonywanych operacji dla kolejnych klasyfikatorów. Zaleca się aby w pierwszym etapie wykorzystywać cechę z wysokim współczynnikiem fałszywych negatywnych rezultatów (ang. false negative) -- w tym przypadku obszarów zawierających twarz, błędnie zaklasyfikowanych jako nie będących twarzą.
 
@@ -222,7 +222,7 @@ W lewej części - oryginalny obraz z kamertki, w prawej - części, obraz z zaz
 	\label{fig:face_landmark_detect}
 \end{figure}
 
-Do rozwiązania problemu można zastosować inne podejście, polegające na znajdowaniu charakterystycznych punktów twarzy. W pracy \cite{Landmark face detector} wykorzystano boosting drzewa gradientu do stworzenia kaskady regresorów. Dysponując zbiorem uczącym zawierającym zdjęcia twarzy oraz współrzędne punktów charakterystycznych można wyznaczyć kaskadę regresorów liniowych. Zakładamy, że estymowany kształt punktów charakterystycznych dowolnej twarzy może być wyrażony jako kombinacja liniowa kształtu punktów charakterystycznych z odpowiednio dużego zbioru uczącego. Każdy regresor to drzewo decyzyjne, które w liściach przechowuje wektor, który powinien zostać dodany do aktualnej estymacji punktów charakterystycznych (zbiór współrzędnych x i y, które powinny być kolejno dodane do każdej współrzędnej). W pierwszym kroku jako estymacja jest wykorzystywany średni kształt z bazy zdjęć uczących. Następnie każdy regresor delikatnie poprawia estymację, przesuwając punkty w odpowiednią stronę. Na rys. \ref{fig:face_landmark_detect} przedstawiono efekty detekcji twarzy z wykorzystaniem implementacji z biblioteki Dlib.
+Do rozwiązania problemu można zastosować inne podejście, polegające na znajdowaniu charakterystycznych punktów twarzy. W pracy \cite{Landmark face detector} wykorzystano boosting drzewa gradientu do stworzenia kaskady regresorów. Dysponując zbiorem uczącym zawierającym zdjęcia twarzy oraz współrzędne punktów charakterystycznych można wyznaczyć kaskadę regresorów liniowych. Zakładamy, że estymowany kształt punktów charakterystycznych dowolnej twarzy może być wyrażony jako kombinacja liniowa kształtu punktów charakterystycznych z odpowiednio dużego zbioru uczącego. Każdy regresor to drzewo decyzyjne, które w liściach przechowuje wektor, który powinien zostać dodany do aktualnej estymacji punktów charakterystycznych (zbiór współrzędnych x i y, które powinny być kolejno dodane do każdej współrzędnej). W pierwszym kroku jako estymacja jest wykorzystywany średni kształt z bazy zdjęć uczących. Następnie każdy regresor delikatnie poprawia estymację, przesuwając punkty w odpowiednią stronę. Na Rys. \ref{fig:face_landmark_detect} przedstawiono efekty detekcji twarzy z wykorzystaniem implementacji z biblioteki Dlib.
 
 Omawiane rozwiązanie umożliwia całkowicie inne podejście do problemu ekstrakcji cech. Mając estymatę, charakterystyczne punkty twarzy oraz mierząc odległości między poszczególnymi punktami można przygotować wektor uczący, mający bardzo fizyczną interpretację. Dodając informację na temat koloru oczu czy skóry, można skonstruować zupełnie inne wektory cech niż proponowany w tej pracy. 
 
@@ -296,7 +296,7 @@ Definiujemy wariancję zbioru obserwacji względem wektora $u_1$:
 	s^2 = \frac{1}{N} \sum_{n=1}^{N}(\bb{u}_1^T \bb{x}_n - \bb{u}_1^T\overline{\bb{x}})^2 = \bb{u}_1^T S \bb{u}_1
 \end{equation}
 
-Chcąc maksymalizować wariancję $s^2$ musimy pamiętać o warunku $\ref{eq:wektor_jednostkowy}$. Otrzymujemy więc problem optymalizacji polegający na znalezieniu maksimum warunkowego funkcji $f(\bb{u}_1)$ z ograniczeniem $g(\bb{u}_1)$:
+Chcąc maksymalizować wariancję $s^2$ musimy pamiętać o warunku ($\ref{eq:wektor_jednostkowy}$). Otrzymujemy więc problem optymalizacji polegający na znalezieniu maksimum warunkowego funkcji $f(\bb{u}_1)$ z ograniczeniem $g(\bb{u}_1)$:
 \begin{align*}
 	f(\bb{u}_1) &= \bb{u}_1^T S \bb{u}_1 \\
 	g(\bb{u}_1) &= 1 - \bb{u}_1^T \bb{u}_1 = 0
@@ -395,7 +395,7 @@ Dysponując macierzą A, można zapisać S w postaci:
 	S_{D \times D} = \frac{1}{N} A A^T
 \end{equation}
 
-Co jest całkowicie zgodnie z definicją \ref{eq:cov}. Kolejnym krokiem będzie wyznaczenie wektorów i wartości własnych, posortowanie wektorów własnych według nierosnącej wartości własnych oraz wybranie M wektorów własnych. 
+Co jest całkowicie zgodnie z definicją (\ref{eq:cov}). Kolejnym krokiem będzie wyznaczenie wektorów i wartości własnych, posortowanie wektorów własnych według nierosnącej wartości własnych oraz wybranie M wektorów własnych. 
 
 Należy zwrócić uwagę na wymiar macierzy S. Przypomnijmy, że D to wymiar wektora pomiarowego, co w przypadku zdjęć oznacza wartość każdego piksela przeniesioną kolejno do elementów wektora. Zdjęcia w tej pracy, przed podaniem na wejście algorytmu ekstrakcji cech były konwertowane do skali szarości i obcinane do rozmiaru 64 $\times$ 64 pikseli, co oznacza, że wektor pomiarowy zawierał 4096 współrzędnych. Biorąc pod uwagę złożoność obliczeniową algorytmów wyznaczania wektorów własnych może to powodować problemy z wydajnością. Można temu zapobiec poprzez zamianę miejscami macierzy $A$ i $A^T$ w iloczynie. Obliczając wartości własne macierzy $A^T A$ musimy wrócić do $D$-wymiarowości przestrzeni, co jest możliwe z wykorzystaniem następującej własności:
 \begin{equation}
@@ -454,7 +454,7 @@ Gdzie $\bb{v}_n$ oznacza $n$-ty element wektora $v$, a $\bb{u}_n$ oznacza $n$-ty
 	\label{fig:rekonstrukcja}
 \end{figure}
 
-Efekt rekonstrukcji przedstawiono na rys. \ref{fig:rekonstrukcja}. Dokonano redukcji wymiarowości zdjęcia twarzy autora systemu, oraz na podstawie uzyskanego wektora zrekonstruowano oryginalny obraz. Wraz ze zwiększeniem się ilości składowych jakość rekonstrukcji zdjęcia się polepsza. Użycie większej ilości składowych nie przynosi znaczącej poprawy jakości obrazu, co można zaobserwować dla rekonstrukcji z wykorzystaniem 300 i 400 składowych. PCA jest chętnie wykorzystywaną metodą, ponieważ jest bardzo intuicyjna oraz pozwala na wizualne sprawdzenie rezultatów.
+Efekt rekonstrukcji przedstawiono na Rys. \ref{fig:rekonstrukcja}. Dokonano redukcji wymiarowości zdjęcia twarzy autora systemu, oraz na podstawie uzyskanego wektora zrekonstruowano oryginalny obraz. Wraz ze zwiększeniem się ilości składowych jakość rekonstrukcji zdjęcia się polepsza. Użycie większej ilości składowych nie przynosi znaczącej poprawy jakości obrazu, co można zaobserwować dla rekonstrukcji z wykorzystaniem 300 i 400 składowych. PCA jest chętnie wykorzystywaną metodą, ponieważ jest bardzo intuicyjna oraz pozwala na wizualne sprawdzenie rezultatów.
 
 \begin{figure}
 \centering
@@ -495,7 +495,7 @@ Górny wiersz - wektory 0-4, dolny wiersz - wektory 392-396.
 	\label{fig:eigenfaces}
 \end{figure}
 
-W omawianym zagadnieniu wektory własne zyskały specjalną nazwę eigenfaces (twarze własne), można zauwżyć jak wyglądają aplikując technikę odtwarzania zdjęcia na podstawie współrzędnych z przestrzeni o zredukowanej wymiarowości. Efekty zostały zaprezentowane na rys. \ref{fig:eigenfaces}. 
+W omawianym zagadnieniu wektory własne zyskały specjalną nazwę eigenfaces (twarze własne), można zauwżyć jak wyglądają aplikując technikę odtwarzania zdjęcia na podstawie współrzędnych z przestrzeni o zredukowanej wymiarowości. Efekty zostały zaprezentowane na Rys. \ref{fig:eigenfaces}. 
 
 Jak można łatwo zaobserwować, wektory 0-4 zawierają najbardziej istotne zmiany pomiędzy poszczególnymi obrazami ze zbioru obserwacji - odpowiadają one wartościom własnym o największej wariancji. Wektory 392-396 odpowiadają niższym wartościom własnym. Wektory te przypominają losowy szum i niosą informację o szczegółach twarzy. Można zauważyć, że pominięcie składowych z niższą wartością własną, powoduje mniejszą utratę informacji - dane w kierunkach wyznaczanych przez te wektory nie różnią się znacząco od siebie.
 
@@ -526,7 +526,7 @@ Zakłada się rozmiary macierzy: $W_{m \times k}$ oraz $H_{k \times n}$, dla $k 
 
 można przyjąć W, jako bazę przestrzeni definiowanej przez $V$.
 
-Dokładny rozkład we wzorze \ref{NMF} nie musi istnieć dla dowolnego $k$, dlatego nie może zostać umieszczony znak równości. Zwykle w trakcie szukania $W$ i $H$ przyjmuje się, że ich iloczyn ma się znajdować w odpowiednio niewielkiej odległości od $V$. Najczęściej rozważane wartości błędu to:
+Dokładny rozkład we wzorze (\ref{NMF}) nie musi istnieć dla dowolnego $k$, dlatego nie może zostać umieszczony znak równości. Zwykle w trakcie szukania $W$ i $H$ przyjmuje się, że ich iloczyn ma się znajdować w odpowiednio niewielkiej odległości od $V$. Najczęściej rozważane wartości błędu to:
 
 \begin{align*}
 	||A - B||^2 &= \sum_{ij} (A_{ij} - B_{ij})^2 \\
@@ -566,7 +566,7 @@ Można sobie wyobrazić, że problem ten występuje w kontekście analizy sygna�
 
 W \cite{ICA} podano rozwiązanie problemu opierające się na centralnym twierdzeniu granicznym:
 
-Załóżmy że wartość oczekiwana $\bb{x}$ i $\bb{s}$ jest równa 0 oraz wariancja niezależnych składowych jest równa 1. Możemy to zrobić, ponieważ dla rozkładów o niezerowej średniej można odjąć średnią. Ograniczenie nałożone na wariację $\bb{s}$ jest spowodowane przez równanie \ref{ICA model}, konkretniej, wartość $\bb{s}$ może zostać obliczona z dokładnością do stałej ($\bb{s}$ może zostać przemnożone przez dowolne $p$, jeśli $A$ zostanie przemnożone przez $\frac{1}{p}$). Stosując to ograniczenie unikamy zbyt wielkich wartości niezależnych składowych  Dodatkowo załóżmy, że wszystkie niezależne składowe $\bb{s}$ mają taki sam rozkład i są niezależnymi zmiennymi losowymi. Wprowadźmy $\bb{y}$ jako liniową kombinację $\bb{x}$:
+Załóżmy że wartość oczekiwana $\bb{x}$ i $\bb{s}$ jest równa 0 oraz wariancja niezależnych składowych jest równa 1. Możemy to zrobić, ponieważ dla rozkładów o niezerowej średniej można odjąć średnią. Ograniczenie nałożone na wariację $\bb{s}$ jest spowodowane przez równanie (\ref{ICA model}), konkretniej, wartość $\bb{s}$ może zostać obliczona z dokładnością do stałej ($\bb{s}$ może zostać przemnożone przez dowolne $p$, jeśli $A$ zostanie przemnożone przez $\frac{1}{p}$). Stosując to ograniczenie unikamy zbyt wielkich wartości niezależnych składowych  Dodatkowo załóżmy, że wszystkie niezależne składowe $\bb{s}$ mają taki sam rozkład i są niezależnymi zmiennymi losowymi. Wprowadźmy $\bb{y}$ jako liniową kombinację $\bb{x}$:
 
 \begin{equation}
 	\bb{y} = \bb{w}^T \bb{x}
@@ -602,7 +602,7 @@ Oprócz zastosowania w analizie mowy, często podawaną aplikacją ICA jest ocen
 
 \chapter{Omówienie implementacji}
 
-W tym rozdziale przedstawiono szczegóły implementacji kodu realizującego omawiane funkcjonalności komponentu. Omówiono podstawowe koncepcje i założenia kryjące się za przyjętymi rozwiązaniami. Omówiono funkcjonalności oraz zakres odpowiedzialności poszczególnych klas. Warto nadmienić że wszystkie przedstawione tutaj rozwiązania dotyczą najnowszej wersji komponentu, która nie została jeszcze zintegrowana z resztą systemu.
+W tym rozdziale przedstawiono szczegóły implementacji kodu realizującego omawiane funkcjonalności komponentu. Omówiono podstawowe koncepcje i założenia kryjące się za przyjętymi rozwiązaniami. Omówiono funkcjonalności oraz zakres odpowiedzialności poszczególnych klas.
 
 \section{Klasa zarządzająca komponentem}
 
@@ -614,7 +614,7 @@ W obiektowych językach programowania często można się spotkać z podziałem 
 
 \begin{lstlisting}[language=Python]
     def fabricate(self, img_filename):
-        prod = self.prouctType(self.n_dim)
+        prod = self.productType(self.n_dim)
         prod.set(self.compute_coor(self.detect_face(img_filename)))
         return prod
 \end{lstlisting}
@@ -635,12 +635,14 @@ Konstruktor pełni ważną rolę w klasie, ponieważ wykorzystano w nim technik�
         self.face_detection_strategy = FaceDetectionStrategy()
         self.extraction_strategy = FeatureExtractionStrategy(self.n_dim, \
         self.n_components)
-        self.prouctType = CoordinatesProduct
+        self.productType = CoordinatesProduct
 \end{lstlisting}
 
 Użytkownik klasy przy tworzeniu obiektu typu AbstractFactory podaje w argumentach konstruktora jakie warianty klas do detekcji twarzy, ekstrakcji cech oraz przechowywania informacji na temat produktu powinny zostać wykorzystywane. Dodatkowo w konstruktorze są inicjalizowane stałymi rozmiary wektora przed i po redukcją wymiarowości. Wartości te wynoszą odpowiedni 4096 i 400. Pierwsza z tych wartości odpowiada rozmiarowi obrazka 64$\times$64 piksele i została przyjęta w celu dopasowania rozmiarów przetwarzany wektorów do tych ze zbioru Olivetti faces dataset. Druga wartość jest efektem eksperymentów z siecią neuronową -- dla 400-elementowych wektorów uzyskiwano najlepsze rezultaty. Wartości te nie powinny być przyjęte jako stałe i użytkownik powinien mieć możliwość zmiany ich wartości, nie jest to jednakże rażące niedopatrzenie.
 
 \subsection{Pozostałe funkcje}
+
+Pozostałe dwie funkcje klasy służą do wywoływania operacji detekcji twarzy i ekstracji cech z odpowiednich strategii.
 
 \begin{lstlisting}[language=Python]
     def detect_face(self, img_filename):
@@ -650,7 +652,7 @@ Użytkownik klasy przy tworzeniu obiektu typu AbstractFactory podaje w argumenta
         return self.extraction_strategy.extract_features(img)
 \end{lstlisting}
 
-Pozostałe dwie funkcje klasy służą do wywoływania operacji detekcji twarzy i ekstracji cech z odpowiednich strategii.
+
 
 \section{Klasa przechowująca wyniki działania Fabryki}
 
@@ -660,9 +662,21 @@ Zadaniem klasy CoordinatesProduct jest nałożenie abstrakcji na sposób przecho
 
 FaceDetectionStrategy jest klasa abstrakcyjną po której mają dziedziczyć wszystkie implementacje algorytmów detekcji twarzy. Zawiera metody ogólnego przeznacznia, które mogą być wykorzystywane przez klasy potomne. Do metod tych zaliczają się:
 
+Funkcja do wczytywania obrazu i konwertowania go do skali szarości:
+
 \begin{lstlisting}[language=Python]
-	read_image_and_convert_to_greyscale(self, filename),
-	crop_img(self, image, x, y, w, h),
+	read_image_and_convert_to_greyscale(self, filename)
+\end{lstlisting}
+
+Funckja do wycinania wybranego obszaru z obrazu:
+
+\begin{lstlisting}[language=Python]
+	crop_img(self, image, x, y, w, h)
+\end{lstlisting}
+
+Funkcja do wyświetlania obrazu, w celu łatwiejszego analizowania działania aplikacji:
+
+\begin{lstlisting}[language=Python]
 	debug_show(self, img)
 \end{lstlisting}
 
@@ -681,7 +695,7 @@ Klasa ta posiada metodę łączącą wszystkie operacje wykonywane w ramach dzia
         return resized_face
 \end{lstlisting}
 
-Jak łatwo można zauważyć podanie do metody dodatkowego parametru w postaci ścieżki i nazywy pliku do zapisania, umożliwia łatwe debugowanie aplikacji. Metoda ta jest wywoływana w detect\_face w AbstractFactory.
+Podanie do metody dodatkowego parametru w postaci ścieżki i nazywy pliku do zapisania, umożliwia łatwe debugowanie aplikacji. Metoda ta jest wywoływana w detect\_face w AbstractFactory.
 
 Klasa HaarCascadesStrategy dziedziczy po FaceDetectionStrategy i implementuje detekcje twarzy z wykorzystaniem implementacji z biblioteki OpenCv. Kiedy na zdjęciu nie zostanie znaleziona twarz zostanie zgłoszony wyjątek: Found 0 faces!
 
@@ -689,9 +703,21 @@ Klasa HaarCascadesStrategy dziedziczy po FaceDetectionStrategy i implementuje de
 
 Zasada działania FeatureExtractionStrategy jest bardzo podobna do poprzedniej klasy. Stanowi ona klasę bezową dla wszystkich implementacji redukcji cech. W jej skład wchodzą metody pomocnicze, takie jak:
 
+Funkcja do ładowania obrazu z dysku:
+
 \begin{lstlisting}[language=Python]
 	load_img(self, name)
+\end{lstlisting}
+
+Funkcja do konwertowania obrazka wczytanego przez OpenCv na wektor NumPy:
+
+\begin{lstlisting}[language=Python]
 	convert_image_to_vector(self, img)
+\end{lstlisting}
+
+Funkcja do wczytywania plików z rozszerzeniem .npy: 
+	
+\begin{lstlisting}[language=Python]
 	load_matrix(self, name)
 \end{lstlisting}
 
@@ -805,7 +831,7 @@ Gdzie $x, y, z$, to współrzędne punktu P w układzie kamery.
 	\label{fig:camera_coordinate_systems}
 \end{figure}
 
-Warto zwrócić uwagę, że wektor $T$ zawiera położenie globalnego układu współrzędnych względem układu współrzędnych kamery, a nie odwrotnie. Fakt ten może wydawać się nieco nieintuicyjny, ale można go łatwo zilustrować. Z \ref{fig:camera_coordinate_systems} wynika jednoznacznie, że $P_k = T + P_g$. Oczywiście należy uwzględnić wzajmeną orientację układów, co zapewnia macierz R.
+Warto zwrócić uwagę, że wektor $T$ zawiera położenie globalnego układu współrzędnych względem układu współrzędnych kamery, a nie odwrotnie. Fakt ten może wydawać się nieco nieintuicyjny, ale można go łatwo zilustrować. Z (\ref{fig:camera_coordinate_systems}) wynika jednoznacznie, że $P_k = T + P_g$. Oczywiście należy uwzględnić wzajmeną orientację układów, co zapewnia macierz R.
 
 Macierz K zawiera parametry wewnętrzne kamery i jest definiowana jako:
 \begin{equation}
@@ -832,7 +858,7 @@ Korzystając z wcześniejszych równań można zapisać:
 	\label{fig:projection_up}
 \end{figure}
 
-Na rys \ref{fig:projection_up} można zauważyć, że równania te mają proste uzasadnienie geometryczne. Z twierdzenia Talesa otrzymujemy: 
+Na rys (\ref{fig:projection_up}) można zauważyć, że równania te mają proste uzasadnienie geometryczne. Z twierdzenia Talesa otrzymujemy: 
 $\frac{x_0}{f} = \frac{x}{z}$. Wartość $u$ możemy uzyskać poprzez dodanie do $x_0$ z poprzedniego równania $c_x$. Dla y rozumowanie jest analogiczne.
 
 
@@ -939,7 +965,7 @@ Operacja ta jest powtarzana, aż punkt $q$ uzyska stabilną wartość (jego wsp�
 	\label{fig:pose}
 \end{figure}
 
-Dzięki wyznaczonym narożnikom można wyznaczyć wewnętrzne i zewnętrzne kamery. Wartości te są następnie wykorzystane do estymacji pozycji \ref{fig:pose} oraz do usunięcia zakłóceń z obrazu. 
+Dzięki wyznaczonym narożnikom można wyznaczyć wewnętrzne i zewnętrzne kamery. Wartości te są następnie wykorzystane do estymacji pozycji (Rys. \ref{fig:pose}) oraz do usunięcia zakłóceń z obrazu. 
 
 \subsection{Geometria epipolarna}
 
@@ -952,7 +978,7 @@ Zakładając wcześniej przyjęty model rzeczywistej kamery oraz stosując upros
 	\label{fig:epipolar_scene}
 \end{figure}
 
-Analizując scenę przedstawioną na rys. \ref{fig:epipolar_scene} można zauważyć, że ogniska obu kamer, punkt P oraz jego projekcje na płaszczyznę obrazu leżą na jednej płaszczyźnie. Linia poprowadzona pomiędzy ogniskami kamer jest nazywana linią główną (ang. baseline). 
+Analizując scenę przedstawioną na Rys. \ref{fig:epipolar_scene} można zauważyć, że ogniska obu kamer, punkt P oraz jego projekcje na płaszczyznę obrazu leżą na jednej płaszczyźnie. Linia poprowadzona pomiędzy ogniskami kamer jest nazywana linią główną (ang. baseline). 
 Punkty przecięcia linii głównej z płaszczyzną główną ($e$) nazywane są epipolami (ang. epipoles). Jeśli obie kamery się widzą, to epipole są widoczne jako środek drugiej kamery na obrazie.
 Płaszczyzna przechodząca przez dowolny punkt P widziany w obu kamerach oraz przez linię główną jest nazywana płaszczyzną epipolarną.
 Linią epipolarną nazywamy linię, będącą na przecięciu płaszczyzny obrazu z płaszczyzną epipolarną. Wszystkie linie epipolarne przecinają się w epipolach.
@@ -970,7 +996,7 @@ Kolejnym krokiem jest obliczenie mapy dysparycji oraz na jej podstawie wyznaczen
 	\label{fig:extraction}
 \end{figure}
 
-Przy ekstrakcji głęgokości jest wykorzystywane podobieństwo trójkątów $P F_L F_R$ oraz $P C_L C_R$ z rys. \ref{fig:extraction}:
+Przy ekstrakcji głęgokości jest wykorzystywane podobieństwo trójkątów $P F_L F_R$ oraz $P C_L C_R$ z Rys. \ref{fig:extraction}:
 
 \begin{equation}
 	\frac{b}{Z} = \frac{b-x_L+x_R}{Z-f}
@@ -986,7 +1012,7 @@ Po przekształceniach otrzymujemy:
 gdzie $d$ jest dysparycją - różnicą wartości odpowiadających sobie pikseli na dwóch obrazach szukanych wzdłuż epilinii.
 Znając ogniskową, odległość między kamerami oraz obliczając różnicę między analogicznymi pikselami z dwóch obrazów możemy szacować głębię.
 
-Warto zwrócić uwagę, że wzór \ref{eq:disp} nie traci na ogólności, gdy punkt $P$ znajdzie się pomiędzy osiami optycznymi kamer, ponieważ do obliczenia podstawy trójkąta $P C_L C_R$ zostanie wykorzystana odległość między punktem, w którym wiązka światła pada na prawą matrycę, a osią optyczną prawej kamery. Odległość ta może zostać w takim wypadku wyrażona jako $\frac{1}{2}l-x_R$, gdzie $l$ to długość ekranu światłoczułego. Po podstawieniu podobnej wartości za odległość od osi optycznej lewej kamery do punktu przecięcia wiązki światła z lewą matrycą $\frac{1}{2}l$ uprości się i zostaniemy ze wzorem \ref{eq:disp}.
+Warto zwrócić uwagę, że wzór (\ref{eq:disp}) nie traci na ogólności, gdy punkt $P$ znajdzie się pomiędzy osiami optycznymi kamer, ponieważ do obliczenia podstawy trójkąta $P C_L C_R$ zostanie wykorzystana odległość między punktem, w którym wiązka światła pada na prawą matrycę, a osią optyczną prawej kamery. Odległość ta może zostać w takim wypadku wyrażona jako $\frac{1}{2}l-x_R$, gdzie $l$ to długość ekranu światłoczułego. Po podstawieniu podobnej wartości za odległość od osi optycznej lewej kamery do punktu przecięcia wiązki światła z lewą matrycą $\frac{1}{2}l$ uprości się i zostaniemy ze wzorem (\ref{eq:disp}).
 
 \begin{figure}
 	\centering
@@ -1007,7 +1033,7 @@ Warto zwrócić uwagę, że wzór \ref{eq:disp} nie traci na ogólności, gdy pu
 
 
 \section{Wyniki}
-Dokonano kalibracji kamery, wyznaczono współczynniki wewnętrzne i zewnętrzne kamery. Jednakże nie udało się uzyskać zadowalających rezultatów. Po przedstawieniu systemowi zdjęcia osoby wyświetlonego na laptopie uzyskano mapę głębi przedstawioną na rys. \ref{fig:extraction_fail}. Jak można z łatwością zauważyć na mapie głębokości otrzymano punkty o różnej wartości współrzędnej z, czyli systemowi nie udało się poprawnie zidentyfikować płaskiej powierzchni. Gdyby uzyskana mapa głębi była z dopuszczalnym błędem aproskymowalna płaszczyną, kolejnym krokiem byłoby zobserwowanie jak system zachowuje się dla normalnej twarzy. Na podstawie obserwacji oraz błędów aproksymacji płaszczyzną, planowano ustalić próg błędu aproksymacji. Po przekroczeniu takiego progu system mógłby uznać, że podejmowana jest próba oszustwa.
+Dokonano kalibracji kamery, wyznaczono współczynniki wewnętrzne i zewnętrzne kamery. Jednakże nie udało się uzyskać zadowalających rezultatów. Po przedstawieniu systemowi zdjęcia osoby wyświetlonego na laptopie uzyskano mapę głębi przedstawioną na Rys. \ref{fig:extraction_fail}. Jak można z łatwością zauważyć na mapie głębokości otrzymano punkty o różnej wartości współrzędnej z, czyli systemowi nie udało się poprawnie zidentyfikować płaskiej powierzchni. Gdyby uzyskana mapa głębi była z dopuszczalnym błędem aproskymowalna płaszczyną, kolejnym krokiem byłoby zobserwowanie jak system zachowuje się dla normalnej twarzy. Na podstawie obserwacji oraz błędów aproksymacji płaszczyzną, planowano ustalić próg błędu aproksymacji. Po przekroczeniu takiego progu system mógłby uznać, że podejmowana jest próba oszustwa.
 
 Trudno jest określić jedną przyczynę niepowodzenia. Na pewno ważną rolę odgrywa kalibracja kamer. Wielokrotnie podejmowano próbę poprawiania uzyskiwanych wyników poprzez ponowną kalibrację, ale nie wpłynęło to w znaczący sposób na rezultaty. W związku z ograniczoną ilością czasu projekt nie mógł zostać ukończony, pomimo wielu godzin poświęconych na analizę problemu.
 
