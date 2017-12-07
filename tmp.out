@@ -1,37 +1,38 @@
 \BOOKMARK [0][-]{chapter.1}{Wstep}{}% 1
 \BOOKMARK [1][-]{section.1.1}{Om\363wienie zagadnienia}{chapter.1}% 2
 \BOOKMARK [1][-]{section.1.2}{Omawiany komponent jako czesc wiekszego systemu}{chapter.1}% 3
-\BOOKMARK [2][-]{subsection.1.2.1}{Wykorzystane wzorce projektowe}{section.1.2}% 4
-\BOOKMARK [2][-]{subsection.1.2.2}{Wykorzystane zasady i dobre praktyki programowania}{section.1.2}% 5
-\BOOKMARK [2][-]{subsection.1.2.3}{Wykorzystane biblioteki, narzedzia i zasoby}{section.1.2}% 6
-\BOOKMARK [0][-]{chapter.2}{Implementacja algorytm\363w \205 detekcja twarzy}{}% 7
-\BOOKMARK [1][-]{section.2.1}{Kaskady Haara}{chapter.2}% 8
-\BOOKMARK [1][-]{section.2.2}{Inne sposoby rozwiazania problemu}{chapter.2}% 9
-\BOOKMARK [0][-]{chapter.3}{Implementacja algorytm\363w \205 ekstrakcja cech}{}% 10
-\BOOKMARK [1][-]{section.3.1}{Principle Components Analysis}{chapter.3}% 11
-\BOOKMARK [2][-]{subsection.3.1.1}{Wstep matematyczny}{section.3.1}% 12
-\BOOKMARK [2][-]{subsection.3.1.2}{Realizacja algorytmu}{section.3.1}% 13
-\BOOKMARK [2][-]{subsection.3.1.3}{Interpretacja}{section.3.1}% 14
-\BOOKMARK [2][-]{subsection.3.1.4}{PCA jako samodzielny system rozpoznawania twarzy}{section.3.1}% 15
-\BOOKMARK [1][-]{section.3.2}{Inne podejscia do problemu redukcji wymiarowosci}{chapter.3}% 16
-\BOOKMARK [2][-]{subsection.3.2.1}{Nonnegative Matrix Factorization}{section.3.2}% 17
-\BOOKMARK [2][-]{subsection.3.2.2}{Independent Components Analysis}{section.3.2}% 18
-\BOOKMARK [0][-]{chapter.4}{Om\363wienie implementacji}{}% 19
-\BOOKMARK [1][-]{section.4.1}{Klasa zarzadzajaca komponentem}{chapter.4}% 20
-\BOOKMARK [2][-]{subsection.4.1.1}{Interfejs do komunikacji z reszta systemu}{section.4.1}% 21
-\BOOKMARK [2][-]{subsection.4.1.2}{Konstruktor}{section.4.1}% 22
-\BOOKMARK [2][-]{subsection.4.1.3}{Pozosta\233e funkcje}{section.4.1}% 23
-\BOOKMARK [1][-]{section.4.2}{Klasa przechowujaca wyniki dzia\233ania Fabryki}{chapter.4}% 24
-\BOOKMARK [1][-]{section.4.3}{Strategia detekcji twarzy}{chapter.4}% 25
-\BOOKMARK [1][-]{section.4.4}{Strategia ekstrakcji cech}{chapter.4}% 26
-\BOOKMARK [1][-]{section.4.5}{Pozosta\233a czesc oprogramowania}{chapter.4}% 27
-\BOOKMARK [0][-]{chapter.5}{Zabezpieczenie przed mozliwoscia oszukania systemu}{}% 28
-\BOOKMARK [1][-]{section.5.1}{Przyjeta metodyka}{chapter.5}% 29
-\BOOKMARK [1][-]{section.5.2}{Podstawy teoretyczne}{chapter.5}% 30
-\BOOKMARK [2][-]{subsection.5.2.1}{Kalibracja kamery}{section.5.2}% 31
-\BOOKMARK [2][-]{subsection.5.2.2}{Geometria epipolarna}{section.5.2}% 32
-\BOOKMARK [2][-]{subsection.5.2.3}{Szacowanie g\233ebokosci}{section.5.2}% 33
-\BOOKMARK [1][-]{section.5.3}{Wyniki}{chapter.5}% 34
-\BOOKMARK [0][-]{chapter.6}{Zakonczenie}{}% 35
-\BOOKMARK [1][-]{section.6.1}{Podsumowanie projektu}{chapter.6}% 36
-\BOOKMARK [1][-]{section.6.2}{Mozliwe usprawnienia}{chapter.6}% 37
+\BOOKMARK [2][-]{subsection.1.2.1}{Schemat dzia\233ania systemu}{section.1.2}% 4
+\BOOKMARK [2][-]{subsection.1.2.2}{Wykorzystane wzorce projektowe}{section.1.2}% 5
+\BOOKMARK [2][-]{subsection.1.2.3}{Wykorzystane zasady i dobre praktyki programowania}{section.1.2}% 6
+\BOOKMARK [2][-]{subsection.1.2.4}{Wykorzystane biblioteki, narzedzia i zasoby}{section.1.2}% 7
+\BOOKMARK [0][-]{chapter.2}{Implementacja algorytm\363w \205 detekcja twarzy}{}% 8
+\BOOKMARK [1][-]{section.2.1}{Kaskady Haara}{chapter.2}% 9
+\BOOKMARK [1][-]{section.2.2}{Inne sposoby rozwiazania problemu}{chapter.2}% 10
+\BOOKMARK [0][-]{chapter.3}{Implementacja algorytm\363w \205 ekstrakcja cech}{}% 11
+\BOOKMARK [1][-]{section.3.1}{Principle Components Analysis}{chapter.3}% 12
+\BOOKMARK [2][-]{subsection.3.1.1}{Wstep matematyczny}{section.3.1}% 13
+\BOOKMARK [2][-]{subsection.3.1.2}{Realizacja algorytmu}{section.3.1}% 14
+\BOOKMARK [2][-]{subsection.3.1.3}{Interpretacja}{section.3.1}% 15
+\BOOKMARK [2][-]{subsection.3.1.4}{PCA jako samodzielny system rozpoznawania twarzy}{section.3.1}% 16
+\BOOKMARK [1][-]{section.3.2}{Inne podejscia do problemu redukcji wymiarowosci}{chapter.3}% 17
+\BOOKMARK [2][-]{subsection.3.2.1}{Nonnegative Matrix Factorization}{section.3.2}% 18
+\BOOKMARK [2][-]{subsection.3.2.2}{Independent Components Analysis}{section.3.2}% 19
+\BOOKMARK [0][-]{chapter.4}{Om\363wienie implementacji}{}% 20
+\BOOKMARK [1][-]{section.4.1}{Klasa zarzadzajaca komponentem}{chapter.4}% 21
+\BOOKMARK [2][-]{subsection.4.1.1}{Interfejs do komunikacji z reszta systemu}{section.4.1}% 22
+\BOOKMARK [2][-]{subsection.4.1.2}{Konstruktor}{section.4.1}% 23
+\BOOKMARK [2][-]{subsection.4.1.3}{Pozosta\233e funkcje}{section.4.1}% 24
+\BOOKMARK [1][-]{section.4.2}{Klasa przechowujaca wyniki dzia\233ania Fabryki}{chapter.4}% 25
+\BOOKMARK [1][-]{section.4.3}{Strategia detekcji twarzy}{chapter.4}% 26
+\BOOKMARK [1][-]{section.4.4}{Strategia ekstrakcji cech}{chapter.4}% 27
+\BOOKMARK [1][-]{section.4.5}{Pozosta\233a czesc oprogramowania}{chapter.4}% 28
+\BOOKMARK [0][-]{chapter.5}{Zabezpieczenie przed mozliwoscia oszukania systemu}{}% 29
+\BOOKMARK [1][-]{section.5.1}{Przyjeta metodyka}{chapter.5}% 30
+\BOOKMARK [1][-]{section.5.2}{Podstawy teoretyczne}{chapter.5}% 31
+\BOOKMARK [2][-]{subsection.5.2.1}{Kalibracja kamery}{section.5.2}% 32
+\BOOKMARK [2][-]{subsection.5.2.2}{Geometria epipolarna}{section.5.2}% 33
+\BOOKMARK [2][-]{subsection.5.2.3}{Szacowanie g\233ebokosci}{section.5.2}% 34
+\BOOKMARK [1][-]{section.5.3}{Wyniki}{chapter.5}% 35
+\BOOKMARK [0][-]{chapter.6}{Zakonczenie}{}% 36
+\BOOKMARK [1][-]{section.6.1}{Podsumowanie projektu}{chapter.6}% 37
+\BOOKMARK [1][-]{section.6.2}{Mozliwe usprawnienia}{chapter.6}% 38
